@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiwoo Roh — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F4EFE6;
+  --ink: #18140F;
+  --rust: #B8482A;
+  --slate: #3A5470;
+  --muted: #7A7067;
+  --line: rgba(24,20,15,0.10);
+  --surface: #FAF7F2;
+  --white: #FEFCF9;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 2.5rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  padding-top: 60px;
+}
+.hero-left {
+  padding: 6rem 4rem 5rem 2.5rem;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px; background: var(--rust);
+}
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  line-height: 0.9; color: var(--ink); margin-bottom: 0.4rem;
+}
+.hero-name-en {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.2rem); color: var(--muted);
+  display: block; margin-bottom: 2.5rem;
+}
+.hero-desc {
+  font-size: 13px; color: var(--muted);
+  max-width: 420px; line-height: 1.9; margin-bottom: 3rem;
+  border-left: 2px solid var(--rust); padding-left: 1.25rem;
+}
+.hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem; text-decoration: none; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s; cursor: pointer;
+  font-family: 'DM Mono', monospace;
+}
+.btn-primary { background: var(--ink); color: var(--cream); border: 1px solid var(--ink); }
+.btn-primary:hover { background: var(--rust); border-color: var(--rust); }
+.btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn-secondary:hover { border-color: var(--ink); }
+
+.hero-right {
+  padding: 6rem 2.5rem 5rem 3.5rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem;
+  margin-bottom: 3rem;
+}
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.8rem; line-height: 1; color: var(--ink); margin-bottom: 0.3rem;
+}
+.stat-label {
+  font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
+}
+.hero-identity {
+  border-top: 1px solid var(--line); padding-top: 2rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.identity-pill {
+  font-size: 10px; padding: 0.25rem 0.75rem; border: 1px solid var(--line);
+  color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase;
+}
+
+/* ── SECTIONS ── */
+section { border-top: 1px solid var(--line); }
+.section-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line);
+}
+.section-num { font-size: 10px; color: var(--muted); letter-spacing: 0.12em; min-width: 32px; }
+.section-title {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* ── DATA PROJECTS ── */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.project-card {
+  padding: 3rem 2.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.25s;
+  display: flex; flex-direction: column;
+}
+.project-card:nth-child(even) { border-right: none; }
+.project-card:hover { background: var(--white); }
+.project-idx {
+  font-size: 10px; color: var(--muted); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 1.25rem;
+}
+.project-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem; line-height: 1.15; color: var(--ink); margin-bottom: 0.5rem;
+}
+.project-type {
+  font-size: 10px; color: var(--rust); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 1.25rem;
+}
+.project-desc {
+  font-size: 12px; color: var(--muted); line-height: 1.9; margin-bottom: 1.75rem; flex: 1;
+}
+.metrics-block {
+  background: rgba(24,20,15,0.03); border-left: 2px solid var(--rust);
+  padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+}
+.metric-row { display: flex; justify-content: space-between; font-size: 11px; padding: 0.15rem 0; }
+.metric-k { color: var(--muted); }
+.metric-v { color: var(--ink); font-weight: 500; }
+.tech-wrap { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.5rem; }
+.tech-tag {
+  font-size: 10px; padding: 0.18rem 0.55rem;
+  background: rgba(24,20,15,0.05); color: var(--muted);
+}
+.project-link {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px; align-self: flex-start;
+  transition: color 0.2s, border-color 0.2s;
+}
+.project-link:hover { color: var(--rust); border-color: var(--rust); }
+
+/* ── BIG INSIGHT (featured) ── */
+.insight-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.insight-text {
+  padding: 4rem 2.5rem; border-right: 1px solid var(--line);
+}
+.insight-label {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.insight-label::before { content:''; display:block; width:16px; height:1px; background:var(--rust); }
+.insight-quote {
+  font-family: 'DM Serif Display', serif; font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.25;
+  color: var(--ink); margin-bottom: 2rem;
+}
+.insight-body { font-size: 12px; color: var(--muted); line-height: 1.9; }
+.insight-data { padding: 4rem 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
+.data-point {}
+.data-big {
+  font-family: 'DM Serif Display', serif; font-size: 4rem;
+  line-height: 1; color: var(--ink); margin-bottom: 0.35rem;
+}
+.data-caption { font-size: 11px; color: var(--muted); line-height: 1.6; max-width: 240px; }
+
+/* ── UX SECTION ── */
+.ux-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.ux-card {
+  padding: 2.5rem; border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line); transition: background 0.2s;
+}
+.ux-card:nth-child(3n) { border-right: none; }
+.ux-card:hover { background: var(--white); }
+.ux-num { font-size: 10px; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 1rem; }
+.ux-title {
+  font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+  line-height: 1.2; color: var(--ink); margin-bottom: 0.5rem;
+}
+.ux-subtitle { font-size: 10px; color: var(--rust); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.ux-desc { font-size: 12px; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
+.ux-role {
+  font-size: 10px; color: var(--muted); padding-top: 1rem;
+  border-top: 1px solid var(--line); letter-spacing: 0.05em;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.about-left {
+  padding: 4rem 2.5rem; border-right: 1px solid var(--line);
+}
+.about-heading {
+  font-family: 'DM Serif Display', serif; font-size: 2.5rem;
+  line-height: 1.1; color: var(--ink); margin-bottom: 1.75rem;
+}
+.about-body { font-size: 12px; color: var(--muted); line-height: 1.95; margin-bottom: 2rem; }
+.about-right { padding: 4rem 2.5rem; }
+.skills-group { margin-bottom: 2rem; }
+.skills-group-label {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 0.9rem;
+}
+.skill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+.skill-chip {
+  font-size: 10px; padding: 0.22rem 0.65rem;
+  border: 1px solid var(--line); color: var(--ink);
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  padding: 6rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  border-top: 1px solid var(--line);
+}
+.contact-heading {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 6vw, 5rem); line-height: 0.95;
+  color: var(--ink);
+}
+.contact-heading em { font-style: italic; color: var(--muted); }
+.contact-right { display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; }
+.contact-item {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding-bottom: 1.25rem; border-bottom: 1px solid var(--line);
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.contact-value { font-size: 13px; color: var(--ink); text-decoration: none; }
+.contact-value:hover { color: var(--rust); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+.footer-made { font-size: 10px; color: var(--muted); }
+
+/* ── SCROLL ANIMATION ── */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero, .insight-row, .about-grid { grid-template-columns: 1fr; }
+  .hero-left { border-right: none; border-bottom: 1px solid var(--line); }
+  .insight-text { border-right: none; border-bottom: 1px solid var(--line); }
+  .about-left { border-right: none; border-bottom: 1px solid var(--line); }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card { border-right: none; }
+  .ux-grid { grid-template-columns: 1fr; }
+  .ux-card { border-right: none; }
+  nav { padding: 1rem 1.25rem; }
+  .hero-left, .hero-right { padding: 3rem 1.25rem; }
+  .contact-section { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Jiwoo Roh</a>
+  <ul class="nav-links">
+    <li><a href="#data">Data</a></li>
+    <li><a href="#ux">UX</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Behavioral UX Research &amp; Data Science</div>
+    <h1 class="hero-name">Jiwoo<br>Roh</h1>
+    <span class="hero-name-en">Lucy</span>
+    <p class="hero-desc">
+      I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using behavioral data, HCI-informed reasoning, and ML to surface what prediction alone misses.
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://github.com/lucytheboss" target="_blank">GitHub →</a>
+      <a class="btn btn-secondary" href="mailto:lucyroh529@gmail.com">Email</a>
+      <a class="btn btn-secondary" href="https://medium.com/@lucyroh529" target="_blank">Medium</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Featured Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25M</div>
+        <div class="stat-label">Ratings Analyzed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0.95</div>
+        <div class="stat-label">NDCG@10 Score</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Majors (Psych · EL · TechArt)</div>
+      </div>
+    </div>
+    <div class="hero-identity">
+      <span class="identity-pill">Chung-Ang University</span>
+      <span class="identity-pill">Seoul, KR</span>
+      <span class="identity-pill">Applied Scientist (Goal)</span>
+      <span class="identity-pill">U.S. Permanent Resident</span>
+    </div>
+  </div>
+</div>
+
+<!-- KEY INSIGHT BANNER -->
+<div class="insight-row fade-up">
+  <div class="insight-text">
+    <div class="insight-label">Core Research Thesis</div>
+    <blockquote class="insight-quote">
+      "When predictions fail — why?"
+    </blockquote>
+    <p class="insight-body">
+      Most recommendation systems optimize for accuracy. My work focuses on the 20% of outcomes that accuracy can't explain — surprise hits, hidden gems, structural biases baked into the data long before any model sees it. Fame explains only 10.4% of a track's variance. The other 90% is where the interesting questions live.
+    </p>
+  </div>
+  <div class="insight-data">
+    <div class="data-point">
+      <div class="data-big">R²=0.003</div>
+      <div class="data-caption">Audio features alone explaining music popularity — nearly zero signal</div>
+    </div>
+    <div class="data-point">
+      <div class="data-big">11%</div>
+      <div class="data-caption">Of users responsible for 50% of all ratings in MovieLens — structural bias, not behavioral</div>
+    </div>
+    <div class="data-point">
+      <div class="data-big">~20%</div>
+      <div class="data-caption">Of tracks fall outside model predictions — the hidden gem zone</div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA PROJECTS -->
+<section id="data">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Data &amp; ML Projects</span>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Project 1 -->
+    <div class="project-card fade-up">
+      <div class="project-idx">Project 01 · Data Science · Music</div>
+      <h2 class="project-title">What Drives Music Popularity?</h2>
+      <div class="project-type">Behavioral Discovery &amp; Exposure Bias Analysis</div>
+      <p class="project-desc">
+        Analyzed 6,000+ Spotify tracks to challenge the assumption that audio features drive popularity. Built a residual-based diagnostic model revealing that artist reputation (R²=0.104) vastly outperforms audio signal (R²=0.003), and that ~20% of tracks behave unexpectedly — indicating systematic over- and under-exposure by genre.
+      </p>
+      <div class="metrics-block">
+        <div class="metric-row"><span class="metric-k">Audio features alone</span><span class="metric-v">R² = 0.003</span></div>
+        <div class="metric-row"><span class="metric-k">Artist reputation</span><span class="metric-v">R² = 0.104</span></div>
+        <div class="metric-row"><span class="metric-k">Artist + momentum</span><span class="metric-v">R² = 0.198</span></div>
+        <div class="metric-row"><span class="metric-k">Unexplained outcomes</span><span class="metric-v">~20% of tracks</span></div>
+      </div>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">Pandas</span>
+        <span class="tech-tag">scikit-learn</span><span class="tech-tag">seaborn</span>
+        <span class="tech-tag">Spotify API</span><span class="tech-tag">Tableau</span>
+      </div>
+      <a class="project-link" href="https://github.com/lucytheboss/what-drives-music-popularity" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card fade-up">
+      <div class="project-idx">Project 02 · ML · Recommender Systems</div>
+      <h2 class="project-title">MovieLens Behavioral Recommender</h2>
+      <div class="project-type">Popularity Bias Diagnosis &amp; Matrix Factorization</div>
+      <p class="project-desc">
+        Built a full matrix factorization system from scratch (NumPy only, no ML library) on 25M ratings across 162K users and 59K movies. Phase 1 revealed structural bias: just 11% of users drive 50% of all ratings. Phase 2 exposed the accuracy–diversity paradox — NDCG@10 of 0.95 while catalog coverage collapsed to 0.07%.
+      </p>
+      <div class="metrics-block">
+        <div class="metric-row"><span class="metric-k">Dataset</span><span class="metric-v">25M ratings · 162K users · 59K movies</span></div>
+        <div class="metric-row"><span class="metric-k">Val RMSE</span><span class="metric-v">0.9062</span></div>
+        <div class="metric-row"><span class="metric-k">NDCG@10</span><span class="metric-v">0.9502</span></div>
+        <div class="metric-row"><span class="metric-k">Long-tail exposure</span><span class="metric-v">0.598</span></div>
+        <div class="metric-row"><span class="metric-k">Catalog coverage</span><span class="metric-v">0.07%</span></div>
+      </div>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">NumPy</span>
+        <span class="tech-tag">SGD</span><span class="tech-tag">Matrix Factorization</span>
+        <span class="tech-tag">A/B Testing</span>
+      </div>
+      <a class="project-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card fade-up">
+      <div class="project-idx">Project 03 · Behavioral Analytics · UX</div>
+      <h2 class="project-title">Festival Drop-off Analysis</h2>
+      <div class="project-type">Real Interaction Log Analysis · LUCAUS 2025</div>
+      <p class="project-desc">
+        Analyzed real user interaction logs from a university festival website (LUCAUS 2025). Identified that stamp-game participants showed 3.5× higher engagement than general visitors — but hit a "completion cliff" the moment the game ended. The interface treated completion as a journey endpoint rather than a reward phase, killing momentum at the highest-value moment.
+      </p>
+      <div class="metrics-block">
+        <div class="metric-row"><span class="metric-k">Stamp users vs. general</span><span class="metric-v">3.5× higher engagement</span></div>
+        <div class="metric-row"><span class="metric-k">Finding</span><span class="metric-v">Completion = abrupt drop-off</span></div>
+        <div class="metric-row"><span class="metric-k">Root cause</span><span class="metric-v">No post-completion reward phase</span></div>
+      </div>
+      <div class="tech-wrap">
+        <span class="tech-tag">Jupyter Notebook</span><span class="tech-tag">Interaction Logs</span>
+        <span class="tech-tag">Behavioral Analysis</span><span class="tech-tag">UX Research</span>
+      </div>
+      <a class="project-link" href="https://github.com/lucytheboss/festival-behavioral-analytics" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card fade-up">
+      <div class="project-idx">Project 04 · Audio · Prediction</div>
+      <h2 class="project-title">Sonic Analytics: Hit Predictor</h2>
+      <div class="project-type">Audio Feature Analysis · Artist Momentum</div>
+      <p class="project-desc">
+        Explored how audio features and artist momentum interact to shape perceived popularity through interactive analysis. Built an exploration pipeline for the Apple Music dataset, surfacing how platform-level signals differ from raw audio characteristics — and what listener expectations reveal about discovery system design.
+      </p>
+      <div class="metrics-block">
+        <div class="metric-row"><span class="metric-k">Dataset</span><span class="metric-v">Apple Music catalog</span></div>
+        <div class="metric-row"><span class="metric-k">Focus</span><span class="metric-v">Audio vs. momentum signal</span></div>
+        <div class="metric-row"><span class="metric-k">Output</span><span class="metric-v">Interactive analysis pipeline</span></div>
+      </div>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">Streamlit</span>
+        <span class="tech-tag">Matplotlib</span><span class="tech-tag">Jupyter</span>
+      </div>
+      <a class="project-link" href="https://github.com/lucytheboss/Sonic-Analytics-Hit-Predictor" target="_blank">View on GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- UX / DESIGN PROJECTS -->
+<section id="ux">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">UX &amp; Product Design</span>
+  </div>
+  <div class="ux-grid">
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">UX 01 · 2024</div>
+      <h3 class="ux-title">니옷내옷</h3>
+      <div class="ux-subtitle">Clothing Exchange App — Launching</div>
+      <p class="ux-desc">
+        YONO (You Only Need One) philosophy applied to fashion. A taste-based clothing exchange platform where mutual "likes" trigger matching rather than cold-start browsing. AI recommendation via natural language prompts, wardrobe analysis, and SNS post analysis to surface personalized matches.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span>
+      </div>
+      <div class="ux-role">Branding 80% · Product Design 100% · Timeline: Feb–Sep 2024</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">UX 02 · 2023–2024</div>
+      <h3 class="ux-title">다님</h3>
+      <div class="ux-subtitle">AI Travel Curation App — Launched</div>
+      <p class="ux-desc">
+        For travelers seeking hidden, non-touristy destinations. Built hyper-personalization around user taste analysis (companion, transportation, travel style). Simplified complex filtering into a conversational UI flow. Delivered mobile + web experiences with a clean lime-accent brand system.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Figma</span><span class="tech-tag">Mobile UI</span><span class="tech-tag">Web UI</span><span class="tech-tag">Branding</span>
+      </div>
+      <div class="ux-role">Branding 80% · Design 80% · Timeline: Dec 2023–Feb 2024</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">UX 03 · 2023</div>
+      <h3 class="ux-title">VEBE</h3>
+      <div class="ux-subtitle">Vegan Cosmetics Platform for Expats</div>
+      <p class="ux-desc">
+        Designed a bilingual vegan cosmetics discovery platform for foreign residents in Korea — a demographic systematically underserved by Korean beauty apps. Full style system: Pretendard typography, green-primary brand palette, and accessible UX patterns across all screens.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Figma</span><span class="tech-tag">Procreate</span><span class="tech-tag">Mobile UX</span>
+      </div>
+      <div class="ux-role">Design 100% · Timeline: Jul–Aug 2023</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">UX 04 · 2025</div>
+      <h3 class="ux-title">BAIVE</h3>
+      <div class="ux-subtitle">App Design — Launching</div>
+      <p class="ux-desc">
+        In progress. Full product design for an app targeting a behavioral insight gap discovered through prior research. Details coming soon.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Figma</span><span class="tech-tag">Product Design</span>
+      </div>
+      <div class="ux-role">Status: Pre-launch</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">UX 05 · 2025</div>
+      <h3 class="ux-title">LUCAUS 2025</h3>
+      <div class="ux-subtitle">University Festival Website</div>
+      <p class="ux-desc">
+        Designed and analyzed the Chung-Ang University spring festival platform. Features: food truck log, event map, barrier-free accessibility guide, lost-and-found, stamp game. Post-launch behavioral analysis surfaced key drop-off insights and led to concrete UX proposals.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">UI Design</span><span class="tech-tag">Accessibility</span><span class="tech-tag">Behavioral Analysis</span>
+      </div>
+      <div class="ux-role">Design + Log Analysis · Spring 2025</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <div class="ux-num">Writing</div>
+      <h3 class="ux-title">Medium &amp; Velog</h3>
+      <div class="ux-subtitle">Technical Writing &amp; Research Notes</div>
+      <p class="ux-desc">
+        Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and machine learning. Published on Medium and Velog in Korean and English.
+      </p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Medium</span><span class="tech-tag">Velog</span>
+      </div>
+      <div class="ux-role">
+        <a href="https://medium.com/@lucyroh529" target="_blank" style="color:var(--rust);text-decoration:none;">medium.com/@lucyroh529</a>
+        &nbsp;·&nbsp;
+        <a href="https://velog.io/@lucytheboss/posts" target="_blank" style="color:var(--rust);text-decoration:none;">velog.io</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">About</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-left fade-up">
+      <h2 class="about-heading">Why behavior, not accuracy?</h2>
+      <p class="about-body">
+        I study systems that fail users without failing metrics. A recommender can hit NDCG@10 of 0.95 while covering only 0.07% of available content — technically excellent, behaviorally broken. My triple major in Psychology, English Literature, and Technology-Art gives me an unusual vantage point: I can read both the statistical signal and the human meaning behind it.
+      </p>
+      <p class="about-body">
+        My long-term goal is Applied Scientist at a music or media platform — building systems that understand not just what users choose, but why they hesitate, what they never get the chance to discover, and how platform design shapes the possibilities they see.
+      </p>
+      <p class="about-body">
+        Currently at Chung-Ang University (Seoul), preparing MS program applications with music recommendation systems as my portfolio's core theme.
+      </p>
+      <div style="margin-top: 2rem;">
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank">Download Resume →</a>
+      </div>
+    </div>
+    <div class="about-right fade-up">
+      <div class="skills-group">
+        <div class="skills-group-label">Analysis &amp; Modeling</div>
+        <div class="skill-row">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Pandas</span>
+          <span class="skill-chip">NumPy</span>
+          <span class="skill-chip">scikit-learn</span>
+          <span class="skill-chip">SQL</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-group-label">ML &amp; Systems</div>
+        <div class="skill-row">
+          <span class="skill-chip">Matrix Factorization</span>
+          <span class="skill-chip">Collaborative Filtering</span>
+          <span class="skill-chip">A/B Testing</span>
+          <span class="skill-chip">Residual Analysis</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-group-label">Visualization &amp; Apps</div>
+        <div class="skill-row">
+          <span class="skill-chip">Tableau</span>
+          <span class="skill-chip">Streamlit</span>
+          <span class="skill-chip">Matplotlib</span>
+          <span class="skill-chip">Jupyter</span>
+          <span class="skill-chip">seaborn</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-group-label">UX &amp; Research</div>
+        <div class="skill-row">
+          <span class="skill-chip">Figma</span>
+          <span class="skill-chip">Procreate</span>
+          <span class="skill-chip">Interaction Logs</span>
+          <span class="skill-chip">Behavioral Analysis</span>
+          <span class="skill-chip">User Research</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <div class="skills-group-label">Background</div>
+        <div class="skill-row">
+          <span class="skill-chip">Psychology</span>
+          <span class="skill-chip">HCI</span>
+          <span class="skill-chip">English Literature</span>
+          <span class="skill-chip">Statistics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-section">
+    <div class="fade-up">
+      <h2 class="contact-heading">Let's<br><em>talk.</em></h2>
+    </div>
+    <div class="contact-right fade-up">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a class="contact-value" href="mailto:lucyroh529@gmail.com">lucyroh529@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <a class="contact-value" href="https://github.com/lucytheboss" target="_blank">github.com/lucytheboss</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Medium</span>
+        <a class="contact-value" href="https://medium.com/@lucyroh529" target="_blank">medium.com/@lucyroh529</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Velog</span>
+        <a class="contact-value" href="https://velog.io/@lucytheboss/posts" target="_blank">velog.io/@lucytheboss</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">(+82) 010-2188-9232</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Jiwoo (Lucy) Roh · Seoul, KR</span>
+  <span class="footer-made">Behavioral UX &amp; Data Science · 2022–2026</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
