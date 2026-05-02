@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="en">
+<html lang="en" data-theme="light" data-audience="industry">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +7,40 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ── TOKENS ── */
 [data-theme="light"] {
-  --bg:        #F8F6F2;
-  --bg2:       #EEEAE4;
-  --surface:   #FFFFFF;
-  --ink:       #111111;
-  --ink2:      #555550;
-  --ink3:      #AAAAA4;
-  --line:      rgba(0,0,0,0.08);
-  --pink:      #F0205A;
-  --lime:      #6DB800;
-  --lime-glow: rgba(109,184,0,0.12);
-  --pink-glow: rgba(240,32,90,0.07);
-  --tog-bg:    #111111;
-  --tog-fg:    #F8F6F2;
+  --bg:         #F8F6F2;
+  --bg2:        #EEEAE4;
+  --surface:    #FFFFFF;
+  --ink:        #111111;
+  --ink2:       #555550;
+  --ink3:       #AAAAA4;
+  --line:       rgba(0,0,0,0.08);
+  --accent1:    #1B2A4A;
+  --accent2:    #C4667A;
+  --accent1-glow: rgba(27,42,74,0.07);
+  --accent2-glow: rgba(196,102,122,0.07);
+  --tog-bg:     #111111;
+  --tog-fg:     #F8F6F2;
 }
 [data-theme="dark"] {
-  --bg:        #111111;
-  --bg2:       #191919;
-  --surface:   #1D1D1D;
-  --ink:       #EDEBE6;
-  --ink2:      #888882;
-  --ink3:      #3C3C38;
-  --line:      rgba(255,255,255,0.07);
-  --pink:      #FF2D6A;
-  --lime:      #AAFF00;
-  --lime-glow: rgba(170,255,0,0.08);
-  --pink-glow: rgba(255,45,106,0.09);
-  --tog-bg:    #EDEBE6;
-  --tog-fg:    #111111;
+  --bg:         #111111;
+  --bg2:        #191919;
+  --surface:    #1D1D1D;
+  --ink:        #EDEBE6;
+  --ink2:       #888882;
+  --ink3:       #3C3C38;
+  --line:       rgba(255,255,255,0.07);
+  --accent1:    #4A7AB5;
+  --accent2:    #D4889A;
+  --accent1-glow: rgba(74,122,181,0.10);
+  --accent2-glow: rgba(212,136,154,0.09);
+  --tog-bg:     #EDEBE6;
+  --tog-fg:     #111111;
 }
 
 /* ── BASE ── */
@@ -54,23 +54,27 @@ body {
   line-height: 1.65;
   transition: background 0.3s, color 0.3s;
   overflow-x: hidden;
-  word-break: keep-all;
 }
 
-/* mono ONLY for data points, metrics, tags, code */
+/* serif for display text */
+.serif, h1, h2, h3.proj-title, .ux-title, .about-head, .contact-head, .insight-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* mono ONLY for data points, metrics, tags, indices */
 .mono, .stat-n, .proj-idx, .ux-num, .c-label, .tech-tag, .m-v, .foot-copy, .sec-n {
   font-family: 'DM Mono', 'Pretendard', monospace;
 }
 
-/* ── LANGUAGE ── */
-.ko { display: none; }
-.en { display: block; }
-span.ko { display: none; }
-span.en { display: inline; }
-[data-lang="ko"] .en { display: none; }
-[data-lang="ko"] .ko { display: block; }
-[data-lang="ko"] span.en { display: none; }
-[data-lang="ko"] span.ko { display: inline; }
+/* ── AUDIENCE ── */
+.aca { display: none; }
+.ind { display: block; }
+span.aca { display: none; }
+span.ind { display: inline; }
+[data-audience="academia"] .ind { display: none; }
+[data-audience="academia"] .aca { display: block; }
+[data-audience="academia"] span.ind { display: none; }
+[data-audience="academia"] span.aca { display: inline; }
 
 /* ── FLOATING CONTROLS ── */
 .float-controls {
@@ -101,15 +105,28 @@ nav {
   font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
   color: var(--ink); text-decoration: none;
 }
-.nav-logo span { color: var(--pink); }
-.nav-links { display: flex; list-style: none; }
+.nav-logo span { color: var(--accent2); }
+.nav-links { display: flex; list-style: none; align-items: center; }
 .nav-links a {
   color: var(--ink2); text-decoration: none; font-size: 13px; font-weight: 400;
   padding: 0 1.1rem; height: 54px; display: flex; align-items: center;
   border-bottom: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s;
 }
-.nav-links a:hover { color: var(--ink); border-bottom-color: var(--pink); }
+.nav-links a:hover { color: var(--ink); border-bottom-color: var(--accent2); }
+
+/* audience toggle in nav */
+.audience-toggle {
+  display: flex; align-items: center; margin-left: 1rem;
+  border: 1px solid var(--line); border-radius: 2px; overflow: hidden;
+}
+.aud-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+  padding: 0.3rem 0.75rem; background: transparent; border: none; cursor: pointer;
+  color: var(--ink3); transition: background 0.15s, color 0.15s;
+}
+.aud-btn.active { background: var(--accent1); color: #fff; }
+[data-theme="dark"] .aud-btn.active { color: var(--bg); }
 
 /* ── HERO ── */
 .hero { min-height: 100vh; padding-top: 54px; display: grid; grid-template-rows: 1fr auto; }
@@ -123,22 +140,27 @@ nav {
 }
 .hero-eyebrow {
   font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--pink); margin-bottom: 1.75rem;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 1.75rem;
   display: flex; align-items: center; gap: 10px;
+  font-family: 'Pretendard', sans-serif;
 }
-.hero-eyebrow::before { content:''; width: 18px; height: 1px; background: var(--pink); flex-shrink: 0; }
+.hero-eyebrow::before { content:''; width: 18px; height: 1px; background: var(--accent2); flex-shrink: 0; }
 
 .hero-name {
   font-size: clamp(3.2rem, 8vw, 6rem);
-  font-weight: 200; letter-spacing: -0.04em; line-height: 1.0;
+  font-weight: 400; letter-spacing: -0.03em; line-height: 1.0;
   color: var(--ink); margin-bottom: 0.4rem;
 }
 .hero-name strong { font-weight: 700; }
-.hero-aka { font-size: 15px; font-weight: 300; color: var(--ink3); margin-bottom: 2.5rem; }
+.hero-aka {
+  font-size: 15px; font-weight: 300; color: var(--ink3); margin-bottom: 2.5rem;
+  font-family: 'Pretendard', sans-serif;
+}
 
 .hero-desc {
   font-size: 15px; font-weight: 300; color: var(--ink2);
   max-width: 460px; line-height: 1.85; margin-bottom: 3rem;
+  font-family: 'Pretendard', sans-serif;
 }
 .hero-desc strong { font-weight: 600; color: var(--ink); }
 
@@ -150,8 +172,9 @@ nav {
   cursor: pointer; transition: all 0.15s; border-radius: 2px;
   border: 1px solid transparent;
 }
-.btn-pink { background: var(--pink); color: #fff; }
-.btn-pink:hover { opacity: 0.85; }
+.btn-primary { background: var(--accent1); color: #fff; }
+.btn-primary:hover { opacity: 0.85; }
+[data-theme="dark"] .btn-primary { color: var(--bg); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--ink2); }
 
@@ -168,7 +191,7 @@ nav {
 }
 .img-main::after {
   content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--pink-glow), transparent 55%);
+  background: linear-gradient(135deg, var(--accent2-glow), transparent 55%);
   pointer-events: none;
 }
 .img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
@@ -189,9 +212,9 @@ nav {
 .stat-cell:last-child { border-right: none; }
 .stat-n {
   font-size: 2.1rem; font-weight: 500; line-height: 1;
-  color: var(--pink); margin-bottom: 0.3rem; letter-spacing: -0.02em;
+  color: var(--accent2); margin-bottom: 0.3rem; letter-spacing: -0.02em;
 }
-.stat-l { font-size: 11px; font-weight: 400; color: var(--ink3); }
+.stat-l { font-size: 11px; font-weight: 400; color: var(--ink3); font-family: 'Pretendard', sans-serif; }
 
 /* ── SEC HEADER ── */
 .sec-head {
@@ -201,7 +224,7 @@ nav {
   background: var(--bg);
 }
 .sec-n { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; min-width: 24px; }
-.sec-t { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.sec-t { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Pretendard', sans-serif; }
 .sec-rule { flex: 1; height: 1px; background: var(--line); }
 
 /* ── INSIGHT ── */
@@ -212,15 +235,16 @@ nav {
 .insight-left { padding: 4rem 2.5rem; border-right: 1px solid var(--line); }
 .insight-eyebrow {
   font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--pink); margin-bottom: 1.5rem;
+  text-transform: uppercase; color: var(--accent1); margin-bottom: 1.5rem;
+  font-family: 'Pretendard', sans-serif;
 }
 .insight-quote {
-  font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 300;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 400;
   line-height: 1.4; letter-spacing: -0.02em;
   color: var(--ink); margin-bottom: 1.5rem;
 }
-.insight-quote em { font-style: italic; color: var(--pink); }
-.insight-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; }
+.insight-quote em { font-style: italic; color: var(--accent2); }
+.insight-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; font-family: 'Pretendard', sans-serif; }
 .insight-right {
   padding: 4rem 2.5rem; display: flex; flex-direction: column;
   justify-content: center; gap: 2.5rem;
@@ -230,58 +254,105 @@ nav {
   font-size: 3rem; font-weight: 500; line-height: 1;
   letter-spacing: -0.02em; margin-bottom: 0.4rem;
 }
-.data-big.pink { color: var(--pink); }
-.data-big.lime { color: var(--lime); }
-.data-cap { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.7; max-width: 260px; }
+.data-big.a1 { color: var(--accent1); }
+.data-big.a2 { color: var(--accent2); }
+.data-cap { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.7; max-width: 260px; font-family: 'Pretendard', sans-serif; }
 
-/* ── PROJECT CARDS ── */
+/* ── PROJECT CARDS (minimal) ── */
 .projects-grid { display: grid; grid-template-columns: 1fr 1fr; }
 .proj-card {
   padding: 2.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  display: flex; flex-direction: column; background: var(--bg); transition: background 0.2s;
+  display: flex; flex-direction: column; background: var(--bg);
+  transition: background 0.2s; cursor: pointer;
 }
 .proj-card:nth-child(even) { border-right: none; }
 .proj-card:hover { background: var(--surface); }
-
-.proj-img {
-  width: 100%; height: 175px;
-  background: var(--bg2); border: 1px solid var(--line);
-  margin-bottom: 1.75rem;
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 6px; position: relative; overflow: hidden;
-}
-.proj-img::before {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--lime-glow), transparent 65%);
-}
-.proj-img.alt::before { background: linear-gradient(135deg, var(--pink-glow), transparent 65%); }
+.proj-card:hover .proj-title { color: var(--accent1); }
 
 .proj-idx { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
-.proj-title { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin-bottom: 0.3rem; }
-.proj-type { font-size: 11px; font-weight: 600; color: var(--pink); margin-bottom: 1.25rem; }
-.proj-desc { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.85; margin-bottom: 1.5rem; flex: 1; }
-.proj-desc strong { font-weight: 600; color: var(--ink); }
-
-.metrics-block {
-  background: var(--bg2); border-left: 2px solid var(--lime);
-  padding: 0.85rem 1rem; margin-bottom: 1.25rem;
+.proj-title {
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+  color: var(--ink); margin-bottom: 0.65rem; transition: color 0.15s;
 }
-.m-row { display: flex; justify-content: space-between; font-size: 11px; padding: 0.14rem 0; }
-.m-k { color: var(--ink3); font-weight: 400; }
-.m-v { font-size: 12px; color: var(--lime); font-weight: 500; }
-[data-theme="light"] .m-v { color: var(--lime); filter: brightness(0.85); }
-
-.tech-wrap { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1.25rem; }
+.proj-oneliner { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.75; margin-bottom: 1.25rem; flex: 1; font-family: 'Pretendard', sans-serif; }
+.tech-wrap { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .tech-tag {
   font-size: 10px; padding: 0.18rem 0.55rem;
   border: 1px solid var(--line); color: var(--ink3); letter-spacing: 0.04em;
 }
+.proj-open-hint {
+  margin-top: 1.25rem; font-size: 11px; color: var(--accent1);
+  font-family: 'Pretendard', sans-serif; opacity: 0.7;
+}
+.proj-card:hover .proj-open-hint { opacity: 1; }
+
+/* ── MODAL ── */
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  align-items: center; justify-content: center; padding: 2rem;
+}
+.modal.open { display: flex; }
+.modal-backdrop {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.55);
+  animation: fade-in 0.2s ease;
+}
+.modal-box {
+  position: relative; background: var(--surface); z-index: 1;
+  max-width: 680px; width: 100%; max-height: 88vh; overflow-y: auto;
+  border: 1px solid var(--line);
+  animation: slide-up 0.25s ease;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+.modal-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--bg2); border: 1px solid var(--line);
+  color: var(--ink2); cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s; z-index: 2;
+}
+.modal-close:hover { background: var(--line); }
+
+.modal-img {
+  width: 100%; height: 200px; background: var(--bg2); border-bottom: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  position: relative; overflow: hidden;
+}
+.modal-img::before {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--accent1-glow), transparent 65%);
+  pointer-events: none;
+}
+.modal-img.alt::before { background: linear-gradient(135deg, var(--accent2-glow), transparent 65%); }
+
+.modal-body { padding: 2rem 2.5rem; }
+.modal-idx { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; font-family: 'DM Mono', monospace; }
+.modal-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); margin-bottom: 0.35rem; font-family: 'Playfair Display', serif; }
+.modal-type { font-size: 11px; font-weight: 600; color: var(--accent2); margin-bottom: 1.25rem; font-family: 'Pretendard', sans-serif; }
+.modal-desc { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; margin-bottom: 1.5rem; font-family: 'Pretendard', sans-serif; }
+.modal-desc strong { font-weight: 600; color: var(--ink); }
+
+.metrics-block {
+  background: var(--bg2); border-left: 2px solid var(--accent1);
+  padding: 0.85rem 1rem; margin-bottom: 1.25rem;
+}
+.m-row { display: flex; justify-content: space-between; font-size: 11px; padding: 0.14rem 0; }
+.m-k { color: var(--ink3); font-weight: 400; font-family: 'Pretendard', sans-serif; }
+.m-v { font-size: 12px; color: var(--accent1); font-weight: 500; }
+
+.modal-footer {
+  padding: 1.25rem 2.5rem; border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 1rem;
+}
 .proj-link {
   font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none;
-  border-bottom: 1px solid var(--ink); padding-bottom: 1px; align-self: flex-start;
+  border-bottom: 1px solid var(--ink); padding-bottom: 1px;
   transition: color 0.15s, border-color 0.15s;
+  font-family: 'Pretendard', sans-serif;
 }
-.proj-link:hover { color: var(--pink); border-color: var(--pink); }
+.proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
 
 /* ── UX GRID ── */
 .ux-grid { display: grid; grid-template-columns: repeat(3,1fr); }
@@ -301,16 +372,15 @@ nav {
 }
 .ux-img::before {
   content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--pink-glow), transparent 55%);
+  background: linear-gradient(135deg, var(--accent2-glow), transparent 55%);
 }
 
 .ux-num { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
 .ux-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
-.ux-sub { font-size: 11px; font-weight: 600; color: var(--pink); margin-bottom: 0.9rem; }
-.ux-desc { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.85; margin-bottom: 1rem; flex: 1; }
-.ux-role { font-size: 11px; color: var(--ink3); padding-top: 0.85rem; border-top: 1px solid var(--line); margin-top: auto; line-height: 1.6; }
-.ux-role a { color: var(--lime); text-decoration: none; }
-[data-theme="light"] .ux-role a { filter: brightness(0.8); }
+.ux-sub { font-size: 11px; font-weight: 600; color: var(--accent2); margin-bottom: 0.9rem; font-family: 'Pretendard', sans-serif; }
+.ux-desc { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.85; margin-bottom: 1rem; flex: 1; font-family: 'Pretendard', sans-serif; }
+.ux-role { font-size: 11px; color: var(--ink3); padding-top: 0.85rem; border-top: 1px solid var(--line); margin-top: auto; line-height: 1.6; font-family: 'Pretendard', sans-serif; }
+.ux-role a { color: var(--accent1); text-decoration: none; }
 
 /* ── ABOUT ── */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; }
@@ -323,29 +393,31 @@ nav {
 }
 .about-photo::before {
   content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--pink-glow), var(--lime-glow));
+  background: linear-gradient(135deg, var(--accent2-glow), var(--accent1-glow));
 }
 .about-head {
-  font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 300;
+  font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 400;
   letter-spacing: -0.03em; line-height: 1.25; color: var(--ink); margin-bottom: 1.5rem;
 }
-.about-head em { font-style: italic; color: var(--pink); }
-.about-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; margin-bottom: 1.25rem; }
+.about-head em { font-style: italic; color: var(--accent2); }
+.about-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; margin-bottom: 1.25rem; font-family: 'Pretendard', sans-serif; }
 .about-body strong { font-weight: 600; color: var(--ink); }
 
 .about-right { padding: 4rem 2rem; }
 .skill-group { margin-bottom: 1.75rem; }
 .skill-group-label {
   font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--pink); margin-bottom: 0.65rem;
+  text-transform: uppercase; color: var(--accent1); margin-bottom: 0.65rem;
+  font-family: 'Pretendard', sans-serif;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .chip {
   font-size: 12px; font-weight: 400; padding: 0.22rem 0.65rem;
   border: 1px solid var(--line); color: var(--ink2);
   border-radius: 2px; transition: border-color 0.15s, color 0.15s;
+  font-family: 'Pretendard', sans-serif;
 }
-.chip:hover { border-color: var(--pink); color: var(--ink); }
+.chip:hover { border-color: var(--accent2); color: var(--ink); }
 
 /* ── CONTACT ── */
 .contact-sec {
@@ -354,18 +426,18 @@ nav {
   background: var(--surface); border-top: 1px solid var(--line);
 }
 .contact-head {
-  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 200;
+  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400;
   letter-spacing: -0.04em; line-height: 1; color: var(--ink);
 }
-.contact-head em { font-style: italic; color: var(--pink); display: block; }
+.contact-head em { font-style: italic; color: var(--accent2); display: block; }
 .contact-right { display: flex; flex-direction: column; justify-content: center; }
 .c-item {
   display: flex; justify-content: space-between; align-items: baseline;
   padding: 0.9rem 0; border-bottom: 1px solid var(--line);
 }
 .c-label { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; }
-.c-val { font-size: 13px; font-weight: 400; color: var(--ink); text-decoration: none; transition: color 0.15s; }
-.c-val:hover { color: var(--pink); }
+.c-val { font-size: 13px; font-weight: 400; color: var(--ink); text-decoration: none; transition: color 0.15s; font-family: 'Pretendard', sans-serif; }
+.c-val:hover { color: var(--accent2); }
 
 /* ── FOOTER ── */
 footer {
@@ -392,12 +464,14 @@ footer {
   .ux-card:nth-child(even) { border-right: none; }
   .contact-sec { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
   nav { padding: 0 1.5rem; }
+  .audience-toggle { display: none; }
 }
 @media (max-width: 600px) {
   .ux-grid, .projects-grid { grid-template-columns: 1fr; }
   .stat-bar { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .ux-card { border-right: none; }
+  .modal { padding: 1rem; }
 }
 </style>
 </head>
@@ -406,17 +480,22 @@ footer {
 <!-- FLOATING CONTROLS -->
 <div class="float-controls">
   <button class="float-btn" id="theme-toggle">🌙 Dark</button>
-  <button class="float-btn" id="lang-toggle">한국어</button>
 </div>
 
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Jiwoo<span>.</span>Roh</a>
   <ul class="nav-links">
-    <li><a href="#data"><span class="en">Data</span><span class="ko">데이터</span></a></li>
+    <li><a href="#data">Data</a></li>
     <li><a href="#ux">UX</a></li>
-    <li><a href="#about"><span class="en">About</span><span class="ko">소개</span></a></li>
-    <li><a href="#contact"><span class="en">Contact</span><span class="ko">연락</span></a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <div class="audience-toggle">
+        <button class="aud-btn active" id="aud-industry">Industry</button>
+        <button class="aud-btn" id="aud-academia">Academia</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
@@ -424,24 +503,18 @@ footer {
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="en">Behavioral UX Research · Data Science</span>
-        <span class="ko">행동 UX 리서치 · 데이터 사이언스</span>
-      </div>
+      <div class="hero-eyebrow">Behavioral UX Research · Data Science</div>
       <h1 class="hero-name"><strong>Jiwoo</strong> Roh</h1>
-      <p class="hero-aka">
-        <span class="en">Lucy · Chung-Ang University, Seoul</span>
-        <span class="ko">루시 · 중앙대학교, 서울</span>
+      <p class="hero-aka">Lucy · Chung-Ang University, Seoul</p>
+      <p class="hero-desc ind">
+        I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using <strong>behavioral data</strong>, <strong>HCI-informed reasoning</strong>, and <strong>ML</strong> to surface what prediction alone misses.
       </p>
-      <p class="hero-desc">
-        <span class="en">I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using <strong>behavioral data</strong>, <strong>HCI-informed reasoning</strong>, and <strong>ML</strong> to surface what prediction alone misses.</span>
-        <span class="ko">저는 사용자가 디지털 시스템에서 왜 망설이고, 이탈하고, 행동하지 못하는지를 분석합니다. <strong>행동 데이터</strong>, <strong>HCI 기반 추론</strong>, <strong>머신러닝</strong>을 활용해 예측만으로는 보이지 않는 것을 발견합니다.</span>
+      <p class="hero-desc aca">
+        I investigate the structural and behavioral factors that explain prediction failures in sociotechnical recommendation systems — applying computational methods to expose the gap between <strong>algorithmic performance</strong> and <strong>user-perceived value</strong>.
       </p>
       <div class="hero-links">
-        <a class="btn btn-pink" href="https://github.com/lucytheboss" target="_blank">GitHub →</a>
-        <a class="btn btn-ghost" href="mailto:lucyroh529@gmail.com">
-          <span class="en">Email</span><span class="ko">이메일</span>
-        </a>
+        <a class="btn btn-primary" href="https://github.com/lucytheboss" target="_blank">GitHub →</a>
+        <a class="btn btn-ghost" href="mailto:lucyroh529@gmail.com">Email</a>
         <a class="btn btn-ghost" href="https://medium.com/@lucyroh529" target="_blank">Medium</a>
         <a class="btn btn-ghost" href="https://velog.io/@lucytheboss/posts" target="_blank">Velog</a>
       </div>
@@ -450,19 +523,19 @@ footer {
     <div class="hero-right">
       <div class="img-main">
         <div class="ph-icon">🖼</div>
-        <div class="ph-label">
-          <span class="en">Hero image — photo or project screenshot</span>
-          <span class="ko">대표 이미지 — 사진 또는 프로젝트 스크린샷</span>
-        </div>
+        <!-- 📌 Replace with: hero photo or project screenshot -->
+        <div class="ph-label">Hero image — photo or project screenshot</div>
       </div>
       <div class="img-row">
         <div class="img-sm">
           <div class="ph-icon">📊</div>
-          <div class="ph-label"><span class="en">Data viz</span><span class="ko">데이터 시각화</span></div>
+          <!-- 📌 Replace with: data viz screenshot -->
+          <div class="ph-label">Data viz</div>
         </div>
         <div class="img-sm">
           <div class="ph-icon">🎨</div>
-          <div class="ph-label"><span class="en">Design work</span><span class="ko">디자인 작업</span></div>
+          <!-- 📌 Replace with: design work screenshot -->
+          <div class="ph-label">Design work</div>
         </div>
       </div>
     </div>
@@ -471,7 +544,7 @@ footer {
   <div class="stat-bar">
     <div class="stat-cell">
       <div class="stat-n">25M</div>
-      <div class="stat-l"><span class="en">Ratings Analyzed</span><span class="ko">분석된 평점 수</span></div>
+      <div class="stat-l">Ratings Analyzed</div>
     </div>
     <div class="stat-cell">
       <div class="stat-n">0.95</div>
@@ -479,11 +552,11 @@ footer {
     </div>
     <div class="stat-cell">
       <div class="stat-n">~20%</div>
-      <div class="stat-l"><span class="en">Unexplained Outcomes</span><span class="ko">예측 불가 결과</span></div>
+      <div class="stat-l">Unexplained Outcomes</div>
     </div>
     <div class="stat-cell">
       <div class="stat-n">3×</div>
-      <div class="stat-l"><span class="en">Majors</span><span class="ko">전공 수</span></div>
+      <div class="stat-l">Majors</div>
     </div>
   </div>
 </div>
@@ -491,28 +564,24 @@ footer {
 <!-- INSIGHT BAND -->
 <div class="insight-band fade-up">
   <div class="insight-left">
-    <div class="insight-eyebrow"><span class="en">Core Research Thesis</span><span class="ko">핵심 연구 주제</span></div>
-    <div class="insight-quote">
-      <span class="en">"When predictions fail — <em>why?</em>"</span>
-      <span class="ko">"예측이 실패할 때 — <em>왜?</em>"</span>
-    </div>
+    <div class="insight-eyebrow">Core Research Thesis</div>
+    <div class="insight-quote">"When predictions fail — <em>why?</em>"</div>
     <p class="insight-body">
-      <span class="en">Most recommendation systems optimize for accuracy. My work focuses on the 20% of outcomes that accuracy can't explain — surprise hits, hidden gems, and structural biases baked into data before any model sees it. Fame explains only 10.4% of variance. The other 90% is where the interesting questions live.</span>
-      <span class="ko">대부분의 추천 시스템은 정확도 최적화에 집중합니다. 저는 정확도로 설명할 수 없는 20%의 결과에 주목합니다 — 예상치 못한 히트곡, 숨겨진 보석, 그리고 어떤 모델이 데이터를 보기도 전에 이미 내재된 구조적 편향들. 명성은 분산의 10.4%만 설명합니다. 나머지 90%가 흥미로운 질문들이 사는 곳입니다.</span>
+      Most recommendation systems optimize for accuracy. My work focuses on the 20% of outcomes that accuracy can't explain — surprise hits, hidden gems, and structural biases baked into data before any model sees it. Fame explains only 10.4% of variance. The other 90% is where the interesting questions live.
     </p>
   </div>
   <div class="insight-right">
     <div>
-      <div class="data-big pink">R²=0.003</div>
-      <div class="data-cap"><span class="en">Audio features explaining music popularity. Nearly zero signal.</span><span class="ko">음악 인기도를 설명하는 오디오 피처. 거의 신호 없음.</span></div>
+      <div class="data-big a2">R²=0.003</div>
+      <div class="data-cap">Audio features explaining music popularity. Nearly zero signal.</div>
     </div>
     <div>
-      <div class="data-big lime">11%</div>
-      <div class="data-cap"><span class="en">Of users responsible for 50% of all MovieLens ratings. Structural, not behavioral.</span><span class="ko">MovieLens 전체 평점의 50%를 차지하는 사용자 비율. 행동이 아닌 구조적 문제.</span></div>
+      <div class="data-big a1">11%</div>
+      <div class="data-cap">Of users responsible for 50% of all MovieLens ratings. Structural, not behavioral.</div>
     </div>
     <div>
-      <div class="data-big pink">~20%</div>
-      <div class="data-cap"><span class="en">Of tracks fall outside model predictions — the hidden gem zone.</span><span class="ko">모델 예측 범위 밖의 트랙 — 숨겨진 보석 지대.</span></div>
+      <div class="data-big a2">~20%</div>
+      <div class="data-cap">Of tracks fall outside model predictions — the hidden gem zone.</div>
     </div>
   </div>
 </div>
@@ -521,208 +590,286 @@ footer {
 <section id="data">
   <div class="sec-head">
     <span class="sec-n">01</span>
-    <span class="sec-t"><span class="en">Data &amp; ML Projects</span><span class="ko">데이터 &amp; ML 프로젝트</span></span>
+    <span class="sec-t">Data &amp; ML Projects</span>
     <div class="sec-rule"></div>
   </div>
   <div class="projects-grid">
 
-    <div class="proj-card fade-up">
-      <!-- 📌 Replace with: screenshot of Spotify analysis notebook or Tableau dashboard -->
-      <div class="proj-img">
-        <div class="ph-icon">📊</div>
-        <div class="ph-label"><span class="en">Spotify analysis screenshot</span><span class="ko">Spotify 분석 스크린샷</span></div>
-      </div>
+    <div class="proj-card fade-up" data-modal="modal-p1">
       <div class="proj-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
-      <div class="proj-title"><span class="en">What Drives Music Popularity?</span><span class="ko">음악 인기도를 만드는 것은?</span></div>
-      <div class="proj-type"><span class="en">Behavioral Discovery &amp; Exposure Bias Analysis</span><span class="ko">행동 발견 &amp; 노출 편향 분석</span></div>
-      <p class="proj-desc">
-        <span class="en">Analyzed <strong>6,000+ Spotify tracks</strong> to challenge the assumption that audio features drive popularity. Residual-based diagnostics reveal artist reputation vastly outperforms audio signal — and ~20% of tracks behave unexpectedly, exposing systematic genre-level over/under-exposure.</span>
-        <span class="ko"><strong>6,000개 이상의 Spotify 트랙</strong>을 분석해 오디오 피처가 인기도를 결정한다는 가정에 도전했습니다. 잔차 기반 진단은 아티스트 명성이 오디오 신호를 압도적으로 능가함을 보여주며, ~20%의 트랙이 예상치 못한 방식으로 행동하며 장르별 구조적 노출 편향을 드러냅니다.</span>
+      <h3 class="proj-title">What Drives Music Popularity?</h3>
+      <p class="proj-oneliner">Challenges the assumption that audio features drive popularity using residual-based diagnostics on 6,000+ tracks.</p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">Spotify API</span>
+      </div>
+      <div class="proj-open-hint">View details →</div>
+    </div>
+
+    <div class="proj-card fade-up" data-modal="modal-p2">
+      <div class="proj-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
+      <h3 class="proj-title">MovieLens Behavioral Recommender</h3>
+      <p class="proj-oneliner">Full matrix factorization system from scratch on 25M ratings, exposing the accuracy–diversity paradox.</p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">NumPy</span><span class="tech-tag">Matrix Factorization</span>
+      </div>
+      <div class="proj-open-hint">View details →</div>
+    </div>
+
+    <div class="proj-card fade-up" data-modal="modal-p3">
+      <div class="proj-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
+      <h3 class="proj-title">Festival Drop-off Analysis</h3>
+      <p class="proj-oneliner">Real user logs from LUCAUS 2025 reveal a "completion cliff" — engagement collapses the moment the stamp game ends.</p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Jupyter</span><span class="tech-tag">Interaction Logs</span><span class="tech-tag">UX Research</span>
+      </div>
+      <div class="proj-open-hint">View details →</div>
+    </div>
+
+    <div class="proj-card fade-up" data-modal="modal-p4">
+      <div class="proj-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
+      <h3 class="proj-title">Sonic Analytics: Hit Predictor</h3>
+      <p class="proj-oneliner">Interactive pipeline on the Apple Music catalog showing how platform signals diverge from raw audio features.</p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">Streamlit</span><span class="tech-tag">Matplotlib</span>
+      </div>
+      <div class="proj-open-hint">View details →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT MODALS -->
+<div class="modal" id="modal-p1" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <!-- 📌 Replace with: screenshot of Spotify analysis notebook or Tableau dashboard -->
+    <div class="modal-img">
+      <div class="ph-icon">📊</div>
+      <div class="ph-label">Spotify analysis screenshot</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
+      <h2 class="modal-title">What Drives Music Popularity?</h2>
+      <div class="modal-type">
+        <span class="ind">Behavioral Discovery &amp; Exposure Bias Analysis</span>
+        <span class="aca">Empirical Study: Exposure Bias in Algorithmic Curation</span>
+      </div>
+      <p class="modal-desc">
+        Analyzed <strong>6,000+ Spotify tracks</strong> to challenge the assumption that audio features drive popularity. Residual-based diagnostics reveal artist reputation vastly outperforms audio signal — and ~20% of tracks behave unexpectedly, exposing systematic genre-level over/under-exposure.
       </p>
       <div class="metrics-block">
-        <div class="m-row"><span class="m-k"><span class="en">Audio features alone</span><span class="ko">오디오 피처만</span></span><span class="m-v">R² = 0.003</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Artist reputation</span><span class="ko">아티스트 명성</span></span><span class="m-v">R² = 0.104</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Artist + momentum</span><span class="ko">아티스트 + 모멘텀</span></span><span class="m-v">R² = 0.198</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Unexplained outcomes</span><span class="ko">설명 불가 결과</span></span><span class="m-v">~20%</span></div>
+        <div class="m-row"><span class="m-k">Audio features alone</span><span class="m-v">R² = 0.003</span></div>
+        <div class="m-row"><span class="m-k">Artist reputation</span><span class="m-v">R² = 0.104</span></div>
+        <div class="m-row"><span class="m-k">Artist + momentum</span><span class="m-v">R² = 0.198</span></div>
+        <div class="m-row"><span class="m-k">Unexplained outcomes</span><span class="m-v">~20%</span></div>
       </div>
       <div class="tech-wrap">
         <span class="tech-tag">Python</span><span class="tech-tag">Pandas</span>
         <span class="tech-tag">scikit-learn</span><span class="tech-tag">Seaborn</span>
         <span class="tech-tag">Spotify API</span><span class="tech-tag">Tableau</span>
       </div>
-      <a class="proj-link" href="https://github.com/lucytheboss/what-drives-music-popularity" target="_blank"><span class="en">View on GitHub →</span><span class="ko">GitHub에서 보기 →</span></a>
     </div>
+    <div class="modal-footer">
+      <a class="proj-link" href="https://github.com/lucytheboss/what-drives-music-popularity" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</div>
 
-    <div class="proj-card fade-up">
-      <!-- 📌 Replace with: chart from MovieLens analysis (bias curve or coverage graph) -->
-      <div class="proj-img alt">
-        <div class="ph-icon">🎬</div>
-        <div class="ph-label"><span class="en">MovieLens chart or notebook screenshot</span><span class="ko">MovieLens 차트 또는 노트북 스크린샷</span></div>
+<div class="modal" id="modal-p2" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <!-- 📌 Replace with: chart from MovieLens analysis (bias curve or coverage graph) -->
+    <div class="modal-img alt">
+      <div class="ph-icon">🎬</div>
+      <div class="ph-label">MovieLens chart or notebook screenshot</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
+      <h2 class="modal-title">MovieLens Behavioral Recommender</h2>
+      <div class="modal-type">
+        <span class="ind">Popularity Bias Diagnosis &amp; Matrix Factorization</span>
+        <span class="aca">Computational Social Science: Popularity Bias in Collaborative Filtering</span>
       </div>
-      <div class="proj-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
-      <div class="proj-title"><span class="en">MovieLens Behavioral Recommender</span><span class="ko">MovieLens 행동 추천 시스템</span></div>
-      <div class="proj-type"><span class="en">Popularity Bias Diagnosis &amp; Matrix Factorization</span><span class="ko">인기도 편향 진단 &amp; 행렬 분해</span></div>
-      <p class="proj-desc">
-        <span class="en">Built a <strong>full matrix factorization system from scratch</strong> (NumPy only) on 25M ratings. Phase 1 revealed structural bias — 11% of users drive 50% of ratings. Phase 2 exposed the accuracy–diversity paradox: NDCG@10 of 0.9502 while catalog coverage collapsed to 0.07%.</span>
-        <span class="ko">2,500만 개의 평점 데이터로 <strong>행렬 분해 시스템을 처음부터 구축</strong>했습니다(NumPy만 사용). Phase 1에서 구조적 편향 발견 — 사용자의 11%가 전체 평점의 50%를 생성. Phase 2에서 정확도-다양성 역설 발견: NDCG@10 0.9502이지만 카탈로그 커버리지는 0.07%에 불과.</span>
+      <p class="modal-desc">
+        Built a <strong>full matrix factorization system from scratch</strong> (NumPy only) on 25M ratings. Phase 1 revealed structural bias — 11% of users drive 50% of ratings. Phase 2 exposed the accuracy–diversity paradox: NDCG@10 of 0.9502 while catalog coverage collapsed to 0.07%.
       </p>
       <div class="metrics-block">
-        <div class="m-row"><span class="m-k"><span class="en">Dataset</span><span class="ko">데이터셋</span></span><span class="m-v">25M · 162K · 59K</span></div>
+        <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">25M · 162K · 59K</span></div>
         <div class="m-row"><span class="m-k">Val RMSE</span><span class="m-v">0.9062</span></div>
         <div class="m-row"><span class="m-k">NDCG@10</span><span class="m-v">0.9502</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Long-tail exposure</span><span class="ko">롱테일 노출</span></span><span class="m-v">0.598</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Catalog coverage</span><span class="ko">카탈로그 커버리지</span></span><span class="m-v">0.07%</span></div>
+        <div class="m-row"><span class="m-k">Long-tail exposure</span><span class="m-v">0.598</span></div>
+        <div class="m-row"><span class="m-k">Catalog coverage</span><span class="m-v">0.07%</span></div>
       </div>
       <div class="tech-wrap">
         <span class="tech-tag">Python</span><span class="tech-tag">NumPy</span>
         <span class="tech-tag">SGD</span><span class="tech-tag">Matrix Factorization</span>
         <span class="tech-tag">A/B Testing</span>
       </div>
-      <a class="proj-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank"><span class="en">View on GitHub →</span><span class="ko">GitHub에서 보기 →</span></a>
     </div>
+    <div class="modal-footer">
+      <a class="proj-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</div>
 
-    <div class="proj-card fade-up">
-      <!-- 📌 Replace with: festival website screenshot or engagement drop-off chart -->
-      <div class="proj-img">
-        <div class="ph-icon">🎪</div>
-        <div class="ph-label"><span class="en">Festival site or engagement chart</span><span class="ko">축제 사이트 또는 참여도 차트</span></div>
+<div class="modal" id="modal-p3" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <!-- 📌 Replace with: festival website screenshot or engagement drop-off chart -->
+    <div class="modal-img">
+      <div class="ph-icon">🎪</div>
+      <div class="ph-label">Festival site or engagement chart</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
+      <h2 class="modal-title">Festival Drop-off Analysis</h2>
+      <div class="modal-type">
+        <span class="ind">Interaction Log Analysis · LUCAUS 2025</span>
+        <span class="aca">HCI Research: Behavioral Log Analysis in Event-Driven Interfaces</span>
       </div>
-      <div class="proj-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
-      <div class="proj-title"><span class="en">Festival Drop-off Analysis</span><span class="ko">축제 이탈 분석</span></div>
-      <div class="proj-type"><span class="en">Interaction Log Analysis · LUCAUS 2025</span><span class="ko">상호작용 로그 분석 · LUCAUS 2025</span></div>
-      <p class="proj-desc">
-        <span class="en">Analyzed real user logs from the Chung-Ang university festival website. Stamp-game participants showed <strong>3.5× higher engagement</strong> — but hit a "completion cliff" the moment the game ended. The interface treated completion as a journey endpoint rather than a reward phase.</span>
-        <span class="ko">중앙대학교 축제 웹사이트의 실제 사용자 로그를 분석했습니다. 스탬프 게임 참여자는 <strong>3.5배 높은 참여도</strong>를 보였지만, 게임 종료 순간 급격한 이탈이 발생했습니다. 인터페이스가 완료를 여정의 끝으로 처리해 최고 가치 순간에 모멘텀을 끊어버렸습니다.</span>
+      <p class="modal-desc">
+        Analyzed real user logs from the Chung-Ang university festival website. Stamp-game participants showed <strong>3.5× higher engagement</strong> — but hit a "completion cliff" the moment the game ended. The interface treated completion as a journey endpoint rather than a reward phase.
       </p>
       <div class="metrics-block">
-        <div class="m-row"><span class="m-k"><span class="en">Stamp vs. general users</span><span class="ko">스탬프 vs 일반 사용자</span></span><span class="m-v">3.5× engagement</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Finding</span><span class="ko">발견</span></span><span class="m-v">Completion = drop-off</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Root cause</span><span class="ko">근본 원인</span></span><span class="m-v">No reward phase</span></div>
+        <div class="m-row"><span class="m-k">Stamp vs. general users</span><span class="m-v">3.5× engagement</span></div>
+        <div class="m-row"><span class="m-k">Finding</span><span class="m-v">Completion = drop-off</span></div>
+        <div class="m-row"><span class="m-k">Root cause</span><span class="m-v">No reward phase</span></div>
       </div>
       <div class="tech-wrap">
         <span class="tech-tag">Jupyter</span><span class="tech-tag">Interaction Logs</span>
         <span class="tech-tag">Behavioral Analysis</span><span class="tech-tag">UX Research</span>
       </div>
-      <a class="proj-link" href="https://github.com/lucytheboss/festival-behavioral-analytics" target="_blank"><span class="en">View on GitHub →</span><span class="ko">GitHub에서 보기 →</span></a>
     </div>
+    <div class="modal-footer">
+      <a class="proj-link" href="https://github.com/lucytheboss/festival-behavioral-analytics" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</div>
 
-    <div class="proj-card fade-up">
-      <!-- 📌 Replace with: Streamlit app screenshot or audio feature scatter plot -->
-      <div class="proj-img alt">
-        <div class="ph-icon">🎧</div>
-        <div class="ph-label"><span class="en">Streamlit app or audio analysis chart</span><span class="ko">Streamlit 앱 또는 오디오 분석 차트</span></div>
+<div class="modal" id="modal-p4" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <!-- 📌 Replace with: Streamlit app screenshot or audio feature scatter plot -->
+    <div class="modal-img alt">
+      <div class="ph-icon">🎧</div>
+      <div class="ph-label">Streamlit app or audio analysis chart</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
+      <h2 class="modal-title">Sonic Analytics: Hit Predictor</h2>
+      <div class="modal-type">
+        <span class="ind">Audio Feature Analysis · Artist Momentum</span>
+        <span class="aca">Empirical Study: Signal vs. Structural Predictors in Music Discovery</span>
       </div>
-      <div class="proj-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
-      <div class="proj-title"><span class="en">Sonic Analytics: Hit Predictor</span><span class="ko">소닉 애널리틱스: 히트 예측기</span></div>
-      <div class="proj-type"><span class="en">Audio Feature Analysis · Artist Momentum</span><span class="ko">오디오 피처 분석 · 아티스트 모멘텀</span></div>
-      <p class="proj-desc">
-        <span class="en">Explored how audio features and artist momentum interact to shape perceived popularity. Built an interactive pipeline on the Apple Music catalog, surfacing how <strong>platform-level signals diverge from raw audio</strong> and what that reveals about discovery system design.</span>
-        <span class="ko">오디오 피처와 아티스트 모멘텀이 인지된 인기도를 형성하는 방식을 탐구했습니다. Apple Music 카탈로그에 인터랙티브 파이프라인을 구축해 <strong>플랫폼 수준 신호가 원시 오디오와 어떻게 달라지는지</strong>와 그것이 발견 시스템 설계에 시사하는 바를 도출했습니다.</span>
+      <p class="modal-desc">
+        Explored how audio features and artist momentum interact to shape perceived popularity. Built an interactive pipeline on the Apple Music catalog, surfacing how <strong>platform-level signals diverge from raw audio</strong> and what that reveals about discovery system design.
       </p>
       <div class="metrics-block">
-        <div class="m-row"><span class="m-k"><span class="en">Dataset</span><span class="ko">데이터셋</span></span><span class="m-v">Apple Music catalog</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Focus</span><span class="ko">초점</span></span><span class="m-v">Audio vs. momentum</span></div>
-        <div class="m-row"><span class="m-k"><span class="en">Output</span><span class="ko">결과물</span></span><span class="m-v">Interactive pipeline</span></div>
+        <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">Apple Music catalog</span></div>
+        <div class="m-row"><span class="m-k">Focus</span><span class="m-v">Audio vs. momentum</span></div>
+        <div class="m-row"><span class="m-k">Output</span><span class="m-v">Interactive pipeline</span></div>
       </div>
       <div class="tech-wrap">
         <span class="tech-tag">Python</span><span class="tech-tag">Streamlit</span>
         <span class="tech-tag">Matplotlib</span><span class="tech-tag">Jupyter</span>
       </div>
-      <a class="proj-link" href="https://github.com/lucytheboss/Sonic-Analytics-Hit-Predictor" target="_blank"><span class="en">View on GitHub →</span><span class="ko">GitHub에서 보기 →</span></a>
     </div>
-
+    <div class="modal-footer">
+      <a class="proj-link" href="https://github.com/lucytheboss/Sonic-Analytics-Hit-Predictor" target="_blank">View on GitHub →</a>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- UX SECTION -->
 <section id="ux">
   <div class="sec-head">
     <span class="sec-n">02</span>
-    <span class="sec-t"><span class="en">UX &amp; Product Design</span><span class="ko">UX &amp; 프로덕트 디자인</span></span>
+    <span class="sec-t">UX &amp; Product Design</span>
     <div class="sec-rule"></div>
   </div>
   <div class="ux-grid">
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: Figma screenshot of 니옷내옷 mobile UI -->
-      <div class="ux-img"><div class="ph-icon">👗</div><div class="ph-label"><span class="en">니옷내옷 UI</span><span class="ko">니옷내옷 UI 스크린샷</span></div></div>
+      <div class="ux-img"><div class="ph-icon">👗</div><div class="ph-label">니옷내옷 UI</div></div>
       <div class="ux-num">UX_01 · 2024</div>
       <div class="ux-title">니옷내옷</div>
-      <div class="ux-sub"><span class="en">Clothing Exchange App — Launching</span><span class="ko">의류 교환 앱 — 출시 예정</span></div>
-      <p class="ux-desc">
-        <span class="en">YONO philosophy applied to fashion. Taste-based matching triggered by mutual likes. AI recommendations via NLP prompts, wardrobe analysis, and SNS post analysis.</span>
-        <span class="ko">YONO 철학을 패션에 적용. 상호 좋아요로 매칭 활성화. 자연어 프롬프트, 옷장 분석, SNS 게시물 분석을 통한 AI 추천.</span>
-      </p>
+      <div class="ux-sub">
+        <span class="ind">Clothing Exchange App — Launching</span>
+        <span class="aca">HCI Research: Value Exchange in Peer-to-Peer Fashion Systems</span>
+      </div>
+      <p class="ux-desc">YONO philosophy applied to fashion. Taste-based matching triggered by mutual likes. AI recommendations via NLP prompts, wardrobe analysis, and SNS post analysis.</p>
       <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span></div>
-      <div class="ux-role"><span class="en">Branding 80% · Design 100% · Feb–Sep 2024</span><span class="ko">브랜딩 80% · 디자인 100% · 2024.02–09</span></div>
+      <div class="ux-role">Branding 80% · Design 100% · Feb–Sep 2024</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: 다님 app mobile screenshot -->
-      <div class="ux-img"><div class="ph-icon">✈️</div><div class="ph-label"><span class="en">다님 app UI</span><span class="ko">다님 앱 UI</span></div></div>
+      <div class="ux-img"><div class="ph-icon">✈️</div><div class="ph-label">다님 app UI</div></div>
       <div class="ux-num">UX_02 · 2023–2024</div>
       <div class="ux-title">다님</div>
-      <div class="ux-sub"><span class="en">AI Travel Curation — Launched</span><span class="ko">AI 여행 큐레이션 — 출시</span></div>
-      <p class="ux-desc">
-        <span class="en">For travelers seeking hidden, non-touristy destinations. Hyper-personalization via taste analysis. Complex filtering simplified into conversational UI flow.</span>
-        <span class="ko">이색적인 여행지를 찾는 여행자를 위한 앱. 취향 분석을 통한 초개인화. 복잡한 필터링을 대화형 UI 흐름으로 단순화.</span>
-      </p>
+      <div class="ux-sub">
+        <span class="ind">AI Travel Curation — Launched</span>
+        <span class="aca">HCI Research: Conversational UI for Complex Preference Elicitation</span>
+      </div>
+      <p class="ux-desc">For travelers seeking hidden, non-touristy destinations. Hyper-personalization via taste analysis. Complex filtering simplified into conversational UI flow.</p>
       <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UI</span><span class="tech-tag">Web UI</span><span class="tech-tag">Branding</span></div>
-      <div class="ux-role"><span class="en">Branding 80% · Design 80% · Dec 2023–Feb 2024</span><span class="ko">브랜딩 80% · 디자인 80% · 2023.12–2024.02</span></div>
+      <div class="ux-role">Branding 80% · Design 80% · Dec 2023–Feb 2024</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: VEBE app Figma screenshot -->
-      <div class="ux-img"><div class="ph-icon">🌿</div><div class="ph-label"><span class="en">VEBE app UI</span><span class="ko">VEBE 앱 UI</span></div></div>
+      <div class="ux-img"><div class="ph-icon">🌿</div><div class="ph-label">VEBE app UI</div></div>
       <div class="ux-num">UX_03 · 2023</div>
       <div class="ux-title">VEBE</div>
-      <div class="ux-sub"><span class="en">Vegan Cosmetics for Expats</span><span class="ko">외국인을 위한 비건 화장품 플랫폼</span></div>
-      <p class="ux-desc">
-        <span class="en">Bilingual vegan cosmetics discovery for foreign residents in Korea — a demographic underserved by Korean beauty apps. Full style system with accessible UX patterns.</span>
-        <span class="ko">국내 거주 외국인을 위한 이중 언어 비건 화장품 플랫폼. 한국 뷰티 앱에서 소외된 사용자층 타겟. 접근성 높은 UX 패턴 적용.</span>
-      </p>
+      <div class="ux-sub">
+        <span class="ind">Vegan Cosmetics for Expats</span>
+        <span class="aca">HCI Research: Cross-Cultural Accessibility in Beauty Discovery</span>
+      </div>
+      <p class="ux-desc">Bilingual vegan cosmetics discovery for foreign residents in Korea — a demographic underserved by Korean beauty apps. Full style system with accessible UX patterns.</p>
       <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Procreate</span><span class="tech-tag">Mobile UX</span></div>
-      <div class="ux-role"><span class="en">Design 100% · Jul–Aug 2023</span><span class="ko">디자인 100% · 2023.07–08</span></div>
+      <div class="ux-role">Design 100% · Jul–Aug 2023</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: BAIVE mockup when available -->
-      <div class="ux-img"><div class="ph-icon">🔒</div><div class="ph-label"><span class="en">BAIVE — coming soon</span><span class="ko">BAIVE — 공개 예정</span></div></div>
+      <div class="ux-img"><div class="ph-icon">🔒</div><div class="ph-label">BAIVE — coming soon</div></div>
       <div class="ux-num">UX_04 · 2025</div>
       <div class="ux-title">BAIVE</div>
-      <div class="ux-sub"><span class="en">App Design — Launching</span><span class="ko">앱 디자인 — 출시 예정</span></div>
-      <p class="ux-desc">
-        <span class="en">In progress. Full product design targeting a behavioral insight gap discovered through prior research.</span>
-        <span class="ko">진행 중. 이전 연구에서 발견된 행동 인사이트 공백을 타겟으로 한 프로덕트 디자인.</span>
-      </p>
+      <div class="ux-sub">
+        <span class="ind">App Design — Launching</span>
+        <span class="aca">Product Design: Behavioral Insight-Driven Interface</span>
+      </div>
+      <p class="ux-desc">In progress. Full product design targeting a behavioral insight gap discovered through prior research.</p>
       <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Product Design</span></div>
-      <div class="ux-role"><span class="en">Status: Pre-launch · 2025</span><span class="ko">상태: 출시 전 · 2025</span></div>
+      <div class="ux-role">Status: Pre-launch · 2025</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: LUCAUS website or festival photo -->
-      <div class="ux-img"><div class="ph-icon">🎉</div><div class="ph-label"><span class="en">LUCAUS website screenshot</span><span class="ko">LUCAUS 웹사이트 스크린샷</span></div></div>
+      <div class="ux-img"><div class="ph-icon">🎉</div><div class="ph-label">LUCAUS website screenshot</div></div>
       <div class="ux-num">UX_05 · 2025</div>
       <div class="ux-title">LUCAUS 2025</div>
-      <div class="ux-sub"><span class="en">University Festival Website</span><span class="ko">대학 축제 웹사이트</span></div>
-      <p class="ux-desc">
-        <span class="en">Designed the Chung-Ang spring festival platform: food truck log, event map, barrier-free guide, lost-and-found, stamp game. Post-launch behavioral analysis surfaced key drop-off insights.</span>
-        <span class="ko">중앙대 봄 축제 플랫폼 디자인: 푸드트럭 로그, 이벤트 지도, 베리어프리 가이드, 분실물 센터, 스탬프 게임. 출시 후 행동 분석으로 핵심 이탈 인사이트 발굴.</span>
-      </p>
+      <div class="ux-sub">
+        <span class="ind">University Festival Website</span>
+        <span class="aca">Applied HCI: Design + Post-Launch Behavioral Study</span>
+      </div>
+      <p class="ux-desc">Designed the Chung-Ang spring festival platform: food truck log, event map, barrier-free guide, lost-and-found, stamp game. Post-launch behavioral analysis surfaced key drop-off insights.</p>
       <div class="tech-wrap"><span class="tech-tag">UI Design</span><span class="tech-tag">Accessibility</span><span class="tech-tag">Log Analysis</span></div>
-      <div class="ux-role"><span class="en">Design + Analysis · Spring 2025</span><span class="ko">디자인 + 분석 · 2025 봄</span></div>
+      <div class="ux-role">Design + Analysis · Spring 2025</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: screenshot of a Medium article or blog post -->
-      <div class="ux-img"><div class="ph-icon">✍️</div><div class="ph-label"><span class="en">Blog / article screenshot</span><span class="ko">블로그 / 아티클 스크린샷</span></div></div>
+      <div class="ux-img"><div class="ph-icon">✍️</div><div class="ph-label">Blog / article screenshot</div></div>
       <div class="ux-num">Writing</div>
       <div class="ux-title">Medium + Velog</div>
-      <div class="ux-sub"><span class="en">Technical Writing</span><span class="ko">기술 글쓰기</span></div>
-      <p class="ux-desc">
-        <span class="en">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML. Published in Korean and English.</span>
-        <span class="ko">행동 데이터, 추천 시스템, 심리학과 ML의 교차점에서의 HCI에 관한 글. 한국어와 영어로 발행.</span>
-      </p>
+      <div class="ux-sub">Technical Writing</div>
+      <p class="ux-desc">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML.</p>
       <div class="tech-wrap"><span class="tech-tag">Medium</span><span class="tech-tag">Velog</span></div>
       <div class="ux-role">
         <a href="https://medium.com/@lucyroh529" target="_blank">medium.com/@lucyroh529</a> ·
@@ -737,7 +884,7 @@ footer {
 <section id="about">
   <div class="sec-head">
     <span class="sec-n">03</span>
-    <span class="sec-t"><span class="en">About</span><span class="ko">소개</span></span>
+    <span class="sec-t">About</span>
     <div class="sec-rule"></div>
   </div>
   <div class="about-grid">
@@ -745,54 +892,47 @@ footer {
       <!-- 📌 Replace with: your photo -->
       <div class="about-photo">
         <div class="ph-icon">👤</div>
-        <div class="ph-label"><span class="en">Your photo here</span><span class="ko">사진을 여기에</span></div>
+        <div class="ph-label">Your photo here</div>
       </div>
-      <h2 class="about-head">
-        <span class="en">Why behavior,<br>not <em>accuracy?</em></span>
-        <span class="ko">왜 정확도가 아닌<br><em>행동</em>인가?</span>
-      </h2>
-      <p class="about-body">
-        <span class="en">I study systems that <strong>fail users without failing metrics</strong>. A recommender can hit NDCG@10 of 0.95 while covering only 0.07% of available content — technically excellent, behaviorally broken.</span>
-        <span class="ko">저는 <strong>지표는 달성하면서도 사용자를 실패시키는 시스템</strong>을 연구합니다. 추천 시스템은 NDCG@10 0.95를 달성하면서도 전체 콘텐츠의 0.07%만 커버할 수 있습니다 — 기술적으로는 훌륭하지만, 행동적으로는 망가진 것입니다.</span>
-      </p>
-      <p class="about-body">
-        <span class="en">My triple major in <strong>Psychology, English Literature, and Technology-Art</strong> gives me an unusual lens: I can read both the statistical signal and the human meaning behind it.</span>
-        <span class="ko"><strong>심리학, 영어영문학, 기술예술</strong>의 삼중 전공은 독특한 시각을 제공합니다: 통계적 신호와 그 이면의 인간적 의미를 동시에 읽을 수 있습니다.</span>
-      </p>
-      <p class="about-body">
-        <span class="en">Long-term goal: Applied Scientist at a music or media platform — building systems that understand not just what users choose, but <strong>why they hesitate</strong> and what they never get to discover.</span>
-        <span class="ko">장기 목표: 음악 또는 미디어 플랫폼의 Applied Scientist — 사용자가 무엇을 선택하는지뿐만 아니라 <strong>왜 망설이는지</strong>, 그리고 그들이 발견하지 못하는 것이 무엇인지를 이해하는 시스템 구축.</span>
-      </p>
+      <h2 class="about-head">Why behavior,<br>not <em>accuracy?</em></h2>
+      <div class="ind">
+        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. A recommender can hit NDCG@10 of 0.95 while covering only 0.07% of available content — technically excellent, behaviorally broken.</p>
+        <p class="about-body">My triple major in <strong>Psychology, English Literature, and Technology-Art</strong> gives me an unusual lens: I can read both the statistical signal and the human meaning behind it.</p>
+        <p class="about-body">Long-term goal: Applied Scientist at a music or media platform — building systems that understand not just what users choose, but <strong>why they hesitate</strong> and what they never get to discover.</p>
+      </div>
+      <div class="aca">
+        <p class="about-body">My research examines the divergence between <strong>quantitative performance metrics</strong> and behavioral outcomes in recommendation systems. Drawing on Psychology, English Literature, and Technology-Art, I apply a mixed-methods approach to surface structural biases that aggregate statistics obscure.</p>
+        <p class="about-body">Triple major in <strong>Psychology, English Literature, and Technology-Art</strong> at Chung-Ang University (2022–2026). Currently preparing for MS programs in <strong>HCI and Computational Social Science</strong>, with a focus on sociotechnical systems and algorithmic fairness.</p>
+        <p class="about-body">Research question: <em>When a system performs well on aggregate metrics but fails specific user populations, what structural and behavioral factors explain the gap?</em></p>
+      </div>
       <div style="margin-top: 2rem;">
-        <a class="btn btn-pink" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank">
-          <span class="en">Download Resume →</span><span class="ko">이력서 다운로드 →</span>
-        </a>
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank">Download Resume →</a>
       </div>
     </div>
     <div class="about-right fade-up">
       <div class="skill-group">
-        <div class="skill-group-label"><span class="en">Analysis &amp; Modeling</span><span class="ko">분석 &amp; 모델링</span></div>
+        <div class="skill-group-label">Analysis &amp; Modeling</div>
         <div class="chips">
           <span class="chip">Python</span><span class="chip">Pandas</span>
           <span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">SQL</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label"><span class="en">ML &amp; Systems</span><span class="ko">ML &amp; 시스템</span></div>
+        <div class="skill-group-label">ML &amp; Systems</div>
         <div class="chips">
           <span class="chip">Matrix Factorization</span><span class="chip">Collaborative Filtering</span>
           <span class="chip">A/B Testing</span><span class="chip">Residual Analysis</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label"><span class="en">Visualization &amp; Apps</span><span class="ko">시각화 &amp; 앱</span></div>
+        <div class="skill-group-label">Visualization &amp; Apps</div>
         <div class="chips">
           <span class="chip">Tableau</span><span class="chip">Streamlit</span>
           <span class="chip">Matplotlib</span><span class="chip">Jupyter</span><span class="chip">Seaborn</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label"><span class="en">UX &amp; Research</span><span class="ko">UX &amp; 리서치</span></div>
+        <div class="skill-group-label">UX &amp; Research</div>
         <div class="chips">
           <span class="chip">Figma</span><span class="chip">Procreate</span>
           <span class="chip">Interaction Logs</span><span class="chip">Behavioral Analysis</span>
@@ -800,7 +940,7 @@ footer {
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label"><span class="en">Background</span><span class="ko">학문적 배경</span></div>
+        <div class="skill-group-label">Background</div>
         <div class="chips">
           <span class="chip">Psychology</span><span class="chip">HCI</span>
           <span class="chip">English Literature</span><span class="chip">Statistics</span>
@@ -814,10 +954,7 @@ footer {
 <section id="contact">
   <div class="contact-sec">
     <div class="fade-up">
-      <div class="contact-head">
-        <span class="en">Let's<em>talk.</em></span>
-        <span class="ko">함께<em>이야기해요.</em></span>
-      </div>
+      <div class="contact-head">Let's<em>talk.</em></div>
     </div>
     <div class="contact-right fade-up">
       <div class="c-item"><span class="c-label">Email</span><a class="c-val" href="mailto:lucyroh529@gmail.com">lucyroh529@gmail.com</a></div>
@@ -831,7 +968,7 @@ footer {
 
 <footer>
   <span class="foot-copy">© 2025 Jiwoo (Lucy) Roh · Seoul, KR</span>
-  <span class="foot-copy"><span class="en">Behavioral UX · Data Science · 2022–2026</span><span class="ko">행동 UX · 데이터 사이언스 · 2022–2026</span></span>
+  <span class="foot-copy">Behavioral UX · Data Science · 2022–2026</span>
 </footer>
 
 <script>
@@ -850,19 +987,52 @@ themeBtn.addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
-// ── LANGUAGE ──
-const langBtn = document.getElementById('lang-toggle');
-const savedLang = localStorage.getItem('lang') || 'en';
-html.setAttribute('data-lang', savedLang);
-html.setAttribute('lang', savedLang === 'ko' ? 'ko' : 'en');
-langBtn.textContent = savedLang === 'ko' ? 'English' : '한국어';
+// ── AUDIENCE TOGGLE ──
+const audIndustry = document.getElementById('aud-industry');
+const audAcademia = document.getElementById('aud-academia');
+const savedAud = localStorage.getItem('audience') || 'industry';
+html.setAttribute('data-audience', savedAud);
+updateAudButtons(savedAud);
 
-langBtn.addEventListener('click', () => {
-  const next = html.getAttribute('data-lang') === 'ko' ? 'en' : 'ko';
-  html.setAttribute('data-lang', next);
-  html.setAttribute('lang', next === 'ko' ? 'ko' : 'en');
-  langBtn.textContent = next === 'ko' ? 'English' : '한국어';
-  localStorage.setItem('lang', next);
+function updateAudButtons(aud) {
+  audIndustry.classList.toggle('active', aud === 'industry');
+  audAcademia.classList.toggle('active', aud === 'academia');
+}
+
+audIndustry.addEventListener('click', () => {
+  html.setAttribute('data-audience', 'industry');
+  updateAudButtons('industry');
+  localStorage.setItem('audience', 'industry');
+});
+audAcademia.addEventListener('click', () => {
+  html.setAttribute('data-audience', 'academia');
+  updateAudButtons('academia');
+  localStorage.setItem('audience', 'academia');
+});
+
+// ── MODAL ──
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(modal) {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.proj-card[data-modal]').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.modal));
+});
+
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.querySelector('.modal-backdrop').addEventListener('click', () => closeModal(modal));
+  modal.querySelector('.modal-close').addEventListener('click', () => closeModal(modal));
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(closeModal);
 });
 
 // ── FADE IN ──
