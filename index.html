@@ -74,8 +74,11 @@ h1, h2, h3, .proj-title, .ux-title, .about-head, .contact-head {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 [data-theme="dark"] .float-btn { box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
-.float-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
-[data-theme="dark"] .float-btn:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
+@media (hover: hover) {
+  .float-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+  [data-theme="dark"] .float-btn:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
+}
+
 
 /* ── NAV ── */
 nav {
@@ -98,15 +101,18 @@ nav {
   opacity: 0.8;
   position: relative;
 }
-.nav-links a:hover { 
-  opacity: 1; 
-  color: var(--accent1); 
+@media (hover: hover) {
+  .nav-links a:hover { opacity: 1; color: var(--accent1); }
 }
+
 .nav-links a::after {
   content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
   background: var(--accent1); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); transform: translateX(-50%);
 }
-.nav-links a:hover::after { width: 60%; }
+@media (hover: hover) {
+  .nav-links a:hover::after { width: 60%; }
+}
+
 
 /* ── HERO ── */
 
@@ -149,10 +155,12 @@ nav {
   border: none;
 }
 .btn-primary { background: var(--accent1); color: #FFFFFF; } 
-.btn-primary:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(225,29,72,0.3); } 
+@media (hover: hover) {
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(225,29,72,0.3); } 
+  .btn-ghost:hover { background: var(--accent1); color: #FFFFFF; transform: scale(1.02); }
+}
 
 .btn-ghost { background: var(--surface); color: var(--ink); }
-.btn-ghost:hover { background: var(--accent1); color: #FFFFFF; transform: scale(1.02); }
 
 
 /* hero right */
@@ -273,21 +281,23 @@ nav {
 
 /* ── INSIGHT ── */
 .insight-band {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: flex; justify-content: center; align-items: center;
   background: var(--surface);
 }
-.insight-left { padding: 5rem 3.5rem 5rem 2.5rem; }
+
+.insight-center { max-width: 850px; width: 100%; padding: 8rem 2.5rem; text-align: center; }
 .insight-eyebrow {
   font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent1); margin-bottom: 1.5rem;
+  text-transform: uppercase; color: var(--accent1); margin-bottom: 2rem;
 }
 .insight-quote {
-  font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800;
-  line-height: 1.4; letter-spacing: -0.02em;
-  color: var(--ink); margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  line-height: 1.2; letter-spacing: -0.03em;
+  color: var(--ink); margin-bottom: 2rem;
 }
 .insight-quote em { font-style: normal; color: var(--accent1); }
-.insight-body { font-size: 15px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; }
+.insight-body { font-size: 16px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; max-width: 650px; margin: 0 auto; }
+
 
 .insight-right {
   padding: 5rem 2.5rem; display: flex; flex-direction: column;
@@ -310,9 +320,12 @@ nav {
   display: flex; flex-direction: column; background: var(--surface);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
 }
-.proj-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
-[data-theme="dark"] .proj-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
-.proj-card:hover .proj-title { color: var(--accent1); }
+@media (hover: hover) {
+  .proj-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+  [data-theme="dark"] .proj-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+  .proj-card:hover .proj-title { color: var(--accent1); }
+}
+
 
 
 .proj-idx { font-size: 11px; font-weight: 700; color: var(--ink); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
@@ -330,7 +343,10 @@ nav {
   margin-top: 1.5rem; font-size: 12px; font-weight: 700; color: var(--ink);
   opacity: 0.6; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.proj-card:hover .proj-open-hint { color: var(--accent1); opacity: 1; }
+@media (hover: hover) {
+  .proj-card:hover .proj-open-hint { color: var(--accent1); opacity: 1; }
+}
+
 
 
 /* ── MODAL ── */
@@ -361,7 +377,10 @@ nav {
   display: flex; align-items: center; justify-content: center;
   transition: background 0.15s, color 0.15s; z-index: 2;
 }
-.modal-close:hover { background: var(--accent1); color: #FFFFFF; } /* Contrast rule */
+@media (hover: hover) {
+  .modal-close:hover { background: var(--accent1); color: #FFFFFF; }
+}
+
 
 .modal-img {
   width: 100%; height: 280px; background: var(--surface);
@@ -396,7 +415,10 @@ nav {
   font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
   transition: color 0.15s;
 }
-.proj-link:hover { color: var(--accent1); }
+@media (hover: hover) {
+  .proj-link:hover { color: var(--accent1); }
+}
+
 
 /* ── UX GRID (HORIZONTAL 4x1) ── */
 .ux-grid { 
@@ -411,11 +433,13 @@ nav {
   background: var(--surface); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
   display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
 }
-.ux-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
-[data-theme="dark"] .ux-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
-.ux-card:hover .ux-title { color: var(--accent1); }
+@media (hover: hover) {
+  .ux-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+  [data-theme="dark"] .ux-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+  .ux-card:hover .ux-title { color: var(--accent1); }
+  [data-theme="dark"] .ux-card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
+}
 
-[data-theme="dark"] .ux-card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
 
 .ux-img {
   width: 100%; height: 100px; border-radius: 8px;
@@ -431,31 +455,44 @@ nav {
 .ux-desc { font-size: 13.5px; font-weight: 400; color: var(--ink); opacity: 0.75; line-height: 1.5; margin-bottom: 1rem; }
 .ux-role { font-size: 11px; font-weight: 600; color: var(--ink); opacity: 0.6; padding-top: 0.75rem; margin-top: auto; border-top: none; }
 .ux-role a { color: var(--ink); font-weight: 700; text-decoration: none; transition: color 0.15s; }
-.ux-role a:hover { color: var(--accent1); }
+@media (hover: hover) {
+  .ux-role a:hover { color: var(--accent1); }
+}
+
 
 
 /* ── ABOUT ── */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 2.5rem 4rem; background: var(--bg); }
-.about-left { padding: 4rem; border-radius: 16px; background: var(--surface); }
+#about { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 2.5rem 2rem; background: var(--bg); }
+
+.about-left { padding: 2.5rem; border-radius: 16px; background: var(--surface); }
+
 .about-photo {
-  width: 100%; height: 260px; background: var(--bg); border-radius: 12px;
-  margin-bottom: 3rem;
+  width: 100%; height: 160px; background: var(--bg); border-radius: 12px;
+  margin-bottom: 2rem;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   position: relative; overflow: hidden;
 }
+
 .about-head {
-  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem;
+  font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1.25rem;
 }
+
 .about-head em { font-style: normal; color: var(--accent1); }
-.about-body { font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.8; margin-bottom: 1.5rem; }
+.about-body { font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.6; margin-bottom: 1rem; }
+
 .about-body strong { font-weight: 700; color: var(--ink); }
 
-.about-right { padding: 4rem; border-radius: 16px; background: var(--surface); }
-.skill-group { margin-bottom: 2.5rem; }
+
+.about-right { padding: 2.5rem; border-radius: 16px; background: var(--surface); }
+
+.skill-group { margin-bottom: 1.5rem; }
+
 .skill-group-label {
   font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink); margin-bottom: 1.25rem; opacity: 0.7;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 0.75rem; opacity: 0.7;
+
 }
 .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .chip {
@@ -463,7 +500,10 @@ nav {
   background: var(--bg); color: var(--ink);
   border-radius: 6px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.chip:hover { background: var(--accent1); color: #FFFFFF; transform: translateY(-2px); }
+@media (hover: hover) {
+  .chip:hover { background: var(--accent1); color: #FFFFFF; transform: translateY(-2px); }
+}
+
 
 
 /* ── CONTACT ── */
@@ -485,7 +525,10 @@ nav {
 [data-theme="dark"] .c-item { border-bottom: 1px solid rgba(0,0,0,0.2); }
 .c-label { font-size: 12px; font-weight: 700; color: var(--bg); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
 .c-val { font-size: 16px; font-weight: 600; color: var(--bg); text-decoration: none; transition: color 0.15s; }
-.c-val:hover { color: var(--accent1); }
+@media (hover: hover) {
+  .c-val:hover { color: var(--accent1); }
+}
+
 
 /* ── FOOTER ── */
 footer {
@@ -535,9 +578,9 @@ footer {
     <li><a href="#data">Data</a></li>
     <li><a href="#ux">UX</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
 
 
 <!-- HERO -->
@@ -546,16 +589,17 @@ footer {
     <div class="hero-left">
       <div class="hero-eyebrow">Applied Behavioral Science · HCI · Data Science</div>
       <h1 class="hero-name"><strong>Jiwoo</strong> Roh</h1>
-      <p class="hero-aka">Lucy · Psychology & English Lit at CAU</p>
+      <p class="hero-aka">Lucy · Psychology & English Lit & Tech-Arts at CAU</p>
       <p class="hero-desc">
-        I analyze user behavior to understand why people hesitate or drop off — applying <strong>computational methods</strong> and <strong>HCI reasoning</strong> to expose the gap between algorithmic performance and true <strong>user-perceived value</strong>.
+        I analyze user behavior to understand why people hesitate or drop off — applying <strong>HCI reasoning</strong> and <strong>computational methods</strong> to expose the gap between algorithmic performance and true <strong>user-perceived value</strong>.
       </p>
 
+
       <div class="hero-links">
-        <a class="btn btn-primary" href="https://github.com/lucytheboss" target="_blank">GitHub →</a>
+        <a class="btn btn-primary" href="https://github.com/lucytheboss" target="_blank" rel="noopener noreferrer">GitHub →</a>
         <a class="btn btn-ghost" href="mailto:lucyroh529@gmail.com">Email</a>
-        <a class="btn btn-ghost" href="https://medium.com/@lucyroh529" target="_blank">Medium</a>
-        <a class="btn btn-ghost" href="https://velog.io/@lucytheboss/posts" target="_blank">Velog</a>
+        <a class="btn btn-ghost" href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer">Medium</a>
+        <a class="btn btn-ghost" href="https://velog.io/@lucytheboss/posts" target="_blank" rel="noopener noreferrer">Velog</a>
       </div>
     </div>
 
@@ -601,30 +645,17 @@ footer {
   </div>
 </div>
 
-<!-- WHO I AM / IDENTITY -->
-<section class="identity-sec">
-  <div class="fade-up">
-    <h2 class="identity-hook">
-      Operating at the exact intersection of <span>Psychology</span>, <span>Data Analysis</span>, and <span>HCI</span>.
-    </h2>
-    <p class="identity-body">
-      My background in <strong>Psychology and English Literature</strong> provides the foundation for understanding human behavior and the complex nuances of context. I bridge this with technical expertise in <strong>Machine Learning and Recommender Systems</strong> to analyze and build sociotechnical systems that are both mathematically sound and behaviorally intuitive. My focus lies in <strong>Explainable AI (XAI)</strong> and exposing how structural data biases translate into behavioral friction within digital platforms.
-    </p>
-
-  </div>
-</section>
-
 <!-- INSIGHT BAND -->
-<!-- RESEARCH THESIS BAND (Minimalist) -->
 <div class="insight-band fade-up" style="background: var(--bg); border-top: 1px solid rgba(0,0,0,0.03);">
-  <div class="insight-left" style="max-width: 800px; margin: 0 auto; padding: 6rem 2.5rem; text-align: center;">
-    <div class="insight-eyebrow" style="margin-bottom: 2rem;">Core Research Thesis</div>
-    <div class="insight-quote" style="font-size: 2.5rem; margin-bottom: 2rem;">"When predictions fail — <em>why?</em>"</div>
-    <p class="insight-body" style="max-width: 650px; margin: 0 auto;">
+  <div class="insight-center">
+    <div class="insight-eyebrow">Core Research Thesis</div>
+    <div class="insight-quote">"When predictions fail — <em>why?</em>"</div>
+    <p class="insight-body">
       Most recommendation systems optimize for accuracy. My work focuses on the outcomes that accuracy can't explain — surprise hits, hidden gems, and structural biases baked into data before any model sees it. Fame explains only a fraction of variance; the rest is where the interesting behavioral questions live.
     </p>
   </div>
 </div>
+
 
 
 <!-- DATA PROJECTS -->
@@ -719,7 +750,7 @@ footer {
       </div>
     </div>
     <div class="modal-footer">
-      <a class="proj-link" href="https://github.com/lucytheboss/what-drives-music-popularity" target="_blank">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/lucytheboss/what-drives-music-popularity" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
     </div>
   </div>
 </div>
@@ -755,7 +786,7 @@ footer {
       </div>
     </div>
     <div class="modal-footer">
-      <a class="proj-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
     </div>
   </div>
 </div>
@@ -788,7 +819,7 @@ footer {
       </div>
     </div>
     <div class="modal-footer">
-      <a class="proj-link" href="https://github.com/lucytheboss/festival-behavioral-analytics" target="_blank">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/lucytheboss/festival-behavioral-analytics" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
     </div>
   </div>
 </div>
@@ -821,7 +852,7 @@ footer {
       </div>
     </div>
     <div class="modal-footer">
-      <a class="proj-link" href="https://github.com/lucytheboss/Sonic-Analytics-Hit-Predictor" target="_blank">View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/lucytheboss/Sonic-Analytics-Hit-Predictor" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
     </div>
   </div>
 </div>
@@ -903,14 +934,14 @@ footer {
     <div class="sec-rule"></div>
   </div>
   <div class="projects-grid">
-    <a href="https://medium.com/@lucyroh529" target="_blank" class="proj-card fade-up" style="text-decoration: none;">
+    <a href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer" class="proj-card fade-up" style="text-decoration: none;">
       <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div><div class="ph-label">Medium Articles</div></div>
       <div class="proj-idx">Medium</div>
       <div class="proj-title">Tech & Data Analytics</div>
       <div class="proj-oneliner">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML.</div>
       <div class="tech-wrap"><span class="tech-tag">Medium</span></div>
     </a>
-    <a href="https://velog.io/@lucytheboss/posts" target="_blank" class="proj-card fade-up" style="text-decoration: none;">
+    <a href="https://velog.io/@lucytheboss/posts" target="_blank" rel="noopener noreferrer" class="proj-card fade-up" style="text-decoration: none;">
       <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="ph-label">Velog Dev Logs</div></div>
       <div class="proj-idx">Velog</div>
       <div class="proj-title">Dev Logs & Projects</div>
@@ -934,15 +965,21 @@ footer {
         <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
         <div class="ph-label">Your photo here</div>
       </div>
-      <h2 class="about-head">Why behavior,<br>not <em>accuracy?</em></h2>
+      <h2 class="about-head">Operating at the intersection of <em>Psychology &amp; Data &amp; HCI.</em></h2>
       <div class="unified-about">
-        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. My interdisciplinary background in <strong>Psychology and English Literature</strong> gives me a unique lens: I can read both the statistical signal and the human meaning behind it. By applying a mixed-methods approach, I surface structural biases that aggregate statistics often obscure.</p>
-        <p class="about-body">Currently preparing for MS programs in <strong>HCI and Computational Social Science</strong>, I aim to become an <strong>Applied Scientist</strong> at a music or media platform — building systems that understand not just what users choose, but <strong>why they hesitate</strong> and what they never get to discover.</p>
+        <p class="about-body">My academic background spanning <strong>Psychology, English Literature, and Tech-Art</strong> gives me a distinct multidisciplinary lens on <strong>Human-Computer Interaction (HCI)</strong>.</p>
+        <p class="about-body">I am not interested in technology for its own sake. I am deeply fascinated by how humans perceive, trust, and fundamentally alter their behavior when interacting with algorithms.</p>
+        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. By bridging behavioral theory with <strong>computational execution</strong>, my goal as an Applied Scientist is to build sociotechnical systems that understand <strong>why users hesitate</strong>, moving beyond simple accuracy.</p>
       </div>
 
-      <div style="margin-top: 2rem;">
-        <a class="btn btn-primary" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank">Download Resume →</a>
+
+
+      <div style="margin-top: 1.5rem;">
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank" rel="noopener noreferrer">Download Resume →</a>
       </div>
+
+
+
     </div>
     <div class="about-right fade-up">
       <div class="skill-group">
@@ -971,38 +1008,59 @@ footer {
       <div class="skill-group">
         <div class="skill-group-label">Background</div>
         <div class="chips">
-          <span class="chip">Psychology</span><span class="chip">HCI</span>
-          <span class="chip">English Literature</span>
+          <span class="chip">Psychology</span><span class="chip">Tech Art (CS + Arts)</span>
+          <span class="chip">English Literature</span><span class="chip">HCI</span>
         </div>
       </div>
 
+
+      <div class="contact-links" style="margin-top: 3rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
+        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
+          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">Email</span>
+          <a class="c-val" href="mailto:lucyroh529@gmail.com" style="color: var(--ink); text-decoration: none; font-weight: 600;">lucyroh529@gmail.com</a>
+        </div>
+        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
+          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">GitHub</span>
+          <a class="c-val" href="https://github.com/lucytheboss" target="_blank" rel="noopener noreferrer" style="color: var(--ink); text-decoration: none; font-weight: 600;">github.com/lucytheboss</a>
+        </div>
+        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
+          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">Medium</span>
+          <a class="c-val" href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer" style="color: var(--ink); text-decoration: none; font-weight: 600;">@lucyroh529</a>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-sec">
-    <div class="fade-up">
-      <div class="contact-head">Let's<em>talk.</em></div>
-    </div>
-    <div class="contact-right fade-up">
-      <div class="c-item"><span class="c-label">Email</span><a class="c-val" href="mailto:lucyroh529@gmail.com">lucyroh529@gmail.com</a></div>
-      <div class="c-item"><span class="c-label">GitHub</span><a class="c-val" href="https://github.com/lucytheboss" target="_blank">github.com/lucytheboss</a></div>
-      <div class="c-item"><span class="c-label">Medium</span><a class="c-val" href="https://medium.com/@lucyroh529" target="_blank">medium.com/@lucyroh529</a></div>
-      <div class="c-item"><span class="c-label">Velog</span><a class="c-val" href="https://velog.io/@lucytheboss/posts" target="_blank">velog.io/@lucytheboss</a></div>
-      <div class="c-item"><span class="c-label">Phone</span><span class="c-val">(+82) 010-2188-9232</span></div>
-    </div>
-  </div>
-</section>
 
 <footer>
-  <span class="foot-copy">© 2025 Jiwoo (Lucy) Roh · Seoul, KR</span>
+  <span class="foot-copy">© 2026 Jiwoo (Lucy) Roh · Seoul, KR</span>
   <span class="foot-copy">Behavioral UX · Data Science · 2022–2026</span>
 </footer>
 
+
 <script>
+// ── ROBUST INITIAL SCROLL FIX ──
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+// Force scroll to top immediately and on load
+window.scrollTo(0, 0);
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+  // Clear hash to prevent anchor jumping on refresh
+  if (window.location.hash) {
+    window.history.replaceState("", document.title, window.location.pathname + window.location.search);
+  }
+});
+// Aggressive backup for browsers that delay rendering
+setTimeout(() => { window.scrollTo(0, 0); }, 1);
+setTimeout(() => { window.scrollTo(0, 0); }, 50);
+
 const html = document.documentElement;
+
+
+
 
 // ── THEME ──
 const themeBtn = document.getElementById('theme-toggle');
