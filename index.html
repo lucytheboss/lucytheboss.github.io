@@ -11,36 +11,26 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── TOKENS ── */
+/* ── 4-COLOR PALETTE TOKENS ── */
 [data-theme="light"] {
-  --bg:         #F8F6F2;
-  --bg2:        #EEEAE4;
-  --surface:    #FFFFFF;
-  --ink:        #111111;
-  --ink2:       #555550;
-  --ink3:       #AAAAA4;
-  --line:       rgba(0,0,0,0.08);
-  --accent1:    #1B2A4A;
-  --accent2:    #C4667A;
-  --accent1-glow: rgba(27,42,74,0.07);
-  --accent2-glow: rgba(196,102,122,0.07);
-  --tog-bg:     #111111;
-  --tog-fg:     #F8F6F2;
+  --bg:         #FFFFFF;
+  --bg2:        #F4F4F5;
+  --surface:    #F4F4F5;
+  --ink:        #0A0A0A;
+  --ink2:       #0A0A0A;
+  --accent1:    #E11D48;
+  --tog-bg:     #F4F4F5;
+  --tog-fg:     #0A0A0A;
 }
 [data-theme="dark"] {
-  --bg:         #111111;
-  --bg2:        #191919;
-  --surface:    #1D1D1D;
-  --ink:        #EDEBE6;
-  --ink2:       #888882;
-  --ink3:       #3C3C38;
-  --line:       rgba(255,255,255,0.07);
-  --accent1:    #4A7AB5;
-  --accent2:    #D4889A;
-  --accent1-glow: rgba(74,122,181,0.10);
-  --accent2-glow: rgba(212,136,154,0.09);
-  --tog-bg:     #EDEBE6;
-  --tog-fg:     #111111;
+  --bg:         #0A0A0A;
+  --bg2:        #18181B;
+  --surface:    #18181B;
+  --ink:        #FFFFFF;
+  --ink2:       #FFFFFF;
+  --accent1:    #E11D48;
+  --tog-bg:     #18181B;
+  --tog-fg:     #FFFFFF;
 }
 
 /* ── BASE ── */
@@ -49,16 +39,18 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: 'Pretendard', -apple-system, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.6;
   transition: background 0.3s, color 0.3s;
   overflow-x: hidden;
 }
 
-/* serif for display text */
-.serif, h1, h2, h3.proj-title, .ux-title, .about-head, .contact-head, .insight-quote {
-  font-family: 'Playfair Display', Georgia, serif;
+/* Typography Hierarchy */
+h1, h2, h3, .proj-title, .ux-title, .about-head, .contact-head {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 /* mono ONLY for data points, metrics, tags, indices */
@@ -82,209 +74,250 @@ span.ind { display: inline; }
   display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end;
 }
 .float-btn {
-  height: 38px; padding: 0 1.1rem; border-radius: 999px;
+  height: 38px; padding: 0 1.1rem; border-radius: 8px;
   background: var(--tog-bg); color: var(--tog-fg);
   border: none; cursor: pointer;
   font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em;
   display: flex; align-items: center; gap: 6px;
-  box-shadow: 0 2px 18px rgba(0,0,0,0.14);
-  transition: background 0.25s, transform 0.15s;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-.float-btn:hover { transform: scale(1.05); }
+[data-theme="dark"] .float-btn { box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+.float-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+[data-theme="dark"] .float-btn:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.7); }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: 54px; padding: 0 2.5rem;
   display: flex; justify-content: space-between; align-items: center;
-  background: var(--bg); border-bottom: 1px solid var(--line);
+  background: var(--bg);
   transition: background 0.3s;
 }
 .nav-logo {
-  font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
+  font-size: 16px; font-weight: 800; letter-spacing: -0.02em;
   color: var(--ink); text-decoration: none;
 }
-.nav-logo span { color: var(--accent2); }
-.nav-links { display: flex; list-style: none; align-items: center; }
+.nav-logo span { color: var(--accent1); }
+.nav-links { display: flex; list-style: none; align-items: center; gap: 1rem; }
 .nav-links a {
-  color: var(--ink2); text-decoration: none; font-size: 13px; font-weight: 400;
-  padding: 0 1.1rem; height: 54px; display: flex; align-items: center;
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500;
+  padding: 0.4rem 0.8rem; border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0.8;
+  position: relative;
 }
-.nav-links a:hover { color: var(--ink); border-bottom-color: var(--accent2); }
+.nav-links a:hover { 
+  opacity: 1; 
+  color: var(--accent1); 
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+  background: var(--accent1); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); transform: translateX(-50%);
+}
+.nav-links a:hover::after { width: 60%; }
+
 
 /* audience toggle in nav */
 .audience-toggle {
   display: flex; align-items: center; margin-left: 1rem;
-  border: 1px solid var(--line); border-radius: 2px; overflow: hidden;
+  background: var(--surface); border-radius: 6px; overflow: hidden;
 }
 .aud-btn {
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
-  padding: 0.3rem 0.75rem; background: transparent; border: none; cursor: pointer;
-  color: var(--ink3); transition: background 0.15s, color 0.15s;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600;
+  padding: 0.4rem 0.8rem; background: transparent; border: none; cursor: pointer;
+  color: var(--ink); opacity: 0.7; transition: background 0.15s, color 0.15s, opacity 0.15s;
 }
-.aud-btn.active { background: var(--accent1); color: #fff; }
-[data-theme="dark"] .aud-btn.active { color: var(--bg); }
+.aud-btn.active { background: var(--ink); color: var(--bg); opacity: 1; }
 
 /* ── HERO ── */
 .hero { min-height: 100vh; padding-top: 54px; display: grid; grid-template-rows: 1fr auto; }
 .hero-inner {
   display: grid; grid-template-columns: 1fr 400px;
-  border-bottom: 1px solid var(--line);
 }
 .hero-left {
-  padding: 5rem 3.5rem 5rem 2.5rem; border-right: 1px solid var(--line);
+  padding: 5rem 3.5rem 5rem 2.5rem;
   display: flex; flex-direction: column; justify-content: center;
 }
 .hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent2); margin-bottom: 1.75rem;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 1.75rem;
   display: flex; align-items: center; gap: 10px;
-  font-family: 'Pretendard', sans-serif;
 }
-.hero-eyebrow::before { content:''; width: 18px; height: 1px; background: var(--accent2); flex-shrink: 0; }
+.hero-eyebrow::before { content:''; width: 18px; height: 2px; background: var(--accent1); flex-shrink: 0; }
 
 .hero-name {
-  font-size: clamp(3.2rem, 8vw, 6rem);
-  font-weight: 400; letter-spacing: -0.03em; line-height: 1.0;
-  color: var(--ink); margin-bottom: 0.4rem;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
+  color: var(--ink); margin-bottom: 0.5rem;
 }
-.hero-name strong { font-weight: 700; }
 .hero-aka {
-  font-size: 15px; font-weight: 300; color: var(--ink3); margin-bottom: 2.5rem;
-  font-family: 'Pretendard', sans-serif;
+  font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 2.5rem; opacity: 0.7;
 }
 
 .hero-desc {
-  font-size: 15px; font-weight: 300; color: var(--ink2);
-  max-width: 460px; line-height: 1.85; margin-bottom: 3rem;
-  font-family: 'Pretendard', sans-serif;
+  font-size: 15px; font-weight: 400; color: var(--ink);
+  max-width: 500px; line-height: 1.8; margin-bottom: 3rem; opacity: 0.85;
 }
-.hero-desc strong { font-weight: 600; color: var(--ink); }
+.hero-desc strong { font-weight: 700; color: var(--ink); }
 
-.hero-links { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+.hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 0.6rem 1.3rem; text-decoration: none; font-size: 13px;
-  font-weight: 500; font-family: 'Pretendard', sans-serif;
-  cursor: pointer; transition: all 0.15s; border-radius: 2px;
-  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem; text-decoration: none; font-size: 13px;
+  font-weight: 600; font-family: 'Pretendard', sans-serif;
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 6px;
+  border: none;
 }
-.btn-primary { background: var(--accent1); color: #fff; }
-.btn-primary:hover { opacity: 0.85; }
-[data-theme="dark"] .btn-primary { color: var(--bg); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn-ghost:hover { border-color: var(--ink2); }
+.btn-primary { background: var(--accent1); color: #FFFFFF; } 
+.btn-primary:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(225,29,72,0.3); } 
+
+.btn-ghost { background: var(--surface); color: var(--ink); }
+.btn-ghost:hover { background: var(--accent1); color: #FFFFFF; transform: scale(1.02); }
+
 
 /* hero right */
 .hero-right {
-  padding: 2rem 1.75rem;
-  display: flex; flex-direction: column; gap: 0.85rem;
+  padding: 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  background: var(--surface);
 }
 .img-main {
-  flex: 1; min-height: 260px;
-  background: var(--bg2); border: 1px solid var(--line);
+  flex: 1; min-height: 260px; border-radius: 12px;
+  background: var(--bg);
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 8px; position: relative; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.img-main::after {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent2-glow), transparent 55%);
-  pointer-events: none;
-}
-.img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+[data-theme="dark"] .img-main { box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .img-sm {
-  height: 110px; background: var(--bg2); border: 1px solid var(--line);
+  height: 110px; border-radius: 12px; background: var(--bg);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.ph-icon { font-size: 1.5rem; opacity: 0.15; }
+[data-theme="dark"] .img-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.ph-icon { display: flex; align-items: center; justify-content: center; }
+.ph-icon svg { width: 32px; height: 32px; stroke: var(--ink); opacity: 0.3; }
 .ph-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink3); position: relative; z-index: 1; text-align: center; padding: 0 0.5rem;
+  font-family: 'DM Mono', monospace; font-weight: 500;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); opacity: 0.6; position: relative; z-index: 1; text-align: center; padding: 0 0.5rem;
 }
 
 /* stat bar */
-.stat-bar { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--line); }
-.stat-cell { padding: 1.5rem 2rem; border-right: 1px solid var(--line); }
-.stat-cell:last-child { border-right: none; }
+.stat-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--surface); }
+.stat-cell { padding: 3rem 2rem; display: flex; flex-direction: column; align-items: flex-start; }
 .stat-n {
-  font-size: 2.1rem; font-weight: 500; line-height: 1;
-  color: var(--accent2); margin-bottom: 0.3rem; letter-spacing: -0.02em;
+  font-size: 2.5rem; font-weight: 900; line-height: 1;
+  color: var(--ink); margin-bottom: 0.5rem; letter-spacing: -0.02em;
 }
-.stat-l { font-size: 11px; font-weight: 400; color: var(--ink3); font-family: 'Pretendard', sans-serif; }
+.stat-l { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--ink); opacity: 0.7; }
+
+/* ── IDENTITY SECTION ── */
+.identity-sec {
+  background: var(--bg2);
+  padding: 10rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.identity-hook {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 0 auto 3.5rem;
+  max-width: 950px;
+  color: var(--ink);
+  text-align: center;
+}
+.identity-hook span {
+  color: var(--accent1);
+}
+.identity-body {
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink);
+  opacity: 0.85;
+  margin: 0 auto;
+  text-align: center;
+}
+
 
 /* ── SEC HEADER ── */
 .sec-head {
   display: flex; align-items: center; gap: 1.25rem;
-  padding: 0.85rem 2.5rem;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 4rem 2.5rem 1.5rem;
   background: var(--bg);
 }
-.sec-n { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; min-width: 24px; }
-.sec-t { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Pretendard', sans-serif; }
-.sec-rule { flex: 1; height: 1px; background: var(--line); }
+.sec-n { font-size: 12px; font-weight: 800; color: var(--accent1); letter-spacing: 0.1em; min-width: 24px; }
+.sec-t { font-size: 14px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ── INSIGHT ── */
 .insight-band {
   display: grid; grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--line); background: var(--surface);
+  background: var(--surface);
 }
-.insight-left { padding: 4rem 2.5rem; border-right: 1px solid var(--line); }
+.insight-left { padding: 5rem 3.5rem 5rem 2.5rem; }
 .insight-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--accent1); margin-bottom: 1.5rem;
-  font-family: 'Pretendard', sans-serif;
 }
 .insight-quote {
-  font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 400;
+  font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800;
   line-height: 1.4; letter-spacing: -0.02em;
   color: var(--ink); margin-bottom: 1.5rem;
 }
-.insight-quote em { font-style: italic; color: var(--accent2); }
-.insight-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; font-family: 'Pretendard', sans-serif; }
+.insight-quote em { font-style: normal; color: var(--accent1); }
+.insight-body { font-size: 15px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; }
+
 .insight-right {
-  padding: 4rem 2.5rem; display: flex; flex-direction: column;
-  justify-content: center; gap: 2.5rem;
+  padding: 5rem 2.5rem; display: flex; flex-direction: column;
+  justify-content: center; gap: 3.5rem; background: var(--ink); color: var(--bg);
 }
 .data-big {
   font-family: 'DM Mono', monospace;
-  font-size: 3rem; font-weight: 500; line-height: 1;
-  letter-spacing: -0.02em; margin-bottom: 0.4rem;
+  font-size: 3.5rem; font-weight: 800; line-height: 1;
+  letter-spacing: -0.02em; margin-bottom: 0.5rem; color: var(--bg);
 }
 .data-big.a1 { color: var(--accent1); }
-.data-big.a2 { color: var(--accent2); }
-.data-cap { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.7; max-width: 260px; font-family: 'Pretendard', sans-serif; }
+.data-cap { font-size: 13px; font-weight: 400; color: var(--bg); line-height: 1.7; max-width: 280px; opacity: 0.8; }
 
-/* ── PROJECT CARDS (minimal) ── */
-.projects-grid { display: grid; grid-template-columns: 1fr 1fr; }
-.proj-card {
-  padding: 2.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  display: flex; flex-direction: column; background: var(--bg);
-  transition: background 0.2s; cursor: pointer;
+/* ── PROJECT CARDS ── */
+.projects-grid { 
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 2.5rem 4rem; background: var(--bg); 
 }
-.proj-card:nth-child(even) { border-right: none; }
-.proj-card:hover { background: var(--surface); }
+.proj-card {
+  padding: 2.5rem; border-radius: 16px;
+  display: flex; flex-direction: column; background: var(--surface);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
+}
+.proj-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+[data-theme="dark"] .proj-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
 .proj-card:hover .proj-title { color: var(--accent1); }
 
-.proj-idx { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+
+.proj-idx { font-size: 11px; font-weight: 700; color: var(--ink); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
 .proj-title {
-  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
-  color: var(--ink); margin-bottom: 0.65rem; transition: color 0.15s;
+  font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2;
+  color: var(--ink); margin-bottom: 0.75rem; transition: color 0.15s;
 }
-.proj-oneliner { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.75; margin-bottom: 1.25rem; flex: 1; font-family: 'Pretendard', sans-serif; }
-.tech-wrap { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.proj-oneliner { font-size: 14px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.6; margin-bottom: 1.5rem; flex: 1; }
+.tech-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tech-tag {
-  font-size: 10px; padding: 0.18rem 0.55rem;
-  border: 1px solid var(--line); color: var(--ink3); letter-spacing: 0.04em;
+  font-size: 11px; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 4px;
+  background: var(--bg); color: var(--ink); letter-spacing: 0.04em;
 }
 .proj-open-hint {
-  margin-top: 1.25rem; font-size: 11px; color: var(--accent1);
-  font-family: 'Pretendard', sans-serif; opacity: 0.7;
+  margin-top: 1.5rem; font-size: 12px; font-weight: 700; color: var(--ink);
+  opacity: 0.6; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.proj-card:hover .proj-open-hint { opacity: 1; }
+.proj-card:hover .proj-open-hint { color: var(--accent1); opacity: 1; }
+
 
 /* ── MODAL ── */
 .modal {
@@ -293,184 +326,182 @@ nav {
 }
 .modal.open { display: flex; }
 .modal-backdrop {
-  position: absolute; inset: 0; background: rgba(0,0,0,0.55);
+  position: absolute; inset: 0; background: var(--ink); opacity: 0.8;
   animation: fade-in 0.2s ease;
 }
 .modal-box {
-  position: relative; background: var(--surface); z-index: 1;
-  max-width: 680px; width: 100%; max-height: 88vh; overflow-y: auto;
-  border: 1px solid var(--line);
+  position: relative; background: var(--bg); z-index: 1;
+  max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto;
+  border-radius: 16px;
   animation: slide-up 0.25s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
 }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
 .modal-close {
-  position: absolute; top: 1.25rem; right: 1.25rem;
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--bg2); border: 1px solid var(--line);
-  color: var(--ink2); cursor: pointer; font-size: 14px;
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--surface); border: none;
+  color: var(--ink); cursor: pointer; font-size: 16px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s; z-index: 2;
+  transition: background 0.15s, color 0.15s; z-index: 2;
 }
-.modal-close:hover { background: var(--line); }
+.modal-close:hover { background: var(--accent1); color: #FFFFFF; } /* Contrast rule */
 
 .modal-img {
-  width: 100%; height: 200px; background: var(--bg2); border-bottom: 1px solid var(--line);
+  width: 100%; height: 280px; background: var(--surface);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   position: relative; overflow: hidden;
 }
-.modal-img::before {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent1-glow), transparent 65%);
-  pointer-events: none;
+.modal-img img {
+  width: 100%; height: 100%; max-width: 100%; max-height: 100%;
+  object-fit: contain; object-position: center center; display: block;
 }
-.modal-img.alt::before { background: linear-gradient(135deg, var(--accent2-glow), transparent 65%); }
-
-.modal-body { padding: 2rem 2.5rem; }
-.modal-idx { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; font-family: 'DM Mono', monospace; }
-.modal-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); margin-bottom: 0.35rem; font-family: 'Playfair Display', serif; }
-.modal-type { font-size: 11px; font-weight: 600; color: var(--accent2); margin-bottom: 1.25rem; font-family: 'Pretendard', sans-serif; }
-.modal-desc { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; margin-bottom: 1.5rem; font-family: 'Pretendard', sans-serif; }
-.modal-desc strong { font-weight: 600; color: var(--ink); }
+.modal-body { padding: 3rem; }
+.modal-idx { font-size: 11px; font-weight: 700; color: var(--ink); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; font-family: 'DM Mono', monospace; }
+.modal-title { font-size: 2rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); margin-bottom: 0.5rem; }
+.modal-type { font-size: 13px; font-weight: 700; color: var(--accent1); margin-bottom: 2rem; }
+.modal-desc { font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.9; line-height: 1.8; margin-bottom: 2.5rem; }
+.modal-desc strong { font-weight: 800; color: var(--ink); }
 
 .metrics-block {
-  background: var(--bg2); border-left: 2px solid var(--accent1);
-  padding: 0.85rem 1rem; margin-bottom: 1.25rem;
+  background: var(--surface); border-radius: 12px;
+  padding: 1.5rem; margin-bottom: 2rem;
 }
-.m-row { display: flex; justify-content: space-between; font-size: 11px; padding: 0.14rem 0; }
-.m-k { color: var(--ink3); font-weight: 400; font-family: 'Pretendard', sans-serif; }
-.m-v { font-size: 12px; color: var(--accent1); font-weight: 500; }
+.m-row { display: flex; justify-content: space-between; font-size: 13px; padding: 0.5rem 0; border-bottom: 1px solid var(--bg); }
+.m-row:last-child { border-bottom: none; }
+.m-k { color: var(--ink); font-weight: 600; opacity: 0.8; }
+.m-v { font-size: 14px; color: var(--ink); font-weight: 700; font-family: 'DM Mono', monospace; }
 
 .modal-footer {
-  padding: 1.25rem 2.5rem; border-top: 1px solid var(--line);
+  padding: 2rem 3rem; background: var(--surface);
   display: flex; align-items: center; gap: 1rem;
 }
 .proj-link {
-  font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none;
-  border-bottom: 1px solid var(--ink); padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s;
-  font-family: 'Pretendard', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
+  transition: color 0.15s;
 }
-.proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
+.proj-link:hover { color: var(--accent1); }
 
-/* ── UX GRID ── */
-.ux-grid { display: grid; grid-template-columns: repeat(3,1fr); }
-.ux-card {
-  padding: 2rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  background: var(--bg); transition: background 0.2s; display: flex; flex-direction: column;
+/* ── UX GRID (HORIZONTAL 4x1) ── */
+.ux-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1rem; 
+  padding: 0 2.5rem 6rem; 
+  background: var(--bg);
 }
-.ux-card:nth-child(3n) { border-right: none; }
-.ux-card:hover { background: var(--surface); }
+.ux-card {
+  padding: 1.5rem; border-radius: 12px;
+  background: var(--surface); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+}
+.ux-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+[data-theme="dark"] .ux-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+.ux-card:hover .ux-title { color: var(--accent1); }
+
+[data-theme="dark"] .ux-card:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
 
 .ux-img {
-  width: 100%; height: 135px;
-  background: var(--bg2); border: 1px solid var(--line);
-  margin-bottom: 1.25rem;
+  width: 100%; height: 100px; border-radius: 8px;
+  background: var(--bg);
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 6px; position: relative; overflow: hidden;
-}
-.ux-img::before {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent2-glow), transparent 55%);
+  justify-content: center; gap: 4px; position: relative; overflow: hidden;
 }
 
-.ux-num { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
-.ux-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
-.ux-sub { font-size: 11px; font-weight: 600; color: var(--accent2); margin-bottom: 0.9rem; font-family: 'Pretendard', sans-serif; }
-.ux-desc { font-size: 12px; font-weight: 300; color: var(--ink2); line-height: 1.85; margin-bottom: 1rem; flex: 1; font-family: 'Pretendard', sans-serif; }
-.ux-role { font-size: 11px; color: var(--ink3); padding-top: 0.85rem; border-top: 1px solid var(--line); margin-top: auto; line-height: 1.6; font-family: 'Pretendard', sans-serif; }
-.ux-role a { color: var(--accent1); text-decoration: none; }
+.ux-content { flex: 1; }
+.ux-num { font-size: 10px; font-weight: 700; color: var(--ink); opacity: 0.5; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.ux-title { font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 0.2rem; }
+.ux-sub { font-size: 11px; font-weight: 700; color: var(--accent1); margin-bottom: 0.75rem; }
+.ux-desc { font-size: 13.5px; font-weight: 400; color: var(--ink); opacity: 0.75; line-height: 1.5; margin-bottom: 1rem; }
+.ux-role { font-size: 11px; font-weight: 600; color: var(--ink); opacity: 0.6; padding-top: 0.75rem; margin-top: auto; border-top: none; }
+.ux-role a { color: var(--ink); font-weight: 700; text-decoration: none; transition: color 0.15s; }
+.ux-role a:hover { color: var(--accent1); }
+
 
 /* ── ABOUT ── */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; }
-.about-left { padding: 4rem 2.5rem; border-right: 1px solid var(--line); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 2.5rem 4rem; background: var(--bg); }
+.about-left { padding: 4rem; border-radius: 16px; background: var(--surface); }
 .about-photo {
-  width: 100%; height: 220px; background: var(--bg2); border: 1px solid var(--line);
-  margin-bottom: 2rem;
+  width: 100%; height: 260px; background: var(--bg); border-radius: 12px;
+  margin-bottom: 3rem;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   position: relative; overflow: hidden;
 }
-.about-photo::before {
-  content:''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--accent2-glow), var(--accent1-glow));
-}
 .about-head {
-  font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 400;
-  letter-spacing: -0.03em; line-height: 1.25; color: var(--ink); margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem;
 }
-.about-head em { font-style: italic; color: var(--accent2); }
-.about-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.9; margin-bottom: 1.25rem; font-family: 'Pretendard', sans-serif; }
-.about-body strong { font-weight: 600; color: var(--ink); }
+.about-head em { font-style: normal; color: var(--accent1); }
+.about-body { font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.8; margin-bottom: 1.5rem; }
+.about-body strong { font-weight: 700; color: var(--ink); }
 
-.about-right { padding: 4rem 2rem; }
-.skill-group { margin-bottom: 1.75rem; }
+.about-right { padding: 4rem; border-radius: 16px; background: var(--surface); }
+.skill-group { margin-bottom: 2.5rem; }
 .skill-group-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent1); margin-bottom: 0.65rem;
-  font-family: 'Pretendard', sans-serif;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 1.25rem; opacity: 0.7;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .chip {
-  font-size: 12px; font-weight: 400; padding: 0.22rem 0.65rem;
-  border: 1px solid var(--line); color: var(--ink2);
-  border-radius: 2px; transition: border-color 0.15s, color 0.15s;
-  font-family: 'Pretendard', sans-serif;
+  font-size: 13px; font-weight: 600; padding: 0.4rem 0.8rem;
+  background: var(--bg); color: var(--ink);
+  border-radius: 6px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.chip:hover { border-color: var(--accent2); color: var(--ink); }
+.chip:hover { background: var(--accent1); color: #FFFFFF; transform: translateY(-2px); }
+
 
 /* ── CONTACT ── */
 .contact-sec {
   display: grid; grid-template-columns: 1fr 1fr;
-  padding: 5rem 2.5rem; gap: 5rem;
-  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 6rem 3rem; gap: 5rem;
+  background: var(--ink); color: var(--bg);
 }
 .contact-head {
-  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400;
-  letter-spacing: -0.04em; line-height: 1; color: var(--ink);
+  font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900;
+  letter-spacing: -0.04em; line-height: 1; color: var(--bg);
 }
-.contact-head em { font-style: italic; color: var(--accent2); display: block; }
+.contact-head em { font-style: normal; color: var(--accent1); display: block; }
 .contact-right { display: flex; flex-direction: column; justify-content: center; }
 .c-item {
   display: flex; justify-content: space-between; align-items: baseline;
-  padding: 0.9rem 0; border-bottom: 1px solid var(--line);
+  padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.c-label { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; }
-.c-val { font-size: 13px; font-weight: 400; color: var(--ink); text-decoration: none; transition: color 0.15s; font-family: 'Pretendard', sans-serif; }
-.c-val:hover { color: var(--accent2); }
+[data-theme="dark"] .c-item { border-bottom: 1px solid rgba(0,0,0,0.2); }
+.c-label { font-size: 12px; font-weight: 700; color: var(--bg); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+.c-val { font-size: 16px; font-weight: 600; color: var(--bg); text-decoration: none; transition: color 0.15s; }
+.c-val:hover { color: var(--accent1); }
 
 /* ── FOOTER ── */
 footer {
-  border-top: 1px solid var(--line); padding: 1.25rem 2.5rem;
-  display: flex; justify-content: space-between; align-items: center; background: var(--bg);
+  padding: 3rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg);
 }
-.foot-copy { font-size: 10px; color: var(--ink3); letter-spacing: 0.06em; }
+.foot-copy { font-size: 12px; font-weight: 600; color: var(--ink); opacity: 0.5; letter-spacing: 0.05em; font-family: 'DM Mono', monospace; }
 
 /* ── FADE ── */
-.fade-up { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-up.vis { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 980px) {
   .hero-inner, .insight-band, .about-grid, .projects-grid { grid-template-columns: 1fr; }
-  .hero-left { border-right: none; border-bottom: 1px solid var(--line); padding: 3.5rem 1.5rem; }
+  .hero-left { padding: 6rem 2.5rem; }
   .hero-right { display: none; }
-  .insight-left { border-right: none; border-bottom: 1px solid var(--line); }
-  .about-left { border-right: none; border-bottom: 1px solid var(--line); }
-  .proj-card { border-right: none; }
+  .insight-left { padding: 4rem 2.5rem; }
   .stat-bar { grid-template-columns: 1fr 1fr; }
-  .ux-grid { grid-template-columns: 1fr 1fr; }
-  .ux-card:nth-child(3n) { border-right: 1px solid var(--line); }
-  .ux-card:nth-child(even) { border-right: none; }
-  .contact-sec { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
-  nav { padding: 0 1.5rem; }
+  .ux-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem 4rem; }
+  .ux-card { gap: 1.25rem; }
+  .ux-img { height: 140px; }
+
+  .contact-sec { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2.5rem; }
+  nav { padding: 0 2rem; }
   .audience-toggle { display: none; }
 }
 @media (max-width: 600px) {
   .ux-grid, .projects-grid { grid-template-columns: 1fr; }
   .stat-bar { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
-  .ux-card { border-right: none; }
   .modal { padding: 1rem; }
 }
 </style>
@@ -503,9 +534,9 @@ footer {
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Behavioral UX Research · Data Science</div>
+      <div class="hero-eyebrow">Behavioral Analytics · HCI · Data Science</div>
       <h1 class="hero-name"><strong>Jiwoo</strong> Roh</h1>
-      <p class="hero-aka">Lucy · Chung-Ang University, Seoul</p>
+      <p class="hero-aka">Lucy · Psychology, English Lit, & Tech-Art at CAU</p>
       <p class="hero-desc ind">
         I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using <strong>behavioral data</strong>, <strong>HCI-informed reasoning</strong>, and <strong>ML</strong> to surface what prediction alone misses.
       </p>
@@ -520,20 +551,21 @@ footer {
       </div>
     </div>
 
+
     <div class="hero-right">
       <div class="img-main">
-        <div class="ph-icon">🖼</div>
+        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
         <!-- 📌 Replace with: hero photo or project screenshot -->
         <div class="ph-label">Hero image — photo or project screenshot</div>
       </div>
       <div class="img-row">
         <div class="img-sm">
-          <div class="ph-icon">📊</div>
+          <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
           <!-- 📌 Replace with: data viz screenshot -->
           <div class="ph-label">Data viz</div>
         </div>
         <div class="img-sm">
-          <div class="ph-icon">🎨</div>
+          <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
           <!-- 📌 Replace with: design work screenshot -->
           <div class="ph-label">Design work</div>
         </div>
@@ -543,23 +575,41 @@ footer {
 
   <div class="stat-bar">
     <div class="stat-cell">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
       <div class="stat-n">25M</div>
       <div class="stat-l">Ratings Analyzed</div>
     </div>
     <div class="stat-cell">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
       <div class="stat-n">0.95</div>
       <div class="stat-l">NDCG@10</div>
     </div>
     <div class="stat-cell">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       <div class="stat-n">~20%</div>
       <div class="stat-l">Unexplained Outcomes</div>
     </div>
     <div class="stat-cell">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
       <div class="stat-n">3×</div>
       <div class="stat-l">Majors</div>
-    </div>
   </div>
 </div>
+
+<!-- WHO I AM / IDENTITY -->
+<section class="identity-sec">
+  <div class="fade-up">
+    <h2 class="identity-hook">
+      Operating at the exact intersection of <span>Psychology</span>, <span>Data Analysis</span>, and <span>HCI</span>.
+    </h2>
+    <p class="identity-body ind">
+      My background in <strong>Psychology and English Literature</strong> provides the foundation for understanding human behavior and the complex nuances of context. I bridge this with technical expertise in <strong>Python, Machine Learning, and Recommender Systems</strong> to analyze and build sociotechnical systems that are both mathematically sound and behaviorally intuitive.
+    </p>
+    <p class="identity-body aca">
+      I leverage my interdisciplinary training in <strong>Psychology and Technology-Art</strong> to interrogate algorithmic systems. My research focus lies in <strong>Explainable AI (XAI)</strong> and <strong>Computational Social Science</strong>, where I develop methods to expose how structural data biases translate into behavioral friction within digital platforms.
+    </p>
+  </div>
+</section>
 
 <!-- INSIGHT BAND -->
 <div class="insight-band fade-up">
@@ -596,7 +646,10 @@ footer {
   <div class="projects-grid">
 
     <div class="proj-card fade-up" data-modal="modal-p1">
-      <div class="proj-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div class="proj-idx" style="margin-bottom: 0;">PROJECT_01 · DATA SCIENCE</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+      </div>
       <h3 class="proj-title">What Drives Music Popularity?</h3>
       <p class="proj-oneliner">Challenges the assumption that audio features drive popularity using residual-based diagnostics on 6,000+ tracks.</p>
       <div class="tech-wrap">
@@ -606,7 +659,10 @@ footer {
     </div>
 
     <div class="proj-card fade-up" data-modal="modal-p2">
-      <div class="proj-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div class="proj-idx" style="margin-bottom: 0;">PROJECT_02 · ML · RECOMMENDER</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+      </div>
       <h3 class="proj-title">MovieLens Behavioral Recommender</h3>
       <p class="proj-oneliner">Full matrix factorization system from scratch on 25M ratings, exposing the accuracy–diversity paradox.</p>
       <div class="tech-wrap">
@@ -616,7 +672,10 @@ footer {
     </div>
 
     <div class="proj-card fade-up" data-modal="modal-p3">
-      <div class="proj-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div class="proj-idx" style="margin-bottom: 0;">PROJECT_03 · BEHAVIORAL UX</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      </div>
       <h3 class="proj-title">Festival Drop-off Analysis</h3>
       <p class="proj-oneliner">Real user logs from LUCAUS 2025 reveal a "completion cliff" — engagement collapses the moment the stamp game ends.</p>
       <div class="tech-wrap">
@@ -626,7 +685,10 @@ footer {
     </div>
 
     <div class="proj-card fade-up" data-modal="modal-p4">
-      <div class="proj-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div class="proj-idx" style="margin-bottom: 0;">PROJECT_04 · AUDIO PREDICTION</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+      </div>
       <h3 class="proj-title">Sonic Analytics: Hit Predictor</h3>
       <p class="proj-oneliner">Interactive pipeline on the Apple Music catalog showing how platform signals diverge from raw audio features.</p>
       <div class="tech-wrap">
@@ -644,10 +706,7 @@ footer {
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
     <!-- 📌 Replace with: screenshot of Spotify analysis notebook or Tableau dashboard -->
-    <div class="modal-img">
-      <div class="ph-icon">📊</div>
-      <div class="ph-label">Spotify analysis screenshot</div>
-    </div>
+    <div class="modal-img"><img src="images/centered_trend.png"  alt="Spotify analysis notebook screenshot"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
       <h2 class="modal-title">What Drives Music Popularity?</h2>
@@ -682,7 +741,7 @@ footer {
     <button class="modal-close" aria-label="Close">✕</button>
     <!-- 📌 Replace with: chart from MovieLens analysis (bias curve or coverage graph) -->
     <div class="modal-img alt">
-      <div class="ph-icon">🎬</div>
+      <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M8 4v16"></path><path d="M16 4v16"></path></svg></div>
       <div class="ph-label">MovieLens chart or notebook screenshot</div>
     </div>
     <div class="modal-body">
@@ -720,7 +779,7 @@ footer {
     <button class="modal-close" aria-label="Close">✕</button>
     <!-- 📌 Replace with: festival website screenshot or engagement drop-off chart -->
     <div class="modal-img">
-      <div class="ph-icon">🎪</div>
+      <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
       <div class="ph-label">Festival site or engagement chart</div>
     </div>
     <div class="modal-body">
@@ -755,7 +814,7 @@ footer {
     <button class="modal-close" aria-label="Close">✕</button>
     <!-- 📌 Replace with: Streamlit app screenshot or audio feature scatter plot -->
     <div class="modal-img alt">
-      <div class="ph-icon">🎧</div>
+      <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div>
       <div class="ph-label">Streamlit app or audio analysis chart</div>
     </div>
     <div class="modal-body">
@@ -794,96 +853,90 @@ footer {
   <div class="ux-grid">
 
     <div class="ux-card fade-up">
-      <!-- 📌 Replace with: Figma screenshot of 니옷내옷 mobile UI -->
-      <div class="ux-img"><div class="ph-icon">👗</div><div class="ph-label">니옷내옷 UI</div></div>
-      <div class="ux-num">UX_01 · 2024</div>
-      <div class="ux-title">Closet Swap(니옷내옷)</div>
-      <div class="ux-sub">
-        <span class="ind">Clothing Exchange App — Launched</span>
-        <span class="aca">HCI Research: Value Exchange in Peer-to-Peer Fashion Systems</span>
+      <!-- 📌 Replace with: LUCAUS website or festival photo -->
+      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg></div><div class="ph-label">LUCAUS website screenshot</div></div>
+      <div class="ux-content">
+        <div class="ux-num">UX_01 · 2025</div>
+        <div class="ux-title">LUCAUS 2025</div>
+        <div class="ux-sub">University Festival Website</div>
+        <p class="ux-desc">Designed the Chung-Ang festival platform: food truck log, map, and stamp game. Post-launch behavioral analysis surfaced key drop-off insights.</p>
+        <div class="tech-wrap"><span class="tech-tag">UI Design</span><span class="tech-tag">Accessibility</span><span class="tech-tag">Log Analysis</span></div>
+        <div class="ux-role">Design + Analysis · Spring 2025</div>
       </div>
-      <p class="ux-desc">YONO philosophy applied to fashion. Taste-based matching triggered by mutual likes. AI recommendations via NLP prompts, wardrobe analysis, and SNS post analysis.</p>
-      <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span></div>
-      <div class="ux-role">Branding 80% · Design 100% · Feb–Sep 2024</div>
+    </div>
+
+    <div class="ux-card fade-up">
+      <!-- 📌 Replace with: Figma screenshot of 니옷내옷 mobile UI -->
+      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></div><div class="ph-label">니옷내옷 UI</div></div>
+      <div class="ux-content">
+        <div class="ux-num">UX_02 · 2024</div>
+        <div class="ux-title">Closet Swap(니옷내옷)</div>
+        <div class="ux-sub">Clothing Exchange App — Launched</div>
+        <p class="ux-desc">YONO philosophy applied to fashion. Taste-based matching via mutual likes. AI recommendations via wardrobe and SNS post analysis.</p>
+        <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span></div>
+        <div class="ux-role">Branding 80% · Design 100% · Feb–Sep 2024</div>
+      </div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: 다님 app mobile screenshot -->
-      <div class="ux-img"><div class="ph-icon">✈️</div><div class="ph-label">다님 app UI</div></div>
-      <div class="ux-num">UX_02 · 2023–2024</div>
-      <div class="ux-title">Danim(다님)</div>
-      <div class="ux-sub">
-        <span class="ind">AI Travel Curation — Launched</span>
-        <span class="aca">HCI Research: Conversational UI for Complex Preference Elicitation</span>
+      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21.5 4c0 0-2 .5-3.5 2L14.5 9.5 6.3 7.7l-1.6 1.6 5.5 3.3-3.6 3.6-2.5-.8L2.5 17l4 1 1 4 1.6-1.6-.8-2.5 3.6-3.6 3.3 5.5 1.6-1.6z"></path></svg></div><div class="ph-label">다님 app UI</div></div>
+      <div class="ux-content">
+        <div class="ux-num">UX_03 · 2023–2024</div>
+        <div class="ux-title">Danim(다님)</div>
+        <div class="ux-sub">AI Travel Curation — Launched</div>
+        <p class="ux-desc">Travel curation for hidden destinations. Hyper-personalization via taste analysis and conversational UI simplification.</p>
+        <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UI</span><span class="tech-tag">Branding</span></div>
+        <div class="ux-role">Design 80% · Dec 2023–Feb 2024</div>
       </div>
-      <p class="ux-desc">For travelers seeking hidden, non-touristy destinations. Hyper-personalization via taste analysis. Complex filtering simplified into conversational UI flow.</p>
-      <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UI</span><span class="tech-tag">Web UI</span><span class="tech-tag">Branding</span></div>
-      <div class="ux-role">Branding 80% · Design 80% · Dec 2023–Feb 2024</div>
     </div>
 
     <div class="ux-card fade-up">
       <!-- 📌 Replace with: VEBE app Figma screenshot -->
-      <div class="ux-img"><div class="ph-icon">🌿</div><div class="ph-label">VEBE app UI</div></div>
-      <div class="ux-num">UX_03 · 2023</div>
-      <div class="ux-title">VEBE</div>
-      <div class="ux-sub">
-        <span class="ind">Vegan Cosmetics for Expats</span>
-        <span class="aca">HCI Research: Cross-Cultural Accessibility in Beauty Discovery</span>
-      </div>
-      <p class="ux-desc">Bilingual vegan cosmetics discovery for foreign residents in Korea — a demographic underserved by Korean beauty apps. Full style system with accessible UX patterns.</p>
-      <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Procreate</span><span class="tech-tag">Mobile UX</span></div>
-      <div class="ux-role">Design 100% · Jul–Aug 2023</div>
-    </div>
-
-    <div class="ux-card fade-up">
-      <!-- 📌 Replace with: BAIVE mockup when available -->
-      <div class="ux-img"><div class="ph-icon">🔒</div><div class="ph-label">BAIVE — coming soon</div></div>
-      <div class="ux-num">UX_04 · 2025</div>
-      <div class="ux-title">BAIVE</div>
-      <div class="ux-sub">
-        <span class="ind">App Design — Launching</span>
-        <span class="aca">Product Design: Behavioral Insight-Driven Interface</span>
-      </div>
-      <p class="ux-desc">In progress. Full product design targeting a behavioral insight gap discovered through prior research.</p>
-      <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Product Design</span></div>
-      <div class="ux-role">Status: Pre-launch · 2025</div>
-    </div>
-
-    <div class="ux-card fade-up">
-      <!-- 📌 Replace with: LUCAUS website or festival photo -->
-      <div class="ux-img"><div class="ph-icon">🎉</div><div class="ph-label">LUCAUS website screenshot</div></div>
-      <div class="ux-num">UX_05 · 2025</div>
-      <div class="ux-title">LUCAUS 2025</div>
-      <div class="ux-sub">
-        <span class="ind">University Festival Website</span>
-        <span class="aca">Applied HCI: Design + Post-Launch Behavioral Study</span>
-      </div>
-      <p class="ux-desc">Designed the Chung-Ang spring festival platform: food truck log, event map, barrier-free guide, lost-and-found, stamp game. Post-launch behavioral analysis surfaced key drop-off insights.</p>
-      <div class="tech-wrap"><span class="tech-tag">UI Design</span><span class="tech-tag">Accessibility</span><span class="tech-tag">Log Analysis</span></div>
-      <div class="ux-role">Design + Analysis · Spring 2025</div>
-    </div>
-
-    <div class="ux-card fade-up">
-      <!-- 📌 Replace with: screenshot of a Medium article or blog post -->
-      <div class="ux-img"><div class="ph-icon">✍️</div><div class="ph-label">Blog / article screenshot</div></div>
-      <div class="ux-num">Writing</div>
-      <div class="ux-title">Medium + Velog</div>
-      <div class="ux-sub">Technical Writing</div>
-      <p class="ux-desc">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML.</p>
-      <div class="tech-wrap"><span class="tech-tag">Medium</span><span class="tech-tag">Velog</span></div>
-      <div class="ux-role">
-        <a href="https://medium.com/@lucyroh529" target="_blank">medium.com/@lucyroh529</a> ·
-        <a href="https://velog.io/@lucytheboss/posts" target="_blank">velog.io/@lucytheboss</a>
+      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div><div class="ph-label">VEBE app UI</div></div>
+      <div class="ux-content">
+        <div class="ux-num">UX_04 · 2023</div>
+        <div class="ux-title">VEBE</div>
+        <div class="ux-sub">Vegan Cosmetics for Expats</div>
+        <p class="ux-desc">Bilingual vegan cosmetics discovery for foreign residents in Korea. Full style system with accessible cross-cultural UX patterns.</p>
+        <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UX</span></div>
+        <div class="ux-role">Design 100% · Jul–Aug 2023</div>
       </div>
     </div>
 
+
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="sec-head">
+    <span class="sec-n">03</span>
+    <span class="sec-t">Writing</span>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="projects-grid">
+    <a href="https://medium.com/@lucyroh529" target="_blank" class="proj-card fade-up" style="text-decoration: none;">
+      <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div><div class="ph-label">Medium Articles</div></div>
+      <div class="proj-idx">Medium</div>
+      <div class="proj-title">Tech & Data Analytics</div>
+      <div class="proj-oneliner">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML.</div>
+      <div class="tech-wrap"><span class="tech-tag">Medium</span></div>
+    </a>
+    <a href="https://velog.io/@lucytheboss/posts" target="_blank" class="proj-card fade-up" style="text-decoration: none;">
+      <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="ph-label">Velog Dev Logs</div></div>
+      <div class="proj-idx">Velog</div>
+      <div class="proj-title">Dev Logs & Projects</div>
+      <div class="proj-oneliner">Technical write-ups, development logs, and project retrospectives.</div>
+      <div class="tech-wrap"><span class="tech-tag">Velog</span></div>
+    </a>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="sec-head">
-    <span class="sec-n">03</span>
+    <span class="sec-n">04</span>
     <span class="sec-t">About</span>
     <div class="sec-rule"></div>
   </div>
@@ -891,7 +944,7 @@ footer {
     <div class="about-left fade-up">
       <!-- 📌 Replace with: your photo -->
       <div class="about-photo">
-        <div class="ph-icon">👤</div>
+        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
         <div class="ph-label">Your photo here</div>
       </div>
       <h2 class="about-head">Why behavior,<br>not <em>accuracy?</em></h2>
