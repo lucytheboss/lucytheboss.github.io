@@ -58,16 +58,6 @@ h1, h2, h3, .proj-title, .ux-title, .about-head, .contact-head {
   font-family: 'DM Mono', 'Pretendard', monospace;
 }
 
-/* ── AUDIENCE ── */
-.aca { display: none; }
-.ind { display: block; }
-span.aca { display: none; }
-span.ind { display: inline; }
-[data-audience="academia"] .ind { display: none; }
-[data-audience="academia"] .aca { display: block; }
-[data-audience="academia"] span.ind { display: none; }
-[data-audience="academia"] span.aca { display: inline; }
-
 /* ── FLOATING CONTROLS ── */
 .float-controls {
   position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999;
@@ -118,20 +108,8 @@ nav {
 }
 .nav-links a:hover::after { width: 60%; }
 
-
-/* audience toggle in nav */
-.audience-toggle {
-  display: flex; align-items: center; margin-left: 1rem;
-  background: var(--surface); border-radius: 6px; overflow: hidden;
-}
-.aud-btn {
-  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600;
-  padding: 0.4rem 0.8rem; background: transparent; border: none; cursor: pointer;
-  color: var(--ink); opacity: 0.7; transition: background 0.15s, color 0.15s, opacity 0.15s;
-}
-.aud-btn.active { background: var(--ink); color: var(--bg); opacity: 1; }
-
 /* ── HERO ── */
+
 .hero { min-height: 100vh; padding-top: 54px; display: grid; grid-template-rows: 1fr auto; }
 .hero-inner {
   display: grid; grid-template-columns: 1fr 400px;
@@ -207,13 +185,49 @@ nav {
 }
 
 /* stat bar */
-.stat-bar { display: grid; grid-template-columns: repeat(4,1fr); background: var(--surface); }
-.stat-cell { padding: 3rem 2rem; display: flex; flex-direction: column; align-items: flex-start; }
-.stat-n {
-  font-size: 2.5rem; font-weight: 900; line-height: 1;
-  color: var(--ink); margin-bottom: 0.5rem; letter-spacing: -0.02em;
+.stat-l { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--ink); opacity: 0.6; letter-spacing: 0.05em; }
+
+/* ── KEY INSIGHTS SECTION (DASHBOARD STYLE) ── */
+.insights-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,0.03);
 }
-.stat-l { font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--ink); opacity: 0.7; }
+[data-theme="dark"] .insights-dashboard { border-top: 1px solid rgba(255,255,255,0.03); }
+
+.insight-card {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-right: 1px solid rgba(0,0,0,0.03);
+}
+[data-theme="dark"] .insight-card { border-right: 1px solid rgba(255,255,255,0.03); }
+.insight-card:last-child { border-right: none; }
+
+.insight-num {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent1);
+}
+.insight-label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.insight-detail {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
 
 /* ── IDENTITY SECTION ── */
 .identity-sec {
@@ -489,18 +503,19 @@ footer {
   .hero-left { padding: 6rem 2.5rem; }
   .hero-right { display: none; }
   .insight-left { padding: 4rem 2.5rem; }
-  .stat-bar { grid-template-columns: 1fr 1fr; }
+  .insights-dashboard { grid-template-columns: 1fr; }
+  .insight-card { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.03); padding: 3rem 2.5rem; }
+  [data-theme="dark"] .insight-card { border-bottom: 1px solid rgba(255,255,255,0.03); }
   .ux-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem 4rem; }
   .ux-card { gap: 1.25rem; }
   .ux-img { height: 140px; }
 
   .contact-sec { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2.5rem; }
   nav { padding: 0 2rem; }
-  .audience-toggle { display: none; }
+
 }
 @media (max-width: 600px) {
   .ux-grid, .projects-grid { grid-template-columns: 1fr; }
-  .stat-bar { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .modal { padding: 1rem; }
 }
@@ -521,28 +536,21 @@ footer {
     <li><a href="#ux">UX</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li>
-      <div class="audience-toggle">
-        <button class="aud-btn active" id="aud-industry">Industry</button>
-        <button class="aud-btn" id="aud-academia">Academia</button>
-      </div>
-    </li>
   </ul>
 </nav>
+
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Behavioral Analytics · HCI · Data Science</div>
+      <div class="hero-eyebrow">Applied Behavioral Science · HCI · Data Science</div>
       <h1 class="hero-name"><strong>Jiwoo</strong> Roh</h1>
-      <p class="hero-aka">Lucy · Psychology, English Lit, & Tech-Art at CAU</p>
-      <p class="hero-desc ind">
-        I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using <strong>behavioral data</strong>, <strong>HCI-informed reasoning</strong>, and <strong>ML</strong> to surface what prediction alone misses.
+      <p class="hero-aka">Lucy · Psychology & English Lit at CAU</p>
+      <p class="hero-desc">
+        I analyze user behavior to understand why people hesitate or drop off — applying <strong>computational methods</strong> and <strong>HCI reasoning</strong> to expose the gap between algorithmic performance and true <strong>user-perceived value</strong>.
       </p>
-      <p class="hero-desc aca">
-        I investigate the structural and behavioral factors that explain prediction failures in sociotechnical recommendation systems — applying computational methods to expose the gap between <strong>algorithmic performance</strong> and <strong>user-perceived value</strong>.
-      </p>
+
       <div class="hero-links">
         <a class="btn btn-primary" href="https://github.com/lucytheboss" target="_blank">GitHub →</a>
         <a class="btn btn-ghost" href="mailto:lucyroh529@gmail.com">Email</a>
@@ -573,26 +581,23 @@ footer {
     </div>
   </div>
 
-  <div class="stat-bar">
-    <div class="stat-cell">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
-      <div class="stat-n">25M</div>
-      <div class="stat-l">Ratings Analyzed</div>
+  <!-- KEY INSIGHTS & IMPACT -->
+  <div class="insights-dashboard">
+    <div class="insight-card fade-up">
+      <div class="insight-num">15%</div>
+      <div class="insight-label">RMSE Reduction in Popularity Prediction</div>
+      <p class="insight-detail">Implemented a Lag Regression Model for track popularity, proving that previous momentum is the strongest predictor of success over raw audio features.</p>
     </div>
-    <div class="stat-cell">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-      <div class="stat-n">0.95</div>
-      <div class="stat-l">NDCG@10</div>
+    <div class="insight-card fade-up">
+      <div class="ph-icon" style="margin-bottom: -0.5rem; justify-content: flex-start;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+      <div class="insight-label">Log-driven Drop-off Analysis (LUCAUS)</div>
+      <p class="insight-detail">Parsed real server logs and traffic patterns during the university festival to identify critical behavioral drop-off points immediately following stamp collection.</p>
     </div>
-    <div class="stat-cell">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <div class="stat-n">~20%</div>
-      <div class="stat-l">Unexplained Outcomes</div>
+    <div class="insight-card fade-up">
+      <div class="ph-icon" style="margin-bottom: -0.5rem; justify-content: flex-start;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.4 8.5 8.5 0 0 1 3.4.7"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+      <div class="insight-label">Metric vs. Sentiment Cross-Validation</div>
+      <p class="insight-detail">Validated recommendation reliability by cross-referencing internal Netflix platform metrics against external qualitative user sentiment data from Reddit communities.</p>
     </div>
-    <div class="stat-cell">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 0.5rem;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-      <div class="stat-n">3×</div>
-      <div class="stat-l">Majors</div>
   </div>
 </div>
 
@@ -602,39 +607,25 @@ footer {
     <h2 class="identity-hook">
       Operating at the exact intersection of <span>Psychology</span>, <span>Data Analysis</span>, and <span>HCI</span>.
     </h2>
-    <p class="identity-body ind">
-      My background in <strong>Psychology and English Literature</strong> provides the foundation for understanding human behavior and the complex nuances of context. I bridge this with technical expertise in <strong>Python, Machine Learning, and Recommender Systems</strong> to analyze and build sociotechnical systems that are both mathematically sound and behaviorally intuitive.
+    <p class="identity-body">
+      My background in <strong>Psychology and English Literature</strong> provides the foundation for understanding human behavior and the complex nuances of context. I bridge this with technical expertise in <strong>Machine Learning and Recommender Systems</strong> to analyze and build sociotechnical systems that are both mathematically sound and behaviorally intuitive. My focus lies in <strong>Explainable AI (XAI)</strong> and exposing how structural data biases translate into behavioral friction within digital platforms.
     </p>
-    <p class="identity-body aca">
-      I leverage my interdisciplinary training in <strong>Psychology and Technology-Art</strong> to interrogate algorithmic systems. My research focus lies in <strong>Explainable AI (XAI)</strong> and <strong>Computational Social Science</strong>, where I develop methods to expose how structural data biases translate into behavioral friction within digital platforms.
-    </p>
+
   </div>
 </section>
 
 <!-- INSIGHT BAND -->
-<div class="insight-band fade-up">
-  <div class="insight-left">
-    <div class="insight-eyebrow">Core Research Thesis</div>
-    <div class="insight-quote">"When predictions fail — <em>why?</em>"</div>
-    <p class="insight-body">
-      Most recommendation systems optimize for accuracy. My work focuses on the 20% of outcomes that accuracy can't explain — surprise hits, hidden gems, and structural biases baked into data before any model sees it. Fame explains only 10.4% of variance. The other 90% is where the interesting questions live.
+<!-- RESEARCH THESIS BAND (Minimalist) -->
+<div class="insight-band fade-up" style="background: var(--bg); border-top: 1px solid rgba(0,0,0,0.03);">
+  <div class="insight-left" style="max-width: 800px; margin: 0 auto; padding: 6rem 2.5rem; text-align: center;">
+    <div class="insight-eyebrow" style="margin-bottom: 2rem;">Core Research Thesis</div>
+    <div class="insight-quote" style="font-size: 2.5rem; margin-bottom: 2rem;">"When predictions fail — <em>why?</em>"</div>
+    <p class="insight-body" style="max-width: 650px; margin: 0 auto;">
+      Most recommendation systems optimize for accuracy. My work focuses on the outcomes that accuracy can't explain — surprise hits, hidden gems, and structural biases baked into data before any model sees it. Fame explains only a fraction of variance; the rest is where the interesting behavioral questions live.
     </p>
   </div>
-  <div class="insight-right">
-    <div>
-      <div class="data-big a2">R²=0.003</div>
-      <div class="data-cap">Audio features explaining music popularity. Nearly zero signal.</div>
-    </div>
-    <div>
-      <div class="data-big a1">11%</div>
-      <div class="data-cap">Of users responsible for 50% of all MovieLens ratings. Structural, not behavioral.</div>
-    </div>
-    <div>
-      <div class="data-big a2">~20%</div>
-      <div class="data-cap">Of tracks fall outside model predictions — the hidden gem zone.</div>
-    </div>
-  </div>
 </div>
+
 
 <!-- DATA PROJECTS -->
 <section id="data">
@@ -710,13 +701,11 @@ footer {
     <div class="modal-body">
       <div class="modal-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
       <h2 class="modal-title">What Drives Music Popularity?</h2>
-      <div class="modal-type">
-        <span class="ind">Behavioral Discovery &amp; Exposure Bias Analysis</span>
-        <span class="aca">Empirical Study: Exposure Bias in Algorithmic Curation</span>
-      </div>
+      <div class="modal-type">Applied Study: Exposure Bias in Algorithmic Curation</div>
       <p class="modal-desc">
-        Analyzed <strong>6,000+ Spotify tracks</strong> to challenge the assumption that audio features drive popularity. Residual-based diagnostics reveal artist reputation vastly outperforms audio signal — and ~20% of tracks behave unexpectedly, exposing systematic genre-level over/under-exposure.
+        Analyzed <strong>6,000+ tracks</strong> to challenge the assumption that audio features drive popularity. Residual-based diagnostics reveal artist reputation vastly outperforms audio signal — exposing genre-level over/under-exposure that impacts both artist discovery and platform fairness.
       </p>
+
       <div class="metrics-block">
         <div class="m-row"><span class="m-k">Audio features alone</span><span class="m-v">R² = 0.003</span></div>
         <div class="m-row"><span class="m-k">Artist reputation</span><span class="m-v">R² = 0.104</span></div>
@@ -747,13 +736,11 @@ footer {
     <div class="modal-body">
       <div class="modal-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
       <h2 class="modal-title">MovieLens Behavioral Recommender</h2>
-      <div class="modal-type">
-        <span class="ind">Popularity Bias Diagnosis &amp; Matrix Factorization</span>
-        <span class="aca">Computational Social Science: Popularity Bias in Collaborative Filtering</span>
-      </div>
+      <div class="modal-type">Popularity Bias Diagnosis &amp; Matrix Factorization</div>
       <p class="modal-desc">
-        Built a <strong>full matrix factorization system from scratch</strong> (NumPy only) on 25M ratings. Phase 1 revealed structural bias — 11% of users drive 50% of ratings. Phase 2 exposed the accuracy–diversity paradox: NDCG@10 of 0.9502 while catalog coverage collapsed to 0.07%.
+        Built a <strong>full matrix factorization system from scratch</strong> (NumPy only) on 25M ratings. Exposed the accuracy–diversity paradox: while NDCG@10 hit 0.9502, catalog coverage collapsed to 0.07%, revealing how collaborative filtering can inadvertently narrow user taste.
       </p>
+
       <div class="metrics-block">
         <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">25M · 162K · 59K</span></div>
         <div class="m-row"><span class="m-k">Val RMSE</span><span class="m-v">0.9062</span></div>
@@ -785,13 +772,11 @@ footer {
     <div class="modal-body">
       <div class="modal-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
       <h2 class="modal-title">Festival Drop-off Analysis</h2>
-      <div class="modal-type">
-        <span class="ind">Interaction Log Analysis · LUCAUS 2025</span>
-        <span class="aca">HCI Research: Behavioral Log Analysis in Event-Driven Interfaces</span>
-      </div>
+      <div class="modal-type">Behavioral Log Analysis · LUCAUS 2025</div>
       <p class="modal-desc">
-        Analyzed real user logs from the Chung-Ang university festival website. Stamp-game participants showed <strong>3.5× higher engagement</strong> — but hit a "completion cliff" the moment the game ended. The interface treated completion as a journey endpoint rather than a reward phase.
+        Analyzed real user logs from the university festival platform. Participants showed <strong>3.5× higher engagement</strong> through gamification but hit a "completion cliff" immediately after. Identified structural flaws where the interface treated completion as an endpoint rather than a transition point.
       </p>
+
       <div class="metrics-block">
         <div class="m-row"><span class="m-k">Stamp vs. general users</span><span class="m-v">3.5× engagement</span></div>
         <div class="m-row"><span class="m-k">Finding</span><span class="m-v">Completion = drop-off</span></div>
@@ -820,13 +805,11 @@ footer {
     <div class="modal-body">
       <div class="modal-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
       <h2 class="modal-title">Sonic Analytics: Hit Predictor</h2>
-      <div class="modal-type">
-        <span class="ind">Audio Feature Analysis · Artist Momentum</span>
-        <span class="aca">Empirical Study: Signal vs. Structural Predictors in Music Discovery</span>
-      </div>
+      <div class="modal-type">Artist Momentum vs. Audio Features</div>
       <p class="modal-desc">
-        Explored how audio features and artist momentum interact to shape perceived popularity. Built an interactive pipeline on the Apple Music catalog, surfacing how <strong>platform-level signals diverge from raw audio</strong> and what that reveals about discovery system design.
+        Explored how audio features and artist reputation interact to shape perceived popularity. Built an interactive pipeline on the Apple Music catalog, surfacing how <strong>platform-level signals diverge from raw audio</strong> and what that reveals about the effectiveness of discovery systems.
       </p>
+
       <div class="metrics-block">
         <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">Apple Music catalog</span></div>
         <div class="m-row"><span class="m-k">Focus</span><span class="m-v">Audio vs. momentum</span></div>
@@ -858,7 +841,8 @@ footer {
       <div class="ux-content">
         <div class="ux-num">UX_01 · 2025</div>
         <div class="ux-title">LUCAUS 2025</div>
-        <div class="ux-sub">University Festival Website</div>
+        <div class="ux-sub">University Festival Platform · Behavioral Log Study</div>
+
         <p class="ux-desc">Designed the Chung-Ang festival platform: food truck log, map, and stamp game. Post-launch behavioral analysis surfaced key drop-off insights.</p>
         <div class="tech-wrap"><span class="tech-tag">UI Design</span><span class="tech-tag">Accessibility</span><span class="tech-tag">Log Analysis</span></div>
         <div class="ux-role">Design + Analysis · Spring 2025</div>
@@ -871,7 +855,8 @@ footer {
       <div class="ux-content">
         <div class="ux-num">UX_02 · 2024</div>
         <div class="ux-title">Closet Swap(니옷내옷)</div>
-        <div class="ux-sub">Clothing Exchange App — Launched</div>
+        <div class="ux-sub">P2P Fashion Exchange · Value Exchange Systems</div>
+
         <p class="ux-desc">YONO philosophy applied to fashion. Taste-based matching via mutual likes. AI recommendations via wardrobe and SNS post analysis.</p>
         <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span></div>
         <div class="ux-role">Branding 80% · Design 100% · Feb–Sep 2024</div>
@@ -884,7 +869,8 @@ footer {
       <div class="ux-content">
         <div class="ux-num">UX_03 · 2023–2024</div>
         <div class="ux-title">Danim(다님)</div>
-        <div class="ux-sub">AI Travel Curation — Launched</div>
+        <div class="ux-sub">AI Travel Curation · Conversational UI Elicitation</div>
+
         <p class="ux-desc">Travel curation for hidden destinations. Hyper-personalization via taste analysis and conversational UI simplification.</p>
         <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UI</span><span class="tech-tag">Branding</span></div>
         <div class="ux-role">Design 80% · Dec 2023–Feb 2024</div>
@@ -897,7 +883,8 @@ footer {
       <div class="ux-content">
         <div class="ux-num">UX_04 · 2023</div>
         <div class="ux-title">VEBE</div>
-        <div class="ux-sub">Vegan Cosmetics for Expats</div>
+        <div class="ux-sub">Vegan Cosmetics for Expats · Cross-Cultural Accessibility</div>
+
         <p class="ux-desc">Bilingual vegan cosmetics discovery for foreign residents in Korea. Full style system with accessible cross-cultural UX patterns.</p>
         <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Mobile UX</span></div>
         <div class="ux-role">Design 100% · Jul–Aug 2023</div>
@@ -948,57 +935,47 @@ footer {
         <div class="ph-label">Your photo here</div>
       </div>
       <h2 class="about-head">Why behavior,<br>not <em>accuracy?</em></h2>
-      <div class="ind">
-        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. A recommender can hit NDCG@10 of 0.95 while covering only 0.07% of available content — technically excellent, behaviorally broken.</p>
-        <p class="about-body">My triple major in <strong>Psychology, English Literature, and Technology-Art</strong> gives me an unusual lens: I can read both the statistical signal and the human meaning behind it.</p>
-        <p class="about-body">Long-term goal: Applied Scientist at a music or media platform — building systems that understand not just what users choose, but <strong>why they hesitate</strong> and what they never get to discover.</p>
+      <div class="unified-about">
+        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. My interdisciplinary background in <strong>Psychology and English Literature</strong> gives me a unique lens: I can read both the statistical signal and the human meaning behind it. By applying a mixed-methods approach, I surface structural biases that aggregate statistics often obscure.</p>
+        <p class="about-body">Currently preparing for MS programs in <strong>HCI and Computational Social Science</strong>, I aim to become an <strong>Applied Scientist</strong> at a music or media platform — building systems that understand not just what users choose, but <strong>why they hesitate</strong> and what they never get to discover.</p>
       </div>
-      <div class="aca">
-        <p class="about-body">My research examines the divergence between <strong>quantitative performance metrics</strong> and behavioral outcomes in recommendation systems. Drawing on Psychology, English Literature, and Technology-Art, I apply a mixed-methods approach to surface structural biases that aggregate statistics obscure.</p>
-        <p class="about-body">Triple major in <strong>Psychology, English Literature, and Technology-Art</strong> at Chung-Ang University (2022–2026). Currently preparing for MS programs in <strong>HCI and Computational Social Science</strong>, with a focus on sociotechnical systems and algorithmic fairness.</p>
-        <p class="about-body">Research question: <em>When a system performs well on aggregate metrics but fails specific user populations, what structural and behavioral factors explain the gap?</em></p>
-      </div>
+
       <div style="margin-top: 2rem;">
         <a class="btn btn-primary" href="https://drive.google.com/file/d/1oYXgYKXSfqMSNLQ3CQgdVcVjDctKBclb/view" target="_blank">Download Resume →</a>
       </div>
     </div>
     <div class="about-right fade-up">
       <div class="skill-group">
-        <div class="skill-group-label">Analysis &amp; Modeling</div>
+        <div class="skill-group-label">Workflow &amp; Infrastructure</div>
         <div class="chips">
-          <span class="chip">Python</span><span class="chip">Pandas</span>
-          <span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">SQL</span>
+          <span class="chip">n8n</span><span class="chip">API Webhooks</span>
+          <span class="chip">Home Assistant</span><span class="chip">Local Environments</span>
+          <span class="chip">Git/GitHub</span><span class="chip">Shell</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label">ML &amp; Systems</div>
+        <div class="skill-group-label">Analysis &amp; ML</div>
         <div class="chips">
-          <span class="chip">Matrix Factorization</span><span class="chip">Collaborative Filtering</span>
-          <span class="chip">A/B Testing</span><span class="chip">Residual Analysis</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Visualization &amp; Apps</div>
-        <div class="chips">
-          <span class="chip">Tableau</span><span class="chip">Streamlit</span>
-          <span class="chip">Matplotlib</span><span class="chip">Jupyter</span><span class="chip">Seaborn</span>
+          <span class="chip">Python</span><span class="chip">SQL</span>
+          <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span>
+          <span class="chip">PyTorch</span><span class="chip">Statistics</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">UX &amp; Research</div>
         <div class="chips">
-          <span class="chip">Figma</span><span class="chip">Procreate</span>
-          <span class="chip">Interaction Logs</span><span class="chip">Behavioral Analysis</span>
-          <span class="chip">User Research</span>
+          <span class="chip">Figma</span><span class="chip">Interaction Logs</span>
+          <span class="chip">Behavioral Analysis</span><span class="chip">User Research</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">Background</div>
         <div class="chips">
           <span class="chip">Psychology</span><span class="chip">HCI</span>
-          <span class="chip">English Literature</span><span class="chip">Statistics</span>
+          <span class="chip">English Literature</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1038,29 +1015,6 @@ themeBtn.addEventListener('click', () => {
   html.setAttribute('data-theme', next);
   themeBtn.textContent = next === 'dark' ? '☀️ Light' : '🌙 Dark';
   localStorage.setItem('theme', next);
-});
-
-// ── AUDIENCE TOGGLE ──
-const audIndustry = document.getElementById('aud-industry');
-const audAcademia = document.getElementById('aud-academia');
-const savedAud = localStorage.getItem('audience') || 'industry';
-html.setAttribute('data-audience', savedAud);
-updateAudButtons(savedAud);
-
-function updateAudButtons(aud) {
-  audIndustry.classList.toggle('active', aud === 'industry');
-  audAcademia.classList.toggle('active', aud === 'academia');
-}
-
-audIndustry.addEventListener('click', () => {
-  html.setAttribute('data-audience', 'industry');
-  updateAudButtons('industry');
-  localStorage.setItem('audience', 'industry');
-});
-audAcademia.addEventListener('click', () => {
-  html.setAttribute('data-audience', 'academia');
-  updateAudButtons('academia');
-  localStorage.setItem('audience', 'academia');
 });
 
 // ── MODAL ──
