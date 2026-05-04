@@ -117,40 +117,41 @@ nav {
 
 /* ── HERO ── */
 
-.hero { min-height: 100vh; padding-top: 54px; display: grid; grid-template-rows: 1fr auto; }
+.hero { height: 100vh; max-height: 100vh; padding-top: 54px; display: grid; grid-template-rows: 1fr auto; overflow: hidden; }
 .hero-inner {
-  display: grid; grid-template-columns: 1fr 400px;
+  display: grid; grid-template-columns: 1fr 520px; overflow: hidden;
 }
 .hero-left {
-  padding: 5rem 3.5rem 5rem 2.5rem;
+  padding: 2.5rem 3rem 2.5rem 2.5rem;
   display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
 }
 .hero-eyebrow {
-  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink); margin-bottom: 1.75rem;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 1rem;
   display: flex; align-items: center; gap: 10px;
 }
 .hero-eyebrow::before { content:''; width: 18px; height: 2px; background: var(--accent1); flex-shrink: 0; }
 
 .hero-name {
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
-  color: var(--ink); margin-bottom: 0.5rem;
+  color: var(--ink); margin-bottom: 0.4rem;
 }
 .hero-aka {
-  font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 2.5rem; opacity: 0.7;
+  font-size: 13px; font-weight: 400; color: var(--ink); margin-bottom: 1.25rem; opacity: 0.7;
 }
 
 .hero-desc {
-  font-size: 15px; font-weight: 400; color: var(--ink);
-  max-width: 500px; line-height: 1.8; margin-bottom: 3rem; opacity: 0.85;
+  font-size: 13px; font-weight: 400; color: var(--ink);
+  max-width: 500px; line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.85;
 }
 .hero-desc strong { font-weight: 700; color: var(--ink); }
 
-.hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.hero-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 0.6rem 1.2rem; text-decoration: none; font-size: 13px;
+  padding: 0.4rem 0.9rem; text-decoration: none; font-size: 12px;
   font-weight: 600; font-family: 'Pretendard', sans-serif;
   cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 6px;
   border: none;
@@ -166,25 +167,24 @@ nav {
 
 /* hero right */
 .hero-right {
-  padding: 2rem;
-  display: flex; flex-direction: column; gap: 1.5rem;
+  padding: 0;
+  display: flex; flex-direction: column; gap: 0;
   background: var(--surface);
+  min-height: 500px;
 }
 .img-main {
-  flex: 1; min-height: 260px; border-radius: 12px;
+  flex: 1; min-height: 380px;
+  position: relative; overflow: hidden; width: 100%;
   background: var(--bg);
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 8px; position: relative; overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-[data-theme="dark"] .img-main { box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+[data-theme="dark"] .img-main { background: var(--bg2); }
+.img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
 .img-sm {
-  height: 110px; border-radius: 12px; background: var(--bg);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  height: 150px;
+  position: relative; overflow: hidden; width: 100%;
+  background: var(--bg);
 }
-[data-theme="dark"] .img-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+[data-theme="dark"] .img-sm { background: var(--bg2); }
 .ph-icon { display: flex; align-items: center; justify-content: center; }
 .ph-icon svg { width: 32px; height: 32px; stroke: var(--ink); opacity: 0.3; }
 .ph-label {
@@ -274,7 +274,7 @@ nav {
 /* ── SEC HEADER ── */
 .sec-head {
   display: flex; align-items: center; gap: 1.25rem;
-  padding: 4rem 2.5rem 1.5rem;
+  padding: 2rem 2.5rem 1rem;
   background: var(--bg);
 }
 .sec-n { font-size: 12px; font-weight: 800; color: var(--accent1); letter-spacing: 0.1em; min-width: 24px; }
@@ -286,27 +286,27 @@ nav {
   background: var(--surface);
 }
 
-.insight-center { max-width: 850px; width: 100%; padding: 8rem 2.5rem; text-align: center; }
+.insight-center { max-width: 850px; width: 100%; padding: 4rem 2.5rem; text-align: center; }
 .insight-eyebrow {
   font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent1); margin-bottom: 2rem;
+  text-transform: uppercase; color: var(--accent1); margin-bottom: 1.5rem;
 }
 .insight-quote {
-  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800;
   line-height: 1.2; letter-spacing: -0.03em;
-  color: var(--ink); margin-bottom: 2rem;
+  color: var(--ink); margin-bottom: 1.5rem;
 }
 .insight-quote em { font-style: normal; color: var(--accent1); }
-.insight-body { font-size: 16px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; max-width: 650px; margin: 0 auto; }
+.insight-body { font-size: 13px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; max-width: 650px; margin: 0 auto; }
 
 
 .insight-right {
-  padding: 5rem 2.5rem; display: flex; flex-direction: column;
+  padding: 4rem 2.5rem; display: flex; flex-direction: column;
   justify-content: center; gap: 3.5rem; background: var(--ink); color: var(--bg);
 }
 .data-big {
   font-family: 'DM Mono', monospace;
-  font-size: 3.5rem; font-weight: 800; line-height: 1;
+  font-size: 3.2rem; font-weight: 800; line-height: 1;
   letter-spacing: -0.02em; margin-bottom: 0.5rem; color: var(--bg);
 }
 .data-big.a1 { color: var(--accent1); }
@@ -317,7 +317,7 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 2.5rem 4rem; background: var(--bg); 
 }
 .proj-card {
-  padding: 2.5rem; border-radius: 16px;
+  padding: 1.5rem; border-radius: 16px;
   display: flex; flex-direction: column; background: var(--surface);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
 }
@@ -421,18 +421,18 @@ nav {
 }
 
 
-/* ── UX GRID (HORIZONTAL 4x1) ── */
-.ux-grid { 
-  display: grid; 
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 1rem; 
-  padding: 0 2.5rem 6rem; 
+/* ── UX GRID (4+2) ── */
+.ux-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding: 0 2.5rem 3rem;
   background: var(--bg);
 }
 .ux-card {
-  padding: 1.5rem; border-radius: 12px;
-  background: var(--surface); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-  display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+  padding: 1rem; border-radius: 12px;
+  background: var(--surface); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;
 }
 @media (hover: hover) {
   .ux-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
@@ -442,19 +442,13 @@ nav {
 }
 
 
-.ux-img {
-  width: 100%; height: 100px; border-radius: 8px;
-  background: var(--bg);
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 4px; position: relative; overflow: hidden;
-}
 
 .ux-content { flex: 1; }
-.ux-num { font-size: 10px; font-weight: 700; color: var(--ink); opacity: 0.5; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-.ux-title { font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 0.2rem; }
-.ux-sub { font-size: 11px; font-weight: 700; color: var(--accent1); margin-bottom: 0.75rem; }
-.ux-desc { font-size: 13.5px; font-weight: 400; color: var(--ink); opacity: 0.75; line-height: 1.5; margin-bottom: 1rem; }
-.ux-role { font-size: 11px; font-weight: 600; color: var(--ink); opacity: 0.6; padding-top: 0.75rem; margin-top: auto; border-top: none; }
+.ux-num { font-size: 10px; font-weight: 700; color: var(--ink); opacity: 0.5; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+.ux-title { font-size: 1rem; font-weight: 800; color: var(--ink); margin-bottom: 0.15rem; }
+.ux-sub { font-size: 10px; font-weight: 700; color: var(--accent1); margin-bottom: 0.4rem; }
+.ux-desc { font-size: 11px; font-weight: 400; color: var(--ink); opacity: 0.75; line-height: 1.45; margin-bottom: 0.5rem; }
+.ux-role { font-size: 10px; font-weight: 600; color: var(--ink); opacity: 0.6; margin-top: auto; }
 .ux-role a { color: var(--ink); font-weight: 700; text-decoration: none; transition: color 0.15s; }
 @media (hover: hover) {
   .ux-role a:hover { color: var(--accent1); }
@@ -463,41 +457,34 @@ nav {
 
 
 /* ── ABOUT ── */
-#about { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 0 2.5rem 2rem; background: var(--bg); }
+#about { display: flex; flex-direction: column; justify-content: center; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 2.5rem 2rem; background: var(--bg); }
 
-.about-left { padding: 2.5rem; border-radius: 16px; background: var(--surface); }
+.about-left { padding: 2rem; border-radius: 16px; background: var(--surface); }
 
-.about-photo {
-  width: 100%; height: 160px; background: var(--bg); border-radius: 12px;
-  margin-bottom: 2rem;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-  position: relative; overflow: hidden;
-}
 
 .about-head {
-  font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1.25rem;
+  font-size: 1.6rem; font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1rem;
 }
 
 .about-head em { font-style: normal; color: var(--accent1); }
-.about-body { font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.6; margin-bottom: 1rem; }
+.about-body { font-size: 12px; font-weight: 400; color: var(--ink); opacity: 0.85; line-height: 1.6; margin-bottom: 0.75rem; }
 
 .about-body strong { font-weight: 700; color: var(--ink); }
 
 
-.about-right { padding: 2.5rem; border-radius: 16px; background: var(--surface); }
+.about-right { padding: 2rem; border-radius: 16px; background: var(--surface); }
 
-.skill-group { margin-bottom: 1.5rem; }
+.skill-group { margin-bottom: 1rem; }
 
 .skill-group-label {
-  font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink); margin-bottom: 0.75rem; opacity: 0.7;
-
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 0.5rem; opacity: 0.7;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .chip {
-  font-size: 13px; font-weight: 600; padding: 0.4rem 0.8rem;
+  font-size: 12px; font-weight: 600; padding: 0.15rem 0.5rem;
   background: var(--bg); color: var(--ink);
   border-radius: 6px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -510,18 +497,18 @@ nav {
 /* ── CONTACT ── */
 .contact-sec {
   display: grid; grid-template-columns: 1fr 1fr;
-  padding: 6rem 3rem; gap: 5rem;
+  padding: 3rem 2.5rem; gap: 4rem;
   background: var(--ink); color: var(--bg);
 }
 .contact-head {
-  font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;
   letter-spacing: -0.04em; line-height: 1; color: var(--bg);
 }
 .contact-head em { font-style: normal; color: var(--accent1); display: block; }
 .contact-right { display: flex; flex-direction: column; justify-content: center; }
 .c-item {
   display: flex; justify-content: space-between; align-items: baseline;
-  padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 0.65rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 [data-theme="dark"] .c-item { border-bottom: 1px solid rgba(0,0,0,0.2); }
 .c-label { font-size: 12px; font-weight: 700; color: var(--bg); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
@@ -537,31 +524,105 @@ footer {
 }
 .foot-copy { font-size: 12px; font-weight: 600; color: var(--ink); opacity: 0.5; letter-spacing: 0.05em; font-family: 'DM Mono', monospace; }
 
+.proj-img {
+  height: 220px; position: relative; overflow: hidden; width: 100%;
+  background: var(--bg); border-radius: 8px; margin-bottom: 1rem;
+}
+.ux-img {
+  height: 120px; position: relative; overflow: hidden; width: 100%;
+  background: var(--bg); border-radius: 8px;
+}
+.about-photo {
+  height: 420px; position: relative; overflow: hidden; width: 100%;
+  background: var(--bg); border-radius: 12px; margin-bottom: 1.25rem;
+}
+
+.proj-img > *, .ux-img > *, .img-main > *, .about-photo > *, .img-sm > * {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.proj-img img, .ux-img img, .img-main img, .about-photo img, .img-sm img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* writing cards — no image placeholder, dot grid instead */
+.proj-card--writing {
+  background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-color: var(--surface);
+  position: relative;
+}
+.proj-card--writing::before {
+  content: ''; position: absolute; inset: 0; border-radius: 16px;
+  background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+  background-size: 18px 18px; opacity: 0.06; pointer-events: none;
+}
+.proj-card--writing { background-image: none; }
+
+/* ── HERO BLURBS ── */
+.hero-blurbs {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+[data-theme="dark"] .hero-blurbs {
+  border-top-color: rgba(255,255,255,0.06);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+.hero-blurb {
+  padding: 1.5rem 2rem;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+[data-theme="dark"] .hero-blurb { border-right-color: rgba(255,255,255,0.06); }
+.hero-blurb:last-child { border-right: none; }
+.hero-blurb-icon { color: var(--accent1); margin-bottom: 0.5rem; line-height: 1; }
+.hero-blurb-icon svg { width: 22px; height: 22px; stroke: var(--accent1); fill: none; }
+.hero-blurb-stat {
+  font-family: 'DM Mono', monospace; font-size: 2rem; font-weight: 700;
+  color: var(--accent1); letter-spacing: -0.03em; margin-bottom: 0.4rem; line-height: 1;
+}
+.hero-blurb-title {
+  font-size: 12px; font-weight: 800; color: var(--ink);
+  margin-bottom: 0.4rem; line-height: 1.3;
+}
+.hero-blurb-body {
+  font-size: 13px; font-weight: 400; color: var(--ink);
+  opacity: 0.6; line-height: 1.6;
+}
+@media (max-width: 980px) {
+  .hero-blurbs { grid-template-columns: 1fr; }
+  .hero-blurb { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .hero-blurb:last-child { border-bottom: none; }
+  [data-theme="dark"] .hero-blurb { border-bottom-color: rgba(255,255,255,0.06); }
+}
+
 /* ── FADE ── */
 .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-up.vis { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 980px) {
-  .hero-inner, .insight-band, .about-grid, .projects-grid { grid-template-columns: 1fr; }
-  .hero-left { padding: 6rem 2.5rem; }
+  .hero-inner, .about-grid, .projects-grid { grid-template-columns: 1fr; }
+  .hero { height: auto; max-height: none; overflow: visible; }
+  .hero-left { padding: 4rem 2.5rem; }
   .hero-right { display: none; }
-  .insight-left { padding: 4rem 2.5rem; }
+  .insight-left { padding: 2.5rem 2rem; }
   .insights-dashboard { grid-template-columns: 1fr; }
-  .insight-card { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.03); padding: 3rem 2.5rem; }
+  .insight-card { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.03); padding: 2rem 2.5rem; }
   [data-theme="dark"] .insight-card { border-bottom: 1px solid rgba(255,255,255,0.03); }
-  .ux-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem 4rem; }
-  .ux-card { gap: 1.25rem; }
-  .ux-img { height: 140px; }
-
-  .contact-sec { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2.5rem; }
+  .ux-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem 3rem; }
+  .ux-card { gap: 0.75rem; }
+  .ux-img { height: 120px; }
+  .contact-sec { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
   nav { padding: 0 2rem; }
-
 }
 @media (max-width: 600px) {
   .ux-grid, .projects-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .modal { padding: 1rem; }
+  .hero-blurbs { grid-template-columns: 1fr; }
+  .hero-blurb { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .hero-blurb:last-child { border-bottom: none; }
 }
 </style>
 </head>
@@ -579,6 +640,7 @@ footer {
     <li><a href="#data">Data</a></li>
     <li><a href="#ux">UX</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -590,9 +652,9 @@ footer {
     <div class="hero-left">
       <div class="hero-eyebrow">Applied Behavioral Science · HCI · Data Science</div>
       <h1 class="hero-name"><strong>Jiwoo</strong> Roh</h1>
-      <p class="hero-aka">Lucy · Psychology & English Lit & Tech-Arts at CAU</p>
+      <p class="hero-aka">Psychology · English Literature · Technology-Art · Chung-Ang University · U.S. Permanent Resident</p>
       <p class="hero-desc">
-        I analyze user behavior to understand why people hesitate or drop off — applying <strong>HCI reasoning</strong> and <strong>computational methods</strong> to expose the gap between algorithmic performance and true <strong>user-perceived value</strong>.
+        I analyze user behavior to understand why people hesitate, drop off, or fail to act in digital systems — using behavioral data and HCI-informed reasoning to find the gap between what algorithms optimize for and what users actually experience.
       </p>
 
 
@@ -606,44 +668,49 @@ footer {
 
 
     <div class="hero-right">
-      <div class="img-main">
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
-        <!-- 📌 Replace with: hero photo or project screenshot -->
-        <div class="ph-label">Hero image — photo or project screenshot</div>
-      </div>
+      <div class="img-main"><img src="images/IMG_1578.JPG" alt="Lucy Roh"></div>
       <div class="img-row">
         <div class="img-sm">
-          <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
-          <!-- 📌 Replace with: data viz screenshot -->
-          <div class="ph-label">Data viz</div>
+          <img src="https://raw.githubusercontent.com/lucytheboss/what-drives-music-popularity/main/images/discovery/fig14_actual_vs_predicted.png" alt="Actual vs predicted popularity model" width="100%" height="100%" style="object-fit:contain;object-position:center;display:block;position:absolute;inset:0;background-color:var(--bg2);padding:0.5rem;" onerror="this.style.display='none'">
         </div>
         <div class="img-sm">
-          <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
-          <!-- 📌 Replace with: design work screenshot -->
-          <div class="ph-label">Design work</div>
+          <div><!-- 📌 Replace with: design work screenshot -->
+            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
+            <div class="ph-label">Design work</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- KEY INSIGHTS & IMPACT -->
-  <div class="insights-dashboard">
-    <div class="insight-card fade-up">
-      <div class="insight-num">15%</div>
-      <div class="insight-label">RMSE Reduction in Popularity Prediction</div>
-      <p class="insight-detail">Implemented a Lag Regression Model for track popularity, proving that previous momentum is the strongest predictor of success over raw audio features.</p>
+  <!-- HERO BLURBS -->
+  <div class="hero-blurbs">
+    <div class="hero-blurb">
+      <div class="hero-blurb-icon">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="18" r="2" fill="var(--accent1)" stroke="none"/><circle cx="12" cy="11" r="2" fill="var(--accent1)" stroke="none"/><circle cx="19" cy="5" r="2" fill="var(--accent1)" stroke="none"/></svg>
+      </div>
+      <div class="hero-blurb-stat">R² = 0.003</div>
+      <div class="hero-blurb-title">Audio Features Don't Explain Popularity</div>
+      <p class="hero-blurb-body">Raw audio signals — tempo, energy, valence — have near-zero predictive power on Spotify. Artist reputation explains 35× more variance. The music isn't the message; the name behind it is.</p>
     </div>
-    <div class="insight-card fade-up">
-      <div class="ph-icon" style="margin-bottom: -0.5rem; justify-content: flex-start;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
-      <div class="insight-label">Log-driven Drop-off Analysis (LUCAUS)</div>
-      <p class="insight-detail">Parsed real server logs and traffic patterns during the university festival to identify critical behavioral drop-off points immediately following stamp collection.</p>
+    <div class="hero-blurb">
+      <div class="hero-blurb-icon">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-4 7H8L4 4z" stroke="var(--accent1)"/><path d="M8 11v9h8v-9" stroke="var(--accent1)"/></svg>
+      </div>
+      <div class="hero-blurb-stat">0.07%</div>
+      <div class="hero-blurb-title">Accuracy Hides a Diversity Collapse</div>
+      <p class="hero-blurb-body">A matrix factorization model scored NDCG@10 of 0.95 on 25M ratings — and covered less than 0.1% of the catalog. The model was technically excellent and behaviorally broken.</p>
     </div>
-    <div class="insight-card fade-up">
-      <div class="ph-icon" style="margin-bottom: -0.5rem; justify-content: flex-start;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.4 8.5 8.5 0 0 1 3.4.7"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
-      <div class="insight-label">Metric vs. Sentiment Cross-Validation</div>
-      <p class="insight-detail">Validated recommendation reliability by cross-referencing internal Netflix platform metrics against external qualitative user sentiment data from Reddit communities.</p>
+    <div class="hero-blurb">
+      <div class="hero-blurb-icon">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 12 15 21 10" stroke="var(--accent1)"/><polyline points="17 10 21 10 21 14" stroke="var(--accent1)"/></svg>
+      </div>
+      <div class="hero-blurb-stat">3.5×</div>
+      <div class="hero-blurb-title">Getting People In Is Not the Same as Keeping Them</div>
+      <p class="hero-blurb-body">Stamp-game users on the LUCAUS festival platform engaged 3.5× more than average — then left the moment the game ended. People drawn in by one hook need a reason to stay. Without a next action, even your most engaged users vanish.</p>
     </div>
   </div>
+
 </div>
 
 <!-- INSIGHT BAND -->
@@ -682,6 +749,7 @@ footer {
     </div>
 
     <div class="proj-card fade-up" data-modal="modal-p2">
+
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
         <div class="proj-idx" style="margin-bottom: 0;">PROJECT_02 · ML · RECOMMENDER</div>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
@@ -728,8 +796,7 @@ footer {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <!-- 📌 Replace with: screenshot of Spotify analysis notebook or Tableau dashboard -->
-    <div class="modal-img"><img src="images/centered_trend.png"  alt="Spotify analysis notebook screenshot"></div>
+    <div class="modal-img"><img src="https://raw.githubusercontent.com/lucytheboss/what-drives-music-popularity/main/images/discovery/fig15_residual_distribution.png" alt="Residual distribution chart" width="100%" height="100%" style="object-fit:contain;object-position:center;display:block;background-color:var(--surface);padding:1rem;" onerror="this.style.display='none'"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
       <h2 class="modal-title">What Drives Music Popularity?</h2>
@@ -760,11 +827,7 @@ footer {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <!-- 📌 Replace with: chart from MovieLens analysis (bias curve or coverage graph) -->
-    <div class="modal-img alt">
-      <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><path d="M8 4v16"></path><path d="M16 4v16"></path></svg></div>
-      <div class="ph-label">MovieLens chart or notebook screenshot</div>
-    </div>
+    <div class="modal-img alt"><img src="https://raw.githubusercontent.com/lucytheboss/movielens-behavioral-recommender/main/images/user_dominance_curve.png" alt="User activity dominance curve" width="100%" height="100%" style="object-fit:contain;object-position:center;display:block;background-color:var(--surface);padding:1rem;" onerror="this.style.display='none'"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
       <h2 class="modal-title">MovieLens Behavioral Recommender</h2>
@@ -786,6 +849,7 @@ footer {
         <span class="tech-tag">A/B Testing</span>
       </div>
     </div>
+    <div style="width:100%;background-color:var(--surface);padding:1rem;"><img src="https://raw.githubusercontent.com/lucytheboss/movielens-behavioral-recommender/main/images/tail_survival.png" alt="Tail survival — catalog coverage" style="width:100%;height:auto;display:block;object-fit:contain;object-position:center;" onerror="this.style.display='none'"></div>
     <div class="modal-footer">
       <a class="proj-link" href="https://github.com/lucytheboss/movielens-behavioral-recommender" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
     </div>
@@ -862,14 +926,13 @@ footer {
 <section id="ux">
   <div class="sec-head">
     <span class="sec-n">02</span>
-    <span class="sec-t">UX &amp; Product Design</span>
+    <span class="sec-t">HCI &amp; Interaction Research</span>
     <div class="sec-rule"></div>
   </div>
   <div class="ux-grid">
 
     <div class="ux-card fade-up">
-      <!-- 📌 Replace with: LUCAUS website or festival photo -->
-      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg></div><div class="ph-label">LUCAUS website screenshot</div></div>
+      <div class="ux-img"><img src="images/LUCAUS.png" alt="LUCAUS festival platform"></div>
       <div class="ux-content">
         <div class="ux-num">UX_01 · 2025</div>
         <div class="ux-title">LUCAUS 2025</div>
@@ -882,8 +945,7 @@ footer {
     </div>
 
     <div class="ux-card fade-up">
-      <!-- 📌 Replace with: Figma screenshot of 니옷내옷 mobile UI -->
-      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></div><div class="ph-label">니옷내옷 UI</div></div>
+      <div class="ux-img"><img src="images/ClosetSwap.png" alt="Closet Swap 니옷내옷 UI"></div>
       <div class="ux-content">
         <div class="ux-num">UX_02 · 2024</div>
         <div class="ux-title">Closet Swap(니옷내옷)</div>
@@ -896,8 +958,7 @@ footer {
     </div>
 
     <div class="ux-card fade-up">
-      <!-- 📌 Replace with: 다님 app mobile screenshot -->
-      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21.5 4c0 0-2 .5-3.5 2L14.5 9.5 6.3 7.7l-1.6 1.6 5.5 3.3-3.6 3.6-2.5-.8L2.5 17l4 1 1 4 1.6-1.6-.8-2.5 3.6-3.6 3.3 5.5 1.6-1.6z"></path></svg></div><div class="ph-label">다님 app UI</div></div>
+      <div class="ux-img"><img src="images/Danim.png" alt="Danim 다님 app UI"></div>
       <div class="ux-content">
         <div class="ux-num">UX_03 · 2023–2024</div>
         <div class="ux-title">Danim(다님)</div>
@@ -910,8 +971,7 @@ footer {
     </div>
 
     <div class="ux-card fade-up">
-      <!-- 📌 Replace with: VEBE app Figma screenshot -->
-      <div class="ux-img"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div><div class="ph-label">VEBE app UI</div></div>
+      <div class="ux-img"><img src="images/VEBE.png" alt="VEBE app UI"></div>
       <div class="ux-content">
         <div class="ux-num">UX_04 · 2023</div>
         <div class="ux-title">VEBE</div>
@@ -935,15 +995,13 @@ footer {
     <div class="sec-rule"></div>
   </div>
   <div class="projects-grid">
-    <a href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer" class="proj-card fade-up" style="text-decoration: none;">
-      <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div><div class="ph-label">Medium Articles</div></div>
+    <a href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer" class="proj-card proj-card--writing fade-up" style="text-decoration: none;">
       <div class="proj-idx">Medium</div>
       <div class="proj-title">Tech & Data Analytics</div>
-      <div class="proj-oneliner">Writing on behavioral data, recommendation systems, and HCI at the intersection of psychology and ML.</div>
+      <div class="proj-oneliner">Research Writing · Public Knowledge</div>
       <div class="tech-wrap"><span class="tech-tag">Medium</span></div>
     </a>
-    <a href="https://velog.io/@lucytheboss/posts" target="_blank" rel="noopener noreferrer" class="proj-card fade-up" style="text-decoration: none;">
-      <div class="ux-img" style="height: 120px;"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="ph-label">Velog Dev Logs</div></div>
+    <a href="https://velog.io/@lucytheboss/posts" target="_blank" rel="noopener noreferrer" class="proj-card proj-card--writing fade-up" style="text-decoration: none;">
       <div class="proj-idx">Velog</div>
       <div class="proj-title">Dev Logs & Projects</div>
       <div class="proj-oneliner">Technical write-ups, development logs, and project retrospectives.</div>
@@ -962,15 +1020,12 @@ footer {
   <div class="about-grid">
     <div class="about-left fade-up">
       <!-- 📌 Replace with: your photo -->
-      <div class="about-photo">
-        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
-        <div class="ph-label">Your photo here</div>
-      </div>
-      <h2 class="about-head">Operating at the intersection of <em>Psychology &amp; Data &amp; HCI.</em></h2>
+      <div class="about-photo"><img src="images/IMG_3400.JPG" alt="Lucy Roh"></div>
+      <h2 class="about-head">Operating at the intersection of <em>Behavior, Data, and People.</em></h2>
       <div class="unified-about">
-        <p class="about-body">My academic background spanning <strong>Psychology, English Literature, and Tech-Art</strong> gives me a distinct multidisciplinary lens on <strong>Human-Computer Interaction (HCI)</strong>.</p>
-        <p class="about-body">I am not interested in technology for its own sake. I am deeply fascinated by how humans perceive, trust, and fundamentally alter their behavior when interacting with algorithms.</p>
-        <p class="about-body">I study systems that <strong>fail users without failing metrics</strong>. By bridging behavioral theory with <strong>computational execution</strong>, my goal as an Applied Scientist is to build sociotechnical systems that understand <strong>why users hesitate</strong>, moving beyond simple accuracy.</p>
+        <p class="about-body">I'm not interested in technology for its own sake. I'm fascinated by how humans perceive, trust, and fundamentally change their behavior when interacting with algorithms — and by the moments when systems fail people quietly, without any metric noticing.</p>
+        <p class="about-body">My triple major in <strong>Psychology, English Literature, and Technology-Art</strong> isn't a detour. It's the reason I can read both a residual plot and the human story behind it. I study systems that fail users without failing metrics — and I want to build ones that don't.</p>
+        <p class="about-body">I'm drawn to roles in UX Research, Behavioral Data Science, and Human-AI Interaction where explaining <em>why</em> users behave the way they do matters more than maximizing model accuracy. Currently preparing MS program applications with music recommendation systems as my core research portfolio.</p>
       </div>
 
 
@@ -984,57 +1039,55 @@ footer {
     </div>
     <div class="about-right fade-up">
       <div class="skill-group">
-        <div class="skill-group-label">Workflow &amp; Infrastructure</div>
+        <div class="skill-group-label">Core Expertise</div>
         <div class="chips">
-          <span class="chip">n8n</span><span class="chip">API Webhooks</span>
-          <span class="chip">Home Assistant</span><span class="chip">Local Environments</span>
-          <span class="chip">Git/GitHub</span><span class="chip">Shell</span>
+          <span class="chip">Behavioral Analysis</span><span class="chip">Interaction Logs</span>
+          <span class="chip">User Research</span><span class="chip">HCI</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label">Analysis &amp; ML</div>
+        <div class="skill-group-label">Analysis &amp; Modeling</div>
         <div class="chips">
           <span class="chip">Python</span><span class="chip">SQL</span>
           <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span>
-          <span class="chip">PyTorch</span><span class="chip">Statistics</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label">UX &amp; Research</div>
+        <div class="skill-group-label">Research &amp; Prototyping</div>
         <div class="chips">
-          <span class="chip">Figma</span><span class="chip">Interaction Logs</span>
-          <span class="chip">Behavioral Analysis</span><span class="chip">User Research</span>
+          <span class="chip">Figma</span><span class="chip">Procreate</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">Background</div>
         <div class="chips">
           <span class="chip">Psychology</span><span class="chip">Tech Art (CS + Arts)</span>
-          <span class="chip">English Literature</span><span class="chip">HCI</span>
+          <span class="chip">English Literature</span>
         </div>
       </div>
 
 
-      <div class="contact-links" style="margin-top: 3rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
-        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
-          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">Email</span>
-          <a class="c-val" href="mailto:lucyroh529@gmail.com" style="color: var(--ink); text-decoration: none; font-weight: 600;">lucyroh529@gmail.com</a>
-        </div>
-        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
-          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">GitHub</span>
-          <a class="c-val" href="https://github.com/lucytheboss" target="_blank" rel="noopener noreferrer" style="color: var(--ink); text-decoration: none; font-weight: 600;">github.com/lucytheboss</a>
-        </div>
-        <div class="c-item" style="padding: 0.75rem 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(0,0,0,0.03);">
-          <span class="c-label" style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.5; font-family: 'DM Mono', monospace;">Medium</span>
-          <a class="c-val" href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer" style="color: var(--ink); text-decoration: none; font-weight: 600;">@lucyroh529</a>
-        </div>
-      </div>
 
 
     </div>
   </div>
 </section>
 
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-sec">
+    <div class="fade-up">
+      <div class="contact-head">Let's<em>talk.</em></div>
+    </div>
+    <div class="contact-right fade-up">
+      <div class="c-item"><span class="c-label">Email</span><a class="c-val" href="mailto:lucyroh529@gmail.com">lucyroh529@gmail.com</a></div>
+      <div class="c-item"><span class="c-label">GitHub</span><a class="c-val" href="https://github.com/lucytheboss" target="_blank" rel="noopener noreferrer">github.com/lucytheboss</a></div>
+      <div class="c-item"><span class="c-label">Medium</span><a class="c-val" href="https://medium.com/@lucyroh529" target="_blank" rel="noopener noreferrer">medium.com/@lucyroh529</a></div>
+      <div class="c-item"><span class="c-label">Velog</span><a class="c-val" href="https://velog.io/@lucytheboss/posts" target="_blank" rel="noopener noreferrer">velog.io/@lucytheboss</a></div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <span class="foot-copy">© 2026 Jiwoo (Lucy) Roh · Seoul, KR</span>
