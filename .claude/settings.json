@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website status)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website add index.html images/LUCAUS.png images/ClosetSwap.png images/Danim.png images/IMG_1578.JPG images/IMG_3400.jpeg images/IMG_3401.jpg)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website commit -m ' *)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website push)"
     ]
   }
 }
