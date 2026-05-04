@@ -283,21 +283,21 @@ nav {
 /* ── INSIGHT ── */
 .insight-band {
   display: flex; justify-content: center; align-items: center;
-  background: var(--surface);
+  background: var(--accent1); color: #FFFFFF;
 }
 
-.insight-center { max-width: 850px; width: 100%; padding: 4rem 2.5rem; text-align: center; }
+.insight-center { max-width: 950px; width: 100%; padding: 10rem 2.5rem; text-align: center; }
 .insight-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent1); margin-bottom: 1.5rem;
+  font-size: clamp(12px, 1.5vw, 14px); font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #FFFFFF; opacity: 0.9; margin-bottom: 2rem;
 }
 .insight-quote {
-  font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
   line-height: 1.2; letter-spacing: -0.03em;
-  color: var(--ink); margin-bottom: 1.5rem;
+  color: #FFFFFF; margin-bottom: 2rem;
 }
-.insight-quote em { font-style: normal; color: var(--accent1); }
-.insight-body { font-size: 13px; font-weight: 400; color: var(--ink); line-height: 1.8; opacity: 0.85; max-width: 650px; margin: 0 auto; }
+.insight-quote em { font-style: italic; color: #FFFFFF; opacity: 0.85; }
+.insight-body { font-size: clamp(15px, 2.5vw, 18px); font-weight: 500; color: #FFFFFF; line-height: 1.8; opacity: 0.95; max-width: 750px; margin: 0 auto; }
 
 
 .insight-right {
@@ -457,15 +457,15 @@ nav {
 
 
 /* ── ABOUT ── */
-#about { display: flex; flex-direction: column; justify-content: center; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 2.5rem 2rem; background: var(--bg); }
+#about { display: flex; flex-direction: column; justify-content: center; padding-top: 1rem !important; padding-bottom: 1rem !important; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 0 2.5rem 1rem; background: var(--bg); }
 
-.about-left { padding: 2rem; border-radius: 16px; background: var(--surface); }
+.about-left { padding: 1.5rem; border-radius: 16px; background: var(--surface); }
 
 
 .about-head {
-  font-size: clamp(1.8rem, 3vw, 2.2rem); font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 2.5rem;
 }
 
 .about-head em { font-style: normal; color: var(--accent1); }
@@ -474,9 +474,9 @@ nav {
 .about-body strong { font-weight: 700; color: var(--ink); }
 
 
-.about-right { padding: 2rem; border-radius: 16px; background: var(--surface); }
+.about-right { padding: 1.5rem; border-radius: 16px; background: var(--surface); }
 
-.skill-group { margin-bottom: 1rem; }
+.skill-group { margin-bottom: 0.75rem; }
 
 .skill-group-label {
   font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
@@ -533,8 +533,8 @@ footer {
   background: var(--bg); border-radius: 8px;
 }
 .about-photo {
-  height: 420px; position: relative; overflow: hidden; width: 100%;
-  background: var(--bg); border-radius: 12px; margin-bottom: 1.25rem;
+  height: 320px; position: relative; overflow: hidden; width: 100%;
+  background: var(--bg); border-radius: 12px; margin-bottom: 1rem;
 }
 
 .proj-img > *, .ux-img > *, .img-main > *, .about-photo > *, .img-sm > * {
@@ -596,9 +596,15 @@ footer {
   [data-theme="dark"] .hero-blurb { border-bottom-color: rgba(255,255,255,0.06); }
 }
 
-/* ── FADE ── */
-.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+/* ── FADE & SLIDE ── */
+.fade-up { opacity: 0; transform: translateY(60px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .fade-up.vis { opacity: 1; transform: translateY(0); }
+
+/* ── SECTION SPACING ── */
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 980px) {
@@ -669,17 +675,6 @@ footer {
 
     <div class="hero-right">
       <div class="img-main"><img src="images/IMG_1578.JPG" alt="Lucy Roh"></div>
-      <div class="img-row">
-        <div class="img-sm">
-          <img src="https://raw.githubusercontent.com/lucytheboss/what-drives-music-popularity/main/images/discovery/fig14_actual_vs_predicted.png" alt="Actual vs predicted popularity model" width="100%" height="100%" style="object-fit:contain;object-position:center;display:block;position:absolute;inset:0;background-color:var(--bg2);padding:0.5rem;" onerror="this.style.display='none'">
-        </div>
-        <div class="img-sm">
-          <div><!-- 📌 Replace with: design work screenshot -->
-            <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
-            <div class="ph-label">Design work</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -714,7 +709,7 @@ footer {
 </div>
 
 <!-- INSIGHT BAND -->
-<div class="insight-band fade-up" style="background: var(--bg); border-top: 1px solid rgba(0,0,0,0.03);">
+<div class="insight-band fade-up">
   <div class="insight-center">
     <div class="insight-eyebrow">Core Research Thesis</div>
     <div class="insight-quote">"When predictions fail — <em>why?</em>"</div>
@@ -860,7 +855,6 @@ footer {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <!-- 📌 Replace with: festival website screenshot or engagement drop-off chart -->
     <div class="modal-img">
       <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
       <div class="ph-label">Festival site or engagement chart</div>
@@ -893,7 +887,6 @@ footer {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <!-- 📌 Replace with: Streamlit app screenshot or audio feature scatter plot -->
     <div class="modal-img alt">
       <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div>
       <div class="ph-label">Streamlit app or audio analysis chart</div>
@@ -953,7 +946,7 @@ footer {
 
         <p class="ux-desc">YONO philosophy applied to fashion. Taste-based matching via mutual likes. AI recommendations via wardrobe and SNS post analysis.</p>
         <div class="tech-wrap"><span class="tech-tag">Figma</span><span class="tech-tag">Branding</span><span class="tech-tag">AI Prompt UX</span></div>
-        <div class="ux-role">Branding 80% · Design 100% · Feb 2024 – Feb 2025</div>
+        <div class="ux-role">Branding 80% · Design 100% · Feb–Sep 2024</div>
       </div>
     </div>
 
@@ -1019,8 +1012,6 @@ footer {
   </div>
   <div class="about-grid">
     <div class="about-left fade-up">
-      <!-- 📌 Replace with: your photo -->
-      <div class="about-photo"><img src="images/IMG_3400.JPG" alt="Lucy Roh"></div>
       <h2 class="about-head">Operating at the intersection of <em>Behavior, Data, and People.</em></h2>
       <div class="unified-about">
         <p class="about-body">I'm not interested in technology for its own sake. I'm fascinated by how humans perceive, trust, and fundamentally change their behavior when interacting with algorithms — and by the moments when systems fail people quietly, without any metric noticing.</p>
@@ -1028,17 +1019,15 @@ footer {
         <p class="about-body">I'm drawn to roles in UX Research, Behavioral Data Science, and Human-AI Interaction where explaining <em>why</em> users behave the way they do matters more than maximizing model accuracy. Currently preparing MS program applications with music recommendation systems as my core research portfolio.</p>
       </div>
 
-
-
-      <div style="margin-top: 1.5rem;">
-        <a class="btn btn-primary" href="https://drive.google.com/file/d/1K0i79t91Ch7wFhR9zg2SXe1CHEN8sbNb/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Resume →</a>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/1K0i79t91Ch7wFhR9zg2SXe1CHEN8sbNb/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="padding: 0.55rem 1.1rem; font-size: 13px;">Download Resume →</a>
       </div>
-
-
-
     </div>
+
     <div class="about-right fade-up">
-      <div class="skill-group">
+      <div class="about-photo"><img src="images/IMG_3400.JPG" alt="Lucy Roh"></div>
+      
+      <div class="skill-group" style="margin-top: 2rem;">
         <div class="skill-group-label">Core Expertise</div>
         <div class="chips">
           <span class="chip">Behavioral Analysis</span><span class="chip">Interaction Logs</span>
@@ -1065,10 +1054,6 @@ footer {
           <span class="chip">English Literature</span>
         </div>
       </div>
-
-
-
-
     </div>
   </div>
 </section>
