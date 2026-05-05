@@ -5,7 +5,20 @@
       "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website status)",
       "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website add index.html images/LUCAUS.png images/ClosetSwap.png images/Danim.png images/IMG_1578.JPG images/IMG_3400.jpeg images/IMG_3401.jpg)",
       "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website commit -m ' *)",
-      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website push)"
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website push)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website log --oneline -3)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website show --stat HEAD)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website show --stat HEAD~1)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website ls-files images/)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website add index.html)",
+      "Bash(python3)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website add index.html images/chart_p1.png images/chart_p2.png images/chart_p3.png images/chart_p4.png)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website add images/og-image.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website/images/og-image.jpg)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website remote get-url origin)",
+      "Bash(git -C /Users/lucyroh/Desktop/WORK/02_Portfolio/portfolio-website diff index.html)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
