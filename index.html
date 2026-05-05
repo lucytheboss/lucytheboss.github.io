@@ -761,7 +761,7 @@ section {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
       </div>
       <h3 class="proj-title">Beyond Demographics</h3>
-      <p class="proj-oneliner">Psychographic clustering on 1M synthetic Korean personas — testing whether AI user modeling can go beyond demographic stereotyping.</p>
+      <p class="proj-oneliner">Psychographic clustering on 1M synthetic Korean personas — tracing how LLM-generated persona biases propagate into recommendation simulation, and whether values-based design reduces the gap.</p>
       <div class="tech-wrap">
         <span class="tech-tag">Python</span>
         <span class="tech-tag">Sentence Transformers</span>
@@ -839,10 +839,12 @@ section {
       <div class="modal-idx">PROJECT_05 · NLP · PSYCHOGRAPHIC CLUSTERING · Apr 2026 – Present</div>
       <h2 class="modal-title">Beyond Demographics</h2>
       <div class="modal-type">Computational Social Science · Psychographic Segmentation · AI Fairness</div>
-      <p class="modal-desc">
-  Demographic labels — age, gender, region — are a proxy, not a person. Yet most AI user models are built on them. This project asks: <strong>if we remove demographics entirely, does meaningful structure still emerge from behavior and values alone?</strong>
+      < class="modal-desc">
+  Demographic labels — age, gender, region — are a proxy, not a person. Yet most AI user models are built on them. This project asks: when LLMs generate synthetic user personas, <strong>what biases do they encode — and do those biases survive into downstream recommendation outcomes?</strong>
   <br><br>
-  Using NVIDIA's Nemotron-Personas-Korea dataset (1M synthetic Korean personas), we apply Korean NLP and unsupervised clustering to surface four psychographic types — Autonomous, Social, Cultural, and Routine — that distribute <strong>near-uniformly across age and gender</strong>. The finding is pointed: demographic stereotyping in AI design is not just ethically questionable, it may be empirically wrong.
+  Using NVIDIA's Nemotron-Personas-Korea dataset (1M synthetic Korean personas), we apply Korean NLP and unsupervised clustering across behavior and values layers. Both surface clusters that distribute near-uniformly across age and gender — <strong>demographic stereotyping in AI design is not just ethically questionable, it may be empirically wrong.</strong> A secondary finding sharpens the picture: LLM-generated Korean personas overrepresent social keywords by <strong>16.1×</strong> relative to autonomy signals.
+  <br><br>
+  The central experiment (NB04, in progress) runs these personas as LLM simulation users against MovieLens 25M, asking whether <strong>values-based persona design produces a smaller bias gap than demographic-based design</strong> in recommendation outcomes.
   <br><br>
   Currently in active development toward a paper submission. Methodology directly engages Amershi et al. (2019) HCI guidelines on bias mitigation, explainability, and behavioral learning.
 </p>
