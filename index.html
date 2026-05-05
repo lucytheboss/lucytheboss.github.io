@@ -370,7 +370,7 @@ nav {
 /* ── MODAL ── */
 .modal {
   display: none; position: fixed; inset: 0; z-index: 500;
-  align-items: center; justify-content: center; padding: 2rem;
+  align-items: center; justify-content: center; padding: 1rem;
 }
 .modal.open { display: flex; }
 .modal-backdrop {
@@ -379,7 +379,7 @@ nav {
 }
 .modal-box {
   position: relative; background: var(--bg); z-index: 1;
-  max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto;
+  max-width: 960px; width: 95%; max-height: 92vh; overflow-y: auto;
   border-radius: 16px;
   animation: slide-up 0.25s ease;
   box-shadow: 0 24px 64px rgba(0,0,0,0.2);
@@ -401,13 +401,19 @@ nav {
 
 
 .modal-img {
-  width: 100%; height: 340px; background: var(--surface);
+  width: 100%; height: 400px; background: var(--surface);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   position: relative; overflow: hidden;
 }
 .modal-img img {
-  width: 100%; height: 100%; max-width: 100%; max-height: 100%;
-  object-fit: contain; object-position: center center; display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background-color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .modal-body { padding: 3rem; }
 .modal-idx { font-size: 11px; font-weight: 700; color: var(--ink); opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; font-family: 'DM Mono', monospace; }
@@ -643,6 +649,8 @@ section {
   .ux-grid, .projects-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .modal { padding: 1rem; }
+  .modal-box { max-width: 100%; width: 100%; max-height: 95vh; }
+  .modal-img { height: 240px; }
   .hero-blurbs { grid-template-columns: 1fr; }
   .hero-blurb { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
   .hero-blurb:last-child { border-bottom: none; }
@@ -826,21 +834,26 @@ section {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <div class="modal-img"><img src="images/chart_p5.png" alt="UMAP psychographic clustering visualization" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:1.5rem; background:#ffffff;"></div>
+    <div class="modal-img"><img src="images/chart_p5.png" alt="Psychographic clustering — UMAP projection, model selection, and demographic distribution" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;" onerror="this.style.display='none'"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_05 · NLP · PSYCHOGRAPHIC CLUSTERING · Apr 2026 – Present</div>
       <h2 class="modal-title">Beyond Demographics</h2>
-      <div class="modal-type">Behavioral & Values-Based Psychographic Clustering · Research in Progress</div>
+      <div class="modal-type">Computational Social Science · Psychographic Segmentation · AI Fairness</div>
       <p class="modal-desc">
-        Can we build meaningful user clusters <strong>without demographic variables</strong>? This project applies NLP and unsupervised clustering to NVIDIA's Nemotron-Personas-Korea dataset — 1M synthetic Korean persona profiles — to test whether behavior and values alone can ground fairer, more adaptive AI user modeling. Directly addresses Amershi et al. (2019) HCI guidelines on mitigating social bias in AI systems.
-      </p>
+  Demographic labels — age, gender, region — are a proxy, not a person. Yet most AI user models are built on them. This project asks: <strong>if we remove demographics entirely, does meaningful structure still emerge from behavior and values alone?</strong>
+  <br><br>
+  Using NVIDIA's Nemotron-Personas-Korea dataset (1M synthetic Korean personas), we apply Korean NLP and unsupervised clustering to surface four psychographic types — Autonomous, Social, Cultural, and Routine — that distribute <strong>near-uniformly across age and gender</strong>. The finding is pointed: demographic stereotyping in AI design is not just ethically questionable, it may be empirically wrong.
+  <br><br>
+  Currently in active development toward a paper submission. Methodology directly engages Amershi et al. (2019) HCI guidelines on bias mitigation, explainability, and behavioral learning.
+</p>
       <div class="metrics-block">
-        <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">1M rows · 26 cols · Korean</span></div>
-        <div class="m-row"><span class="m-k">Best embedding</span><span class="m-v">ko-sroberta-multitask (768D)</span></div>
-        <div class="m-row"><span class="m-k">Silhouette score</span><span class="m-v">0.60 (K=4)</span></div>
-        <div class="m-row"><span class="m-k">Davies-Bouldin</span><span class="m-v">0.56 (best simultaneously)</span></div>
-        <div class="m-row"><span class="m-k">HCI framework</span><span class="m-v">Amershi G6 · G11 · G13</span></div>
-        <div class="m-row"><span class="m-k">Status</span><span class="m-v">Research in progress · Paper planned</span></div>
+        <div class="m-row"><span class="m-k">Research question</span><span class="m-v">Can behavior + values replace demographics in AI user modeling?</span></div>
+        <div class="m-row"><span class="m-k">Dataset</span><span class="m-v">1M personas · 26 cols · Korean (NVIDIA HuggingFace)</span></div>
+        <div class="m-row"><span class="m-k">Best model</span><span class="m-v">ko-sroberta-multitask 768D + UMAP + K-Means</span></div>
+        <div class="m-row"><span class="m-k">Optimal K</span><span class="m-v">K=4 · Silhouette 0.60 · Davies-Bouldin 0.56</span></div>
+        <div class="m-row"><span class="m-k">Key finding</span><span class="m-v">Clusters distribute evenly across age &amp; gender</span></div>
+        <div class="m-row"><span class="m-k">HCI framework</span><span class="m-v">Amershi et al. (2019) G6 · G11 · G13</span></div>
+        <div class="m-row"><span class="m-k">Status</span><span class="m-v">Active research · Paper in preparation</span></div>
       </div>
       <div class="tech-wrap">
         <span class="tech-tag">Python</span>
@@ -863,7 +876,7 @@ section {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <div class="modal-img"><img src="images/chart_p4.png" alt="Audio features vs artist momentum signal" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:1.5rem; background:#ffffff;"></div>
+    <div class="modal-img"><img src="images/chart_p4.png" alt="Audio features vs artist momentum signal" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_04 · AUDIO · HIT PREDICTION</div>
       <h2 class="modal-title">Sonic Analytics: Hit Predictor</h2>
@@ -892,7 +905,7 @@ section {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <div class="modal-img"><img src="images/chart_p3.png" alt="Festival engagement lifecycle — completion cliff" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:1.5rem; background:#ffffff;"></div>
+    <div class="modal-img"><img src="images/chart_p3.png" alt="Festival engagement lifecycle — completion cliff" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_03 · BEHAVIORAL ANALYTICS · UX</div>
       <h2 class="modal-title">Festival Drop-off Analysis</h2>
@@ -921,7 +934,7 @@ section {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <div class="modal-img"><img src="images/chart_p2.png" alt="User dominance and head-tail exposure bias" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:1.5rem; background:#ffffff;"></div>
+    <div class="modal-img"><img src="images/chart_p2.png" alt="User dominance and head-tail exposure bias" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_02 · ML · RECOMMENDER SYSTEMS</div>
       <h2 class="modal-title">MovieLens Behavioral Recommender</h2>
@@ -953,7 +966,7 @@ section {
   <div class="modal-backdrop"></div>
   <div class="modal-box">
     <button class="modal-close" aria-label="Close">✕</button>
-    <div class="modal-img"><img src="images/chart_p1.png" alt="R² comparison — audio features vs artist reputation" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; padding:1.5rem; background:#ffffff;"></div>
+    <div class="modal-img"><img src="images/chart_p1.png" alt="R² comparison — audio features vs artist reputation" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;"></div>
     <div class="modal-body">
       <div class="modal-idx">PROJECT_01 · DATA SCIENCE · SPOTIFY API</div>
       <h2 class="modal-title">What Drives Music Popularity?</h2>
