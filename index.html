@@ -755,6 +755,22 @@ section {
   </div>
   <div class="projects-grid">
 
+    <div class="proj-card fade-up" data-modal="modal-p6">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+        <div class="proj-idx" style="margin-bottom: 0;">PROJECT_06 · NLP · LONG-CONTEXT LLM QA</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      </div>
+      <h3 class="proj-title">Fit Over Depth</h3>
+      <p class="proj-oneliner">Tests three human memory-consolidation strategies for long-context LLM QA side by side and finds a purely extractive pipeline matches a strong RAG baseline's accuracy exactly — using fewer tokens on every genre, without rewriting a single sentence.</p>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span><span class="tech-tag">LLM Pipelines</span><span class="tech-tag">RAG</span><span class="tech-tag">Embeddings</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem;">
+        <div class="proj-open-hint">View details →</div>
+        <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--accent1); font-weight:600; letter-spacing:0.06em;">● CUAI CONFERENCE PAPER</span>
+      </div>
+    </div>
+
     <div class="proj-card fade-up" data-modal="modal-p5">
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
         <div class="proj-idx" style="margin-bottom: 0;">PROJECT_05 · NLP · HCI RESEARCH</div>
@@ -830,6 +846,44 @@ section {
 </section>
 
 <!-- PROJECT MODALS -->
+<div class="modal" id="modal-p6" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-img"><img src="images/chart_p6.png" alt="Proposed final model vs. RAG — accuracy by genre and the accuracy/token efficiency frontier" style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background-color:#ffffff; padding:10px; box-sizing:border-box;" onerror="this.style.display='none'"></div>
+    <div class="modal-body">
+      <div class="modal-idx">PROJECT_06 · NLP · LONG-CONTEXT LLM QA · Aug 2026</div>
+      <h2 class="modal-title">Fit Over Depth</h2>
+      <div class="modal-type">Transfer-Appropriate Compression for Long-Context LLM QA</div>
+      <p class="modal-desc">
+        Human memory-consolidation strategies — rehearsal, the testing effect, reconstructive memory — are already borrowed piecemeal in LLM pipelines, but different studies borrow different frameworks in isolation and report inconsistent results. This project tests three side by side in one long-context QA pipeline and finds the inconsistency splits cleanly in two: <strong>whether a strategy rewrites content or preserves it</strong> decides if it works at all (every mechanism that regenerates text collapses toward near-duplicate output, independent of model scale), and <strong>whether its selection grain fits the document's structure</strong> decides which strategy wins, not a universal depth hierarchy.
+        <br><br>
+        The headline result: a purely extractive pipeline — verbatim sentence selection, a compression ratio that adapts to document length, and a small local-context repair applied only where a genre's comprehension depends on narrative continuity — <strong>matches a strong RAG baseline's accuracy exactly while using fewer tokens on every genre tested</strong>, and never rewrites a single sentence. The size of the repair's effect per genre isn't fit to the data after the fact — it's predicted in advance by a specific text-comprehension theory (bridging inference / event-indexing).
+      </p>
+
+      <div class="metrics-block">
+        <div class="m-row"><span class="m-k">Accuracy vs. RAG</span><span class="m-v">Exact parity — 254/579 correct, both</span></div>
+        <div class="m-row"><span class="m-k">Token savings</span><span class="m-v">14% fewer, every genre tested</span></div>
+        <div class="m-row"><span class="m-k">Elaborative rehearsal (baseline)</span><span class="m-v">Collapses — near-duplicate output</span></div>
+        <div class="m-row"><span class="m-k">Local-repair recovery</span><span class="m-v">100% narrative · 60% legal text</span></div>
+        <div class="m-row"><span class="m-k">Framework</span><span class="m-v">Transfer-Appropriate Processing (Morris et al., 1977)</span></div>
+        <div class="m-row"><span class="m-k">Status</span><span class="m-v">CUAI 9th Summer Conference · short paper (final)</span></div>
+      </div>
+      <div class="tech-wrap">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">LLM Pipelines</span>
+        <span class="tech-tag">RAG</span>
+        <span class="tech-tag">Sentence Transformers</span>
+        <span class="tech-tag">Embeddings</span>
+        <span class="tech-tag">Evaluation</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="proj-link" href="https://github.com/lucytheboss/fit-over-depth" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="modal-p5" role="dialog" aria-modal="true">
   <div class="modal-backdrop"></div>
   <div class="modal-box">
@@ -839,7 +893,7 @@ section {
       <div class="modal-idx">PROJECT_05 · NLP · PSYCHOGRAPHIC CLUSTERING · Apr 2026 – Present</div>
       <h2 class="modal-title">Beyond Demographics</h2>
       <div class="modal-type">Computational Social Science · Psychographic Segmentation · AI Fairness</div>
-      < class="modal-desc">
+      <p class="modal-desc">
   Demographic labels — age, gender, region — are a proxy, not a person. Yet most AI user models are built on them. This project asks: when LLMs generate synthetic user personas, <strong>what biases do they encode — and do those biases survive into downstream recommendation outcomes?</strong>
   <br><br>
   Using NVIDIA's Nemotron-Personas-Korea dataset (1M synthetic Korean personas), we apply Korean NLP and unsupervised clustering across behavior and values layers. Both surface clusters that distribute near-uniformly across age and gender — <strong>demographic stereotyping in AI design is not just ethically questionable, it may be empirically wrong.</strong> A secondary finding sharpens the picture: LLM-generated Korean personas overrepresent social keywords by <strong>16.1×</strong> relative to autonomy signals.
